@@ -1,4 +1,13 @@
 module.exports = async function handler(req, res) {
+  if (req.method === "GET") {
+    return res.status(200).json({
+      ok: true,
+      service: "lead-submit",
+      webhookConfigured: !!process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL,
+      tokenConfigured: !!process.env.GOOGLE_SHEETS_WEBHOOK_TOKEN
+    });
+  }
+
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ ok: false, error: "method_not_allowed" });
@@ -33,13 +42,29 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify(payload)
     });
 
+    const raw = await upstream.text();
+    let parsed = null;
+    try {
+      parsed = raw ? JSON.parse(raw) : null;
+    } catch (_) {
+      parsed = null;
+    }
+
     if (!upstream.ok) {
-      const text = await upstream.text();
       return res.status(502).json({
         ok: false,
         error: "upstream_rejected",
         status: upstream.status,
-        detail: text.slice(0, 200)
+        detail: raw.slice(0, 200)
+      });
+    }
+
+    // Google Apps Script often returns HTTP 200 even for logical errors.
+    if (parsed && parsed.ok === false) {
+      return res.status(502).json({
+        ok: false,
+        error: "upstream_app_error",
+        detail: (parsed.error || "unknown").toString().slice(0, 200)
       });
     }
 
