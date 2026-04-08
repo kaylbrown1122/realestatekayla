@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuyUnrepped | Kayla Brown, Principal Broker Nashville, TN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#F5F0E8; --warm:#FAF8F4; --navy:#141C24; --gold:#C4A574;
+  --gold-l:#E5D4B3; --rust:#B5522B; --sage:#6B7C6A; --charcoal:#1E2A22;
+  --text:#1a1a1a; --muted:#5C5C5C; --border:rgba(196,165,116,.22);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--warm);color:var(--text);overflow-x:hidden;font-weight:400;-webkit-font-smoothing:antialiased}
+
+/* NAV — solid default; transparent over home hero until scroll */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.15rem 3rem;background:rgba(250,248,244,.97);backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--border);transition:background .45s var(--ease-out),border-color .45s,box-shadow .35s}
+nav.nav-over-hero{background:transparent;backdrop-filter:none;border-bottom-color:rgba(255,255,255,.14);box-shadow:none}
+nav.nav-over-hero .nav-logo{color:#fff}
+nav.nav-over-hero .nav-logo span{color:var(--gold-l)}
+nav.nav-over-hero .nav-phone{color:rgba(255,255,255,.88)!important}
+nav.nav-over-hero .nav-links > li > a,nav.nav-over-hero .nav-links > li > span{color:rgba(255,255,255,.92)}
+nav.nav-over-hero .nav-links > li > a:hover,nav.nav-over-hero .nav-links > li > span:hover{color:var(--gold-l)}
+nav.nav-over-hero .nav-cta{background:rgba(255,255,255,.12)!important;color:#fff!important;border:1px solid rgba(255,255,255,.35)}
+nav.nav-over-hero .nav-cta:hover{background:#fff!important;color:var(--navy)!important;border-color:#fff}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--navy);text-decoration:none;letter-spacing:.02em;transition:color .35s}
+.nav-logo span{color:var(--gold);font-weight:400}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center}
+.nav-links li{position:relative}
+.nav-links > li > a,.nav-links > li > span{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);text-decoration:none;padding:.55rem 1rem;cursor:pointer;display:block;transition:color .25s;white-space:nowrap}
+.nav-links > li > a:hover,.nav-links > li > span:hover{color:var(--gold)}
+.has-drop:hover .drop{display:block}
+.drop{display:none;position:absolute;top:100%;left:0;background:var(--warm);border:1px solid var(--border);min-width:220px;box-shadow:0 20px 50px rgba(20,28,36,.12);z-index:300}
+.drop a{display:block;padding:.75rem 1.25rem;font-size:.78rem;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--border);transition:background .15s}
+.drop a:last-child{border:none}
+.drop a:hover{background:var(--cream);color:var(--gold)}
+.nav-cta{background:var(--navy)!important;color:#fff!important;padding:.55rem 1.35rem!important;margin-left:.5rem;border:1px solid transparent}
+.nav-cta:hover{background:var(--gold)!important;color:var(--navy)!important}
+.nav-phone{transition:color .35s}
+
+/* PAGES */
+.page{display:none;padding-top:72px;min-height:calc(100vh - 72px)}
+.page.active{display:block}
+
+/* SHARED */
+.container{max-width:1240px;margin:0 auto;padding:0 3rem}
+section{padding:6.5rem 0}
+.eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+h2.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,3.15rem);font-weight:400;color:var(--navy);line-height:1.08;margin-bottom:1.25rem;letter-spacing:-.01em}
+h2.sec-title em{font-style:italic;color:var(--gold)}
+.sec-desc{font-size:.97rem;line-height:1.82;color:var(--muted);max-width:560px}
+.btn-primary{background:var(--navy);color:#fff;padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:1px;display:inline-block;transition:background .3s var(--ease-out),transform .3s var(--ease-out),color .3s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+.btn-primary:hover{background:var(--gold);color:var(--navy);transform:translateY(-2px)}
+.btn-outline{border:1px solid var(--navy);color:var(--navy);padding:.9rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-radius:1px;display:inline-block;transition:all .3s var(--ease-out);cursor:pointer;background:transparent;font-family:'Inter',sans-serif}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.btn-gold{background:var(--gold);color:var(--navy);padding:.85rem 1.85rem;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:1px;display:inline-block;transition:background .3s var(--ease-out);border:none;font-family:'Inter',sans-serif;cursor:pointer}
+.btn-gold:hover{background:var(--gold-l)}
+
+/* HERO — Luxury Presence–style full-bleed editorial */
+.hero{position:relative;min-height:100vh;display:block;overflow:hidden}
+.hero-lp-bg{position:absolute;inset:0;z-index:0}
+.hero-lp-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(.52) saturate(1.08);transform:scale(1.03);animation:lpHeroDrift 32s ease-in-out infinite alternate}
+@keyframes lpHeroDrift{0%{transform:scale(1.03) translate(0,0)}100%{transform:scale(1.09) translate(-1.2%,-.6%)}}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(20,28,36,.35) 0%,rgba(20,28,36,.25) 35%,rgba(20,28,36,.75) 85%,rgba(20,28,36,.92) 100%);pointer-events:none}
+.hero-lp-inner{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:min(22vh,11rem) 3rem 5rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:100vh}
+.hero-lp-eyebrow{color:var(--gold-l)!important;margin-bottom:1.25rem}
+.hero-lp-eyebrow::before{background:var(--gold-l)}
+.hero h1,.hero-lp-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.85rem,6.5vw,4.75rem);font-weight:400;line-height:1.02;color:#fff;margin-bottom:1.5rem;max-width:14ch;letter-spacing:-.02em}
+.hero h1 em,.hero-lp-h1 em{font-style:italic;color:var(--gold-l)}
+.hero-sub{font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,.78);max-width:480px;margin-bottom:1.75rem;font-weight:400}
+.hero-callout{font-size:.9rem;color:rgba(255,255,255,.88);font-weight:400;margin-bottom:2rem;padding:1rem 1.25rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-left:3px solid var(--gold);border-radius:0 1px 1px 0;line-height:1.65;max-width:520px;backdrop-filter:blur(8px)}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:2.25rem}
+.pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);padding:.45rem 1rem;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92);border-radius:1px}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap;align-items:center}
+.btn-hero-solid{background:#fff;color:var(--navy);padding:.95rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:none;border-radius:1px;cursor:pointer;font-family:'Inter',sans-serif;transition:transform .3s var(--ease-out),box-shadow .3s}
+.btn-hero-solid:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.btn-hero-line{background:transparent;color:#fff;padding:.95rem 2rem;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(255,255,255,.45);border-radius:1px;cursor:pointer;font-family:'Inter',sans-serif;transition:border-color .3s,background .3s,color .3s}
+.btn-hero-line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.hero-lp-metrics{display:flex;flex-wrap:wrap;gap:2.5rem 3.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.15)}
+.hero-metric-num{font-family:'Cormorant Garamond',serif;font-size:2.25rem;font-weight:500;color:#fff;line-height:1}
+.hero-metric-num span{color:var(--gold-l)}
+.hero-metric-lab{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:.4rem}
+.hero-scroll-hint{position:absolute;bottom:1.75rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.55}
+.hero-scroll-hint span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.hero-scroll-line{width:1px;height:36px;background:linear-gradient(180deg,var(--gold-l),transparent);animation:lpScroll 2.2s ease-in-out infinite}
+@keyframes lpScroll{0%,100%{opacity:.35;transform:scaleY(.85)}50%{opacity:1;transform:scaleY(1)}}
+.stats-bar{background:var(--navy);padding:1.75rem 0;border-top:1px solid rgba(255,255,255,.06)}
+.stats-inner{display:flex;justify-content:center;gap:5rem;flex-wrap:wrap}
+.stats-strip-inner{max-width:920px;margin:0 auto;padding:0 2rem;text-align:center}
+.stats-strip-text{font-size:.8rem;font-weight:400;letter-spacing:.06em;line-height:1.75;color:rgba(255,255,255,.52);text-transform:uppercase}
+.stats-strip-text strong{color:rgba(255,255,255,.78);font-weight:600}
+.stat{text-align:center}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:white;line-height:1}
+.stat-n span{color:var(--gold)}
+.stat-l{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.06em;margin-top:.3rem;text-transform:uppercase}
+
+/* SERVICES OVERVIEW */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.svc-card{background:var(--cream);border:1px solid var(--border);padding:2.25rem;border-radius:2px;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(27,43,58,.1);background:var(--warm)}
+.svc-icon{font-size:2rem;margin-bottom:1rem}
+.svc-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--navy);margin-bottom:.65rem}
+.svc-card p{font-size:.86rem;line-height:1.72;color:var(--muted)}
+.svc-price{display:inline-block;margin-top:1.1rem;background:var(--navy);color:var(--gold);padding:.35rem .85rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;border-radius:2px}
+.svc-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-size:.78rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;padding:0}
+.svc-link:hover{color:var(--navy)}
+
+/* DIFFERENT SECTION */
+.diff-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.diff-list{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.diff-item{display:flex;gap:1.2rem;align-items:flex-start}
+.diff-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold-l);line-height:1;min-width:2rem;flex-shrink:0}
+.diff-item h4{font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem}
+.diff-item p{font-size:.86rem;line-height:1.7;color:var(--muted)}
+.diff-img{position:relative}
+.diff-img img{width:100%;height:480px;object-fit:cover;border-radius:2px}
+.diff-img-card{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--navy);color:var(--cream);padding:1.5rem;min-width:190px;border-radius:2px}
+.dic-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.dic-val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;line-height:1.4}
+
+/* PRICING */
+.pricing-section{background:var(--navy)}
+.pricing-section .eyebrow{color:var(--gold-l)}
+.pricing-section .eyebrow::before{background:var(--gold-l)}
+.pricing-section h2.sec-title{color:var(--cream)}
+.pricing-section .sec-desc{color:rgba(248,243,236,.65)}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;max-width:800px}
+.price-card{background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.2);padding:2.5rem;border-radius:2px;position:relative}
+.price-card.featured{background:rgba(201,169,110,.12);border-color:var(--gold)}
+.price-badge{position:absolute;top:-1px;right:2rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:0 0 3px 3px}
+.price-amount{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;color:white;line-height:1;margin:1rem 0}
+.price-amount span{font-size:1.2rem;color:var(--gold-l)}
+.price-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);margin-bottom:.5rem}
+.price-card > p{font-size:.85rem;color:rgba(248,243,236,.55);margin-bottom:1.5rem;line-height:1.6}
+.price-includes{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem}
+.price-includes li{font-size:.83rem;color:rgba(248,243,236,.75);display:flex;gap:.7rem;align-items:flex-start;line-height:1.5}
+.price-includes li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+.price-note{font-size:.72rem;color:rgba(248,243,236,.35);margin-top:1rem;font-style:italic;line-height:1.5}
+
+/* AGENT MATCHMAKING */
+.match-section{background:var(--cream)}
+.match-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+.match-img img{width:100%;height:520px;object-fit:cover;border-radius:2px;filter:brightness(.88)}
+.match-promise{background:var(--navy);padding:2rem;border-radius:2px;margin-top:2rem}
+.match-promise h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--gold);margin-bottom:.6rem}
+.match-promise p{font-size:.84rem;line-height:1.72;color:rgba(248,243,236,.7)}
+.match-steps{display:flex;flex-direction:column;gap:.85rem;margin:1.75rem 0}
+.match-step{display:flex;gap:1rem;align-items:flex-start}
+.step-dot{width:28px;height:28px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--navy);flex-shrink:0}
+.match-step h4{font-size:.88rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+.match-step p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* QUESTIONNAIRES */
+.q-section{background:var(--warm)}
+.q-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:3rem}
+.q-tab{padding:.85rem 2rem;font-size:.82rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.q-tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+.q-pane{display:none}
+.q-pane.active{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start}
+.q-intro h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--navy);margin-bottom:.85rem}
+.q-intro p{font-size:.9rem;line-height:1.8;color:var(--muted);margin-bottom:1.25rem}
+.q-consent{font-size:.72rem;color:var(--muted);line-height:1.65;font-style:italic;margin-top:1.5rem;padding:1rem;background:var(--cream);border-left:3px solid var(--border)}
+.q-form{display:flex;flex-direction:column;gap:.9rem}
+.fg{display:flex;flex-direction:column;gap:.35rem}
+.fg label{font-size:.75rem;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{border:1.5px solid var(--border);background:white;padding:.7rem 1rem;font-family:'Inter',sans-serif;font-size:.88rem;color:var(--text);border-radius:2px;transition:border-color .2s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg textarea{resize:vertical;min-height:90px}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fg-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem}
+.checkbox-group{display:flex;flex-direction:column;gap:.5rem}
+.checkbox-item{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--text)}
+.checkbox-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--navy)}
+.q-submit{background:var(--navy);color:white;border:none;padding:.9rem 2rem;font-family:'Inter',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.q-submit:hover{background:var(--gold);color:var(--navy)}
+
+/* EDUCATION */
+.edu-section{background:var(--cream)}
+.edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.edu-card{background:var(--warm);border:1px solid var(--border);border-radius:2px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.edu-card:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(27,43,58,.09)}
+.edu-img{height:180px;overflow:hidden}
+.edu-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.88) saturate(1.1);transition:transform .4s}
+.edu-card:hover .edu-img img{transform:scale(1.04)}
+.edu-body{padding:1.6rem}
+.edu-cat{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;display:inline-block;padding:.25rem .65rem;border-radius:2px}
+.cat-buyer{background:rgba(27,43,58,.08);color:var(--navy)}
+.cat-seller{background:rgba(181,82,43,.1);color:var(--rust)}
+.cat-agent{background:rgba(107,124,106,.12);color:var(--sage)}
+.cat-market{background:rgba(201,169,110,.15);color:#8B6914}
+.cat-unrp{background:rgba(27,43,58,.85);color:var(--gold)}
+.edu-card h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.55rem;line-height:1.3}
+.edu-card p{font-size:.83rem;line-height:1.68;color:var(--muted)}
+.edu-read{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font-size:.75rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;padding:0}
+
+/* BLOG */
+.blog-section{background:var(--warm)}
+.blog-featured{display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;margin-top:3rem;margin-bottom:2.5rem}
+.blog-feat-img{height:400px;overflow:hidden;border-radius:2px}
+.blog-feat-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1)}
+.blog-feat-body{display:flex;flex-direction:column;justify-content:center;padding:.5rem 0}
+.blog-feat-body .edu-cat{margin-bottom:.85rem}
+.blog-feat-body h2{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--navy);line-height:1.2;margin-bottom:.85rem}
+.blog-feat-body p{font-size:.9rem;line-height:1.78;color:var(--muted)}
+.blog-date{font-size:.72rem;color:var(--muted);margin-top:1rem}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.blog-card{background:var(--cream);border:1px solid var(--border);border-radius:2px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.blog-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(27,43,58,.08)}
+.blog-card-img{height:160px;overflow:hidden}
+.blog-card-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.86);transition:transform .4s}
+.blog-card:hover .blog-card-img img{transform:scale(1.05)}
+.blog-card-body{padding:1.4rem}
+.blog-card h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--navy);margin:.55rem 0;line-height:1.3}
+.blog-card p{font-size:.82rem;line-height:1.65;color:var(--muted)}
+.blog-card .blog-date{margin-top:.75rem;font-size:.7rem}
+
+/* ABOUT */
+.about-hero{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:60vh}
+.about-hero-img{overflow:hidden}
+.about-hero-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.82) saturate(1.1)}
+.about-hero-text{background:var(--navy);padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.about-hero-text .eyebrow{color:var(--gold-l)}
+.about-hero-text .eyebrow::before{background:var(--gold-l)}
+.about-hero-text h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,3rem);color:var(--cream);line-height:1.1;margin-bottom:1.25rem}
+.about-hero-text h1 em{color:var(--gold);font-style:italic}
+.about-hero-text p{font-size:.95rem;line-height:1.82;color:rgba(248,243,236,.7)}
+.about-story{background:var(--warm)}
+.about-story-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.story-pull{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-style:italic;color:var(--navy);line-height:1.5;border-left:3px solid var(--gold);padding-left:1.5rem;margin:1.75rem 0 2rem}
+.story-body{font-size:.93rem;line-height:1.88;color:var(--muted);margin-bottom:1.1rem}
+.creds-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.cred-item{background:var(--cream);padding:1.25rem;border:1px solid var(--border);border-radius:2px}
+.cred-item h4{font-size:.8rem;font-weight:700;color:var(--navy);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.05em}
+.cred-item p{font-size:.78rem;color:var(--muted);line-height:1.5}
+.speaking-box{background:linear-gradient(135deg,var(--navy),var(--charcoal));padding:2.5rem;border-radius:2px;margin-top:2rem;border-left:4px solid var(--gold)}
+.speaking-box h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);margin-bottom:.7rem}
+.speaking-box p{font-size:.88rem;line-height:1.75;color:rgba(248,243,236,.75);margin-bottom:1.25rem}
+.speak-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.speak-tag{background:rgba(201,169,110,.15);color:var(--gold-l);font-size:.72rem;font-weight:500;padding:.3rem .75rem;border-radius:2px;letter-spacing:.05em}
+
+/* TESTIMONIALS */
+.testi-section{background:var(--cream)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.testi-card{background:var(--warm);border:1px solid var(--border);padding:2rem;border-radius:2px;position:relative}
+.testi-card::before{content:'"';font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:var(--gold-l);position:absolute;top:.25rem;left:1.25rem;line-height:1}
+.testi-card p{font-size:.88rem;line-height:1.78;color:var(--text);margin-top:2.25rem;margin-bottom:1.25rem;font-style:italic}
+.testi-author{font-size:.8rem;font-weight:600;color:var(--navy)}
+.testi-role{font-size:.72rem;color:var(--muted)}
+.stars{color:var(--gold);font-size:.82rem;margin-bottom:.4rem}
+
+/* CONTACT */
+.contact-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:1.75rem}
+.c-item{display:flex;gap:1rem;align-items:flex-start}
+.c-icon{width:42px;height:42px;background:var(--navy);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.c-item h4{font-size:.82rem;font-weight:600;color:var(--navy)}
+.c-item p{font-size:.85rem;color:var(--muted);margin-top:.2rem}
+.c-item a{color:var(--gold);text-decoration:none}
+.c-quote{background:var(--navy);padding:1.75rem;border-radius:2px;margin-top:1.5rem}
+.c-quote p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);font-style:italic;line-height:1.5}
+.c-quote cite{display:block;font-style:normal;font-size:.75rem;color:var(--gold);margin-top:.75rem;font-family:'Inter',sans-serif;font-weight:500}
+.cf{display:flex;flex-direction:column;gap:.9rem}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.cf .fg input,.cf .fg select,.cf .fg textarea{background:var(--cream)}
+
+/* FOOTER */
+footer{background:var(--charcoal);padding:3rem 0 0;border-top:1px solid rgba(255,255,255,.05)}
+.footer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding-bottom:2.5rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--cream)}
+.footer-logo span{color:var(--gold)}
+.footer-copy{font-size:.76rem;color:rgba(255,255,255,.3);margin-top:.3rem}
+.footer-nav{display:flex;flex-wrap:wrap;gap:1.25rem}
+.footer-nav a{font-size:.76rem;color:rgba(255,255,255,.4);text-decoration:none;cursor:pointer;transition:color .2s}
+.footer-nav a:hover{color:var(--gold)}
+
+/* TREC BLOCK */
+.trec-block{border-top:1px solid rgba(255,255,255,.08);padding:2rem 0 2.5rem;margin-top:0}
+.trec-grid{display:grid;grid-template-columns:1fr 1fr 1.35fr;gap:2.5rem}
+.trec-head{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;padding-bottom:.45rem;border-bottom:1px solid rgba(201,169,110,.22)}
+.trec-row{display:flex;gap:.5rem;margin-bottom:.4rem;flex-wrap:wrap}
+.trec-lbl{font-size:.68rem;font-weight:600;color:rgba(255,255,255,.38);min-width:108px;flex-shrink:0}
+.trec-val{font-size:.68rem;color:rgba(255,255,255,.62);line-height:1.4}
+a.trec-link{color:var(--gold-l);text-decoration:none}
+a.trec-link:hover{color:var(--gold)}
+.trec-right{display:flex;flex-direction:column;gap:1.1rem}
+.trec-eho{display:flex;gap:.9rem;background:rgba(255,255,255,.04);padding:.9rem;border:1px solid rgba(201,169,110,.16);border-radius:2px}
+.eho-sym{font-size:1.9rem;color:var(--gold);flex-shrink:0;line-height:1;font-family:serif}
+.eho-title{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.72);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.3rem}
+.eho-body{font-size:.66rem;color:rgba(255,255,255,.38);line-height:1.55}
+.trec-note{font-size:.65rem;color:rgba(255,255,255,.28);line-height:1.65;font-style:italic}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-lp-bg img{animation:none}
+  .hero-scroll-line{animation:none}
+  .reveal{transition:none}
+}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-lp-inner{padding:7rem 1.5rem 4.5rem;min-height:100svh}
+  .hero h1,.hero-lp-h1{max-width:none}
+  .hero-lp-metrics{gap:1.75rem 2rem}
+  .hero-scroll-hint{display:none}
+  .diff-inner,.match-inner,.about-story-inner,.contact-inner,.about-hero,.q-pane.active{grid-template-columns:1fr;gap:2.5rem}
+  .services-grid,.edu-grid,.blog-grid,.testi-grid,.creds-grid{grid-template-columns:1fr}
+  .blog-featured{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .trec-grid{grid-template-columns:1fr}
+  nav{padding:1rem 1.5rem}
+  nav.nav-over-hero .nav-phone{color:rgba(255,255,255,.88)!important}
+  .nav-links{display:none}
+  .container{padding:0 1.5rem}
+  .about-hero-text{padding:3rem 1.5rem}
+  .diff-img-card{position:static;margin-top:1rem}
+  .stats-inner{gap:2.5rem}
+  .footer-top{flex-direction:column}
+  /* ── LANDING PAGE ── */
+  .lp-hero{min-height:calc(100vh - 72px);background:var(--navy);display:flex;align-items:center;position:relative;overflow:hidden}
+  .lp-hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?w=1400&q=60') center/cover;opacity:.08}
+  .lp-hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:5rem 3rem;text-align:center}
+  .lp-trust{display:inline-flex;align-items:center;gap:.6rem;background:rgba(201,169,110,.12);border:1px solid rgba(201,169,110,.25);padding:.45rem 1.1rem;border-radius:20px;font-size:.74rem;font-weight:600;color:var(--gold-l);letter-spacing:.07em;text-transform:uppercase;margin-bottom:2rem}
+  .lp-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4.5vw,4rem);color:white;line-height:1.07;margin-bottom:1.5rem}
+  .lp-h1 em{font-style:italic;color:var(--gold)}
+  .lp-sub{font-size:1.05rem;color:rgba(248,243,236,.65);line-height:1.78;max-width:640px;margin:0 auto 1.5rem}
+  .lp-clarify{display:inline-block;font-size:.88rem;color:rgba(248,243,236,.5);font-style:italic;margin-bottom:2.5rem;line-height:1.6;max-width:580px}
+  .lp-strip{font-size:.78rem;color:rgba(248,243,236,.35);margin-bottom:2.5rem;letter-spacing:.04em}
+  .lp-strip span{color:var(--gold-l);margin:0 .75rem}
+  .lp-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-lp-primary{background:var(--gold);color:var(--navy);padding:1rem 2.25rem;font-size:.88rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s,transform .2s;display:inline-flex;align-items:center;gap:.5rem}
+  .btn-lp-primary:hover{background:var(--gold-l);transform:translateY(-2px)}
+  .btn-lp-secondary{background:transparent;color:rgba(248,243,236,.7);padding:1rem 2.25rem;font-size:.88rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.2);border-radius:2px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .btn-lp-secondary:hover{border-color:var(--gold);color:var(--gold)}
+
+  .lp-section{padding:5rem 0}
+  .lp-container{max-width:860px;margin:0 auto;padding:0 2.5rem}
+  .lp-section-wide{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+
+  .lp-problem{background:var(--cream)}
+  .lp-problem-head{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);color:var(--navy);line-height:1.12;margin-bottom:1.5rem}
+  .lp-body{font-size:.97rem;line-height:1.82;color:var(--muted)}
+  .lp-reality{background:white;border:1px solid var(--border);border-left:4px solid var(--rust);padding:1.75rem 2rem;margin:2rem 0;border-radius:0 2px 2px 0}
+  .lp-reality p{font-size:.88rem;font-weight:600;color:var(--navy);padding:.35rem 0;border-bottom:1px solid var(--border);line-height:1.5}
+  .lp-reality p:last-child{border:none;padding-bottom:0}
+  .lp-reality p::before{content:'→ ';color:var(--rust)}
+
+  .lp-position{background:var(--warm)}
+  .lp-position-head{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);color:var(--navy);line-height:1.12;margin-bottom:1.25rem}
+  .lp-you-control{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:2.5rem 0;background:var(--border)}
+  .lp-yc-cell{background:var(--warm);padding:1.5rem 2rem}
+  .lp-yc-label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+  .lp-yc-val{font-size:1.05rem;font-weight:600;color:var(--navy);font-family:'Cormorant Garamond',serif;line-height:1.4}
+
+  .lp-services{background:var(--navy)}
+  .lp-services h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);color:var(--cream);line-height:1.1;margin-bottom:.75rem;text-align:center}
+  .lp-services h2 em{font-style:italic;color:var(--gold)}
+  .lp-services-sub{font-size:.9rem;color:rgba(248,243,236,.5);text-align:center;margin-bottom:3rem}
+  .lp-svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.07)}
+  .lp-svc-item{background:rgba(255,255,255,.03);padding:2rem 1.4rem;transition:background .25s}
+  .lp-svc-item:hover{background:rgba(201,169,110,.1)}
+  .lp-svc-icon{font-size:1.6rem;margin-bottom:1rem}
+  .lp-svc-item h4{font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.55rem;line-height:1.3}
+  .lp-svc-item p{font-size:.78rem;color:rgba(248,243,236,.5);line-height:1.62}
+
+  .lp-steps{background:var(--cream)}
+  .lp-steps h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.5rem);color:var(--navy);margin-bottom:.6rem}
+  .lp-steps-sub{font-size:.9rem;color:var(--muted);margin-bottom:3rem}
+  .lp-step-list{display:flex;flex-direction:column;gap:0}
+  .lp-step{display:grid;grid-template-columns:80px 1fr;align-items:start;border-bottom:1px solid var(--border);padding:1.75rem 0}
+  .lp-step:last-child{border:none}
+  .lp-step-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:var(--gold-l);line-height:1}
+  .lp-step h4{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.35rem}
+  .lp-step p{font-size:.87rem;color:var(--muted);line-height:1.65}
+
+  .lp-pricing{background:var(--warm)}
+  .lp-pricing h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.5rem);color:var(--navy);margin-bottom:.5rem;text-align:center}
+  .lp-pricing h2 em{font-style:italic;color:var(--gold)}
+  .lp-pricing-sub{font-size:.88rem;color:var(--muted);text-align:center;margin-bottom:3rem}
+  .lp-price-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:700px;margin:0 auto}
+  .lp-pc{border:1px solid var(--border);background:white;padding:2.5rem;border-radius:2px;position:relative}
+  .lp-pc.best{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+  .lp-pc-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem 1rem;border-radius:0 0 4px 4px;white-space:nowrap}
+  .lp-pc h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--navy);margin-bottom:.35rem}
+  .lp-pc .amt{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:600;color:var(--navy);line-height:1;margin:.85rem 0}
+  .lp-pc .amt sup{font-size:1.4rem;vertical-align:super}
+  .lp-pc ul{list-style:none;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.55rem}
+  .lp-pc ul li{font-size:.83rem;color:var(--text);display:flex;gap:.65rem;line-height:1.4}
+  .lp-pc ul li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+  .lp-micro{text-align:center;font-size:.8rem;color:var(--muted);margin-top:1.5rem;font-style:italic}
+
+  .lp-diff{background:var(--navy)}
+  .lp-diff h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.5rem);color:var(--cream);text-align:center;margin-bottom:.75rem}
+  .lp-diff h2 em{font-style:italic;color:var(--gold)}
+  .lp-diff-sub{text-align:center;font-size:.9rem;color:rgba(248,243,236,.5);margin-bottom:3.5rem}
+  .lp-compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:720px;margin:0 auto}
+  .lp-compare-col{padding:2rem;border-radius:2px}
+  .lp-compare-col.trad{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+  .lp-compare-col.ours{background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.25)}
+  .lp-compare-col h4{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
+  .lp-compare-col.trad h4{color:rgba(248,243,236,.4)}
+  .lp-compare-col.ours h4{color:var(--gold)}
+  .lp-compare-row{display:flex;gap:.6rem;align-items:center;margin-bottom:.7rem;font-size:.86rem;color:rgba(248,243,236,.65);line-height:1.4}
+  .lp-compare-row::before{content:'→';color:rgba(248,243,236,.25);flex-shrink:0}
+  .lp-compare-col.ours .lp-compare-row::before{color:var(--gold)}
+  .lp-compare-col.ours .lp-compare-row{color:rgba(248,243,236,.85)}
+  .lp-same{text-align:center;margin-top:2.5rem;color:rgba(248,243,236,.35);font-size:.82rem}
+  .lp-same strong{color:rgba(248,243,236,.65)}
+
+  .lp-notfor{background:var(--cream)}
+  .lp-notfor h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.5rem);color:var(--navy);text-align:center;margin-bottom:.6rem}
+  .lp-notfor-sub{font-size:.9rem;color:var(--muted);text-align:center;margin-bottom:3rem}
+  .lp-notfor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem}
+  .lp-nf-card{background:white;border:1px solid var(--border);padding:1.75rem;border-radius:2px}
+  .lp-nf-card .icon{font-size:1.5rem;margin-bottom:.85rem}
+  .lp-nf-card h4{font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;line-height:1.4}
+  .lp-nf-card p{font-size:.82rem;color:var(--muted);line-height:1.65}
+  .lp-notfor-close{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--navy);max-width:580px;margin:0 auto;line-height:1.6}
+  .lp-notfor-close em{color:var(--gold);font-style:italic}
+
+  .lp-final{background:var(--navy);padding:6rem 0}
+  .lp-final-inner{text-align:center;max-width:660px;margin:0 auto;padding:0 2rem}
+  .lp-final h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);color:var(--cream);line-height:1.12;margin-bottom:1rem}
+  .lp-final h2 em{color:var(--gold);font-style:italic}
+  .lp-final p{font-size:.95rem;color:rgba(248,243,236,.6);line-height:1.78;margin-bottom:2.25rem}
+
+  .lp-footer{background:var(--charcoal);padding:1.75rem 0;border-top:1px solid rgba(255,255,255,.06)}
+  .lp-footer-inner{max-width:860px;margin:0 auto;padding:0 2.5rem;display:flex;flex-direction:column;gap:.85rem}
+  .lp-footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--cream)}
+  .lp-footer-brand span{color:var(--gold)}
+  .lp-footer-info{font-size:.72rem;color:rgba(255,255,255,.38);line-height:1.7}
+  .lp-footer-disc{font-size:.68rem;color:rgba(255,255,255,.25);line-height:1.65;font-style:italic}
+  .lp-eho{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:rgba(255,255,255,.3)}
+  .lp-eho-sym{font-size:1.1rem;color:var(--gold);font-family:serif}
+
+  @media(max-width:900px){
+    .lp-svc-grid{grid-template-columns:1fr 1fr}
+    .lp-price-grid,.lp-compare,.lp-notfor-grid{grid-template-columns:1fr}
+    .lp-you-control{grid-template-columns:1fr}
+    .lp-step{grid-template-columns:60px 1fr}
+    .lp-hero-inner{padding:4rem 1.5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav id="main-nav">
+  <a class="nav-logo" onclick="showPage('home')" style="cursor:pointer">BuyUnrepped <span>/ Kayla Brown</span></a>
+  <a href="tel:6152083390" class="nav-phone" style="font-size:.72rem;font-weight:600;color:var(--navy);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;margin-right:auto;margin-left:1.5rem;white-space:nowrap;display:flex;align-items:center;gap:.5rem">615-208-3390</a>
+  <ul class="nav-links">
+    <li class="has-drop">
+      <span>For Buyers ▾</span>
+      <div class="drop">
+        <a onclick="showPage('landing')" style="font-weight:600;color:var(--gold)">★ Quick Overview (Ad Landing)</a>
+        <a onclick="showPage('buyers')">How It Works</a>
+        <a onclick="showPage('buyers'); setTimeout(()=>document.getElementById('pricing-anchor').scrollIntoView({behavior:'smooth'}),100)">Pricing</a>
+        <a onclick="showPage('questionnaires'); setQTab('buyer')">Buyer Questionnaire</a>
+      </div>
+    </li>
+    <li class="has-drop">
+      <span>For Sellers ▾</span>
+      <div class="drop">
+        <a onclick="showPage('sellers')">Agent Matchmaking</a>
+        <a onclick="showPage('questionnaires'); setQTab('seller')">Seller Questionnaire</a>
+      </div>
+    </li>
+    <li><a onclick="showPage('agents')">For Agents</a></li>
+    <li><a onclick="showPage('education')">Education</a></li>
+    <li><a onclick="showPage('blog')">Blog</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('contact')" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ PAGE: HOME ═══════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-lp-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=1920&q=85" alt="">
+    </div>
+    <div class="hero-lp-inner">
+      <div class="eyebrow hero-lp-eyebrow">Nashville · Tennessee · Licensed Brokerage</div>
+      <h1 class="hero-lp-h1">Real estate, done <em>your way.</em></h1>
+      <p class="hero-sub">BuyUnrepped is a licensed Tennessee real estate brokerage. We consult, coordinate, and manage—we do not speak on your behalf. Our goal is to make sure you're a great unrepresented buyer.</p>
+      <p class="hero-callout">This isn't about replacing agents—it's about supporting buyers who don't want or need full-service representation.</p>
+      <div class="hero-pills">
+        <span class="pill">Agent matchmaking</span>
+        <span class="pill">Unrepresented buyer support</span>
+        <span class="pill">Speaking & coaching</span>
+      </div>
+      <div class="hero-btns">
+        <button type="button" class="btn-hero-solid" onclick="showPage('buyers')">Explore BuyUnrepped</button>
+        <button type="button" class="btn-hero-line" onclick="showPage('sellers')">Find your agent match</button>
+      </div>
+      <div class="hero-lp-metrics">
+        <div><div class="hero-metric-num">$100M<span>+</span></div><div class="hero-metric-lab">Middle Tennessee volume</div></div>
+        <div><div class="hero-metric-num">200<span>+</span></div><div class="hero-metric-lab">Transactions facilitated</div></div>
+        <div><div class="hero-metric-num" style="font-size:1.75rem">TN</div><div class="hero-metric-lab">Licensed brokerage</div></div>
+        <div><div class="hero-metric-num" style="font-size:1.5rem">Flat fee</div><div class="hero-metric-lab">Buyer support options</div></div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true"><span>Scroll</span><div class="hero-scroll-line"></div></div>
+  </div>
+
+  <!-- EDITORIAL STRIP -->
+  <div class="stats-bar">
+    <div class="stats-strip-inner">
+      <p class="stats-strip-text"><strong>BuyUnrepped</strong> · Licensed Tennessee brokerage · Flat-fee buyer programs · Principal broker Kayla Brown · Firm Lic. #267134</p>
+    </div>
+  </div>
+
+  <!-- HOW I WORK DIFFERENTLY -->
+  <section style="background:var(--warm)">
+    <div class="container">
+      <div class="diff-inner">
+        <div class="reveal">
+          <div class="eyebrow">Not Your Average Broker</div>
+          <h2 class="sec-title">I work <em>differently</em> and it's by design</h2>
+          <p class="sec-desc">Most agents represent buyers or sellers in a traditional structure. I operate differently. This isn't about replacing agents it's about supporting buyers who don't want or need full-service representation, while still making smart, informed decisions.</p>
+          <div class="diff-list">
+            <div class="diff-item">
+              <div class="diff-num">01</div>
+              <div>
+                <h4>I match sellers with the right listing agent</h4>
+                <p>No ads. No sponsorships. I connect sellers with skilled, local listing agents based purely on merit, market expertise, and fit then step back so they can work.</p>
+              </div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-num">02</div>
+              <div>
+                <h4>I support buyers who want to go unrepresented</h4>
+                <p>Through BuyUnrepped, I offer flat-fee support offer strategy, Tennessee forms, deadline tracking so buyers have structured, professional support behind the scenes. From $995.</p>
+              </div>
+            </div>
+            <div class="diff-item">
+              <div class="diff-num">03</div>
+              <div>
+                <h4>I educate, not just transact</h4>
+                <p>Real estate should be understandable to everyone. My goal is to demystify the process whether you're a first-time buyer, a seasoned seller, or a newer agent.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="diff-img reveal d1">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=700&q=80" alt="Real estate consultation Nashville">
+          <div class="diff-img-card">
+            <div class="dic-label">Brokerage</div>
+            <div class="dic-val">BuyUnrepped<br>Kayla Brown, Principal Broker<br>Lic. #339134</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section style="background:var(--cream)">
+    <div class="container">
+      <div class="eyebrow reveal">What I Offer</div>
+      <h2 class="sec-title reveal">Three ways I can <em>help you</em></h2>
+      <div class="services-grid">
+        <div class="svc-card reveal" onclick="showPage('sellers')">
+          <div class="svc-icon">🤝</div>
+          <h3>Agent Matchmaking for Sellers</h3>
+          <p>You deserve a listing agent who's right for <em>your</em> property, your personality, and your market not whoever happened to knock on your door. I make that match for free.</p>
+          <button class="svc-link" onclick="event.stopPropagation();showPage('sellers')">Learn how it works →</button>
+        </div>
+        <div class="svc-card reveal d1" onclick="showPage('buyers')">
+          <div class="svc-icon">📋</div>
+          <h3>BuyUnrepped Flat-Fee Support</h3>
+          <p>Going without a buyer's agent? You still need structure and guidance. We provide offer strategy, Tennessee-approved forms, and transaction coordination so you can move forward confidently with professional support behind the scenes.</p>
+          <div class="svc-price">From $995</div>
+          <button class="svc-link" onclick="event.stopPropagation();showPage('buyers')">See pricing →</button>
+        </div>
+        <div class="svc-card reveal d2" onclick="showPage('about')">
+          <div class="svc-icon">🎤</div>
+          <h3>Speaking & Coaching</h3>
+          <p>Real estate education for conferences, associations, and individual agents who want to grow. Topics include the post-NAR world, unrepresented buyers, and market transparency.</p>
+          <button class="svc-link" onclick="event.stopPropagation();showPage('contact')">Book Kayla →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS PREVIEW -->
+  <section style="background:var(--warm)">
+    <div class="container">
+      <div class="eyebrow reveal">Client Stories</div>
+      <h2 class="sec-title reveal">Real people. Real <em>results.</em></h2>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p>As first-time buyers, we were told to prepare for failure. That's the opposite of what we got. Kayla made the whole process an absolute delight and found us a home we love.</p>
+          <div class="testi-author">First-Time Home Buyer</div>
+          <div class="testi-role">Nashville, TN</div>
+        </div>
+        <div class="testi-card reveal d1">
+          <div class="stars">★★★★★</div>
+          <p>Kayla told me exactly what I needed to hear before listing what was worth fixing and what wasn't. We sold above asking. Her honesty saved me thousands in wasted prep work.</p>
+          <div class="testi-author">Home Seller</div>
+          <div class="testi-role">Franklin, TN</div>
+        </div>
+        <div class="testi-card reveal d2">
+          <div class="stars">★★★★★</div>
+          <p>I called with a question about going unrepresented. Kayla gave me 30 minutes of completely honest advice, even though she had nothing to gain financially. That's just who she is.</p>
+          <div class="testi-author">Unrepresented Buyer</div>
+          <div class="testi-role">Murfreesboro, TN</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end home -->
+
+
+<!-- ═══════════════════ PAGE: BUYERS ═══════════════════ -->
+<div class="page" id="page-buyers">
+  <section style="background:var(--warm);padding-top:4rem">
+    <div class="container">
+      <div class="eyebrow">For Buyers · BuyUnrepped</div>
+      <h2 class="sec-title">You don't need a full-service agent to buy a home <em>smart.</em></h2>
+      <p class="sec-desc">The real estate landscape changed with the NAR settlement. More buyers are choosing to go unrepresented. BuyUnrepped exists so you don't have to go it completely alone you get licensed, experienced, behind-the-scenes support for a flat fee.</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing-anchor">
+    <div class="container">
+      <div class="eyebrow">Simple, Transparent Pricing</div>
+      <h2 class="sec-title">Flat-fee support. No <em>surprises.</em></h2>
+      <p class="sec-desc">Two options depending on how much help you need. Both give you access to a licensed Tennessee broker who's been in hundreds of transactions.</p>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Offer Package</h3>
+          <p>You've found the home. Now let's get your offer right.</p>
+          <div class="price-amount"><span>$</span>995</div>
+          <ul class="price-includes">
+            <li>Market analysis &amp; comparable sales so you know what to offer</li>
+            <li>Tailored offer strategy and negotiation guidance</li>
+            <li>All Tennessee-approved purchase forms, filled correctly</li>
+            <li>Agent-friendly offer email template</li>
+            <li>Licensed broker available for questions throughout</li>
+          </ul>
+          <button class="btn-outline" onclick="showPage('questionnaires');setQTab('buyer')">Start with a Questionnaire</button>
+          <p class="price-note">Best for confident buyers who understand the market and need professional documentation &amp; strategy support.</p>
+        </div>
+        <div class="price-card featured">
+          <div class="price-badge">Most Comprehensive</div>
+          <h3>Transaction Management</h3>
+          <p>Full support from contract to close, so nothing falls through the cracks.</p>
+          <div class="price-amount"><span>$</span>2,495</div>
+          <ul class="price-includes">
+            <li>Everything in the Offer Package</li>
+            <li>Complete deadline calendar &amp; reminders</li>
+            <li>Inspection coordination &amp; guidance</li>
+            <li>Appraisal &amp; lender communication support</li>
+            <li>Title company &amp; closing team coordination</li>
+            <li>Real-time closing cost estimates</li>
+            <li>Broker available by phone, text, and email through closing</li>
+          </ul>
+          <button class="btn-gold" onclick="showPage('questionnaires');setQTab('buyer')">Get Started</button>
+          <p class="price-note">Best for buyers who want end-to-end peace of mind all the benefits of having a pro, at a fraction of the traditional cost.</p>
+        </div>
+      </div>
+      <p style="color:rgba(248,243,236,.4);font-size:.8rem;margin-top:2rem;max-width:680px;line-height:1.65">All services are provided by BuyUnrepped (TN Firm Lic. #267134) under the supervision of Principal Broker Kayla Brown (Lic. #339134). BuyUnrepped is a licensed Tennessee real estate brokerage. We consult, coordinate, and manage we do not represent buyers or speak on their behalf. Full-service buyer agents continue to play an important role in many transactions. BuyUnrepped exists to support a different, but equally legitimate, buyer path.</p>
+    </div>
+  </section>
+
+  <section style="background:var(--cream)">
+    <div class="container">
+      <div class="eyebrow">How It Works</div>
+      <h2 class="sec-title">Three steps to <em>closing day</em></h2>
+      <div class="services-grid">
+        <div class="svc-card reveal">
+          <div class="svc-icon">🔍</div>
+          <h3>Step 1: You Find the Home</h3>
+          <p>Browse listings on Zillow, Realtracs, or directly through listing agents. Schedule showings yourself the listing agent works for the seller, so you're always welcome to reach out directly.</p>
+        </div>
+        <div class="svc-card reveal d1">
+          <div class="svc-icon">📄</div>
+          <h3>Step 2: We Build Your Offer</h3>
+          <p>Share the property details with us. We run comps, discuss strategy, fill out all Tennessee-approved forms correctly, and give you an offer template that listing agents take seriously so you have structured, professional support behind the scenes.</p>
+        </div>
+        <div class="svc-card reveal d2">
+          <div class="svc-icon">🏁</div>
+          <h3>Step 3: We Get You to Close</h3>
+          <p>(Transaction Management package) We map every deadline, coordinate your inspection team, stay in contact with the lender and title company, and make sure you don't miss a beat.</p>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem;text-align:center">
+        <button class="btn-primary" onclick="showPage('questionnaires');setQTab('buyer')">Fill Out the Buyer Questionnaire</button>
+        <span style="display:inline-block;width:1rem"></span>
+        <a href="https://www.buyunrepped.com" target="_blank" class="btn-outline">Visit BuyUnrepped.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO THIS IS NOT FOR -->
+  <section style="background:var(--navy);padding:4rem 0">
+    <div class="container">
+      <div style="max-width:700px;margin:0 auto;text-align:center">
+        <div class="eyebrow" style="justify-content:center;color:var(--gold-l)">Honest Clarity</div>
+        <h2 class="sec-title" style="color:var(--cream);text-align:center">Who this is <em>not</em> for</h2>
+        <p style="color:rgba(248,243,236,.6);font-size:.95rem;line-height:1.75;margin-bottom:2.5rem">BuyUnrepped is designed for buyers who want control with professional support behind the scenes. But it's not the right fit for everyone, and we'd rather tell you that up front.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);margin-bottom:2.5rem">
+          <div style="background:rgba(255,255,255,.04);padding:2rem 1.5rem;text-align:left">
+            <div style="font-size:1.4rem;margin-bottom:.85rem">🙅</div>
+            <h4 style="font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.5rem">Buyers who want full-service representation</h4>
+            <p style="font-size:.82rem;color:rgba(248,243,236,.5);line-height:1.65">If you want a licensed agent who speaks on your behalf and owes you fiduciary duties you need a buyer's agent. We'll point you in the right direction.</p>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:2rem 1.5rem;text-align:left">
+            <div style="font-size:1.4rem;margin-bottom:.85rem">💬</div>
+            <h4 style="font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.5rem">Buyers uncomfortable communicating directly with listing agents</h4>
+            <p style="font-size:.82rem;color:rgba(248,243,236,.5);line-height:1.65">You'll be the one speaking with the listing agent. We support and prepare you but you're doing the direct communication. That's the model.</p>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:2rem 1.5rem;text-align:left">
+            <div style="font-size:1.4rem;margin-bottom:.85rem">🤝</div>
+            <h4 style="font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.5rem">Buyers looking for someone to negotiate or act on their behalf</h4>
+            <p style="font-size:.82rem;color:rgba(248,243,236,.5);line-height:1.65">We consult, coordinate, and manage. We do not negotiate, represent, or act as your agent. If that's what you need, we respect that and a buyer's agent is the right call.</p>
+          </div>
+        </div>
+        <p style="color:rgba(248,243,236,.75);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.15rem">BuyUnrepped is designed for buyers who want control with professional support behind the scenes.</p>
+      </div>
+    </div>
+  </section>
+</div><!-- end buyers -->
+
+
+<!-- ═══════════════════ PAGE: LANDING (IG / Ads) ═══════════════════ -->
+<div class="page" id="page-landing">
+
+  <!-- ABOVE THE FOLD -->
+  <div class="lp-hero">
+    <div class="lp-hero-inner">
+      <div class="lp-trust">Over 200 Transactions · $100M+ Experience · Licensed TN Brokerage</div>
+      <h1 class="lp-h1">Buy a home without a buyer's agent <br><em>without being on your own.</em></h1>
+      <p class="lp-sub">BuyUnrepped is a licensed Tennessee real estate brokerage. We consult, coordinate, and manage we do not speak on your behalf. Our goal is to make sure you're a great unrepresented buyer.</p>
+      <p class="lp-clarify">This isn't about replacing agents. It's about supporting buyers who don't want or need full-service representation.</p>
+      <div class="lp-strip">
+        Over 200 transactions across Middle Tennessee
+        <span>·</span>
+        $100M+ experience
+        <span>·</span>
+        TN Firm Lic. #267134
+      </div>
+      <div class="lp-btns">
+        <button class="btn-lp-primary" onclick="showPage('questionnaires');setQTab('buyer')">Start Your Offer Strategy →</button>
+        <button class="btn-lp-secondary" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- S1 PROBLEM -->
+  <section class="lp-section lp-problem">
+    <div class="lp-container">
+      <h2 class="lp-problem-head">You don't need a full-service agent.<br>But you also shouldn't go in <em style="color:var(--rust)">without structure.</em></h2>
+      <p class="lp-body">More buyers are choosing to work directly with listing agents. Sometimes it's about control. Sometimes it's about cost. Sometimes it just feels more straightforward.</p>
+      <p class="lp-body" style="margin-top:1rem">But here's the reality:</p>
+      <div class="lp-reality">
+        <p>The listing agent represents the seller not you</p>
+        <p>The contract still matters every word of it</p>
+        <p>Deadlines still matter missing one can cost you the deal</p>
+        <p>Strategy still matters how you offer determines what you pay</p>
+      </div>
+      <p class="lp-body">That's where most unrepresented buyers get exposed. Not because they couldn't do it but because they didn't have the right structure behind them.</p>
+    </div>
+  </section>
+
+  <!-- S2 POSITIONING -->
+  <section class="lp-section lp-position">
+    <div class="lp-container">
+      <h2 class="lp-position-head">This is where<br>BuyUnrepped fits.</h2>
+      <p class="lp-body">We stay behind the scenes helping you structure your offer, understand your options, and move through the transaction correctly.</p>
+      <div class="lp-you-control">
+        <div class="lp-yc-cell">
+          <div class="lp-yc-label">You</div>
+          <div class="lp-yc-val">Stay in control.<br>Communicate directly.<br>Make the decisions.</div>
+        </div>
+        <div class="lp-yc-cell" style="background:var(--cream)">
+          <div class="lp-yc-label">BuyUnrepped</div>
+          <div class="lp-yc-val">Makes sure you're<br>doing it right with<br>structured, professional support.</div>
+        </div>
+      </div>
+      <p class="lp-body" style="font-size:.9rem;font-style:italic;color:var(--navy);font-weight:500">We consult, coordinate, and manage we do not represent you or speak on your behalf.</p>
+    </div>
+  </section>
+
+  <!-- S3 WHAT WE ACTUALLY DO -->
+  <section class="lp-section lp-services">
+    <div class="lp-section-wide">
+      <h2>We don't represent you.<br><em>We support you.</em></h2>
+      <p class="lp-services-sub">Five ways we make sure you're positioned to close behind the scenes.</p>
+      <div class="lp-svc-grid">
+        <div class="lp-svc-item">
+          <div class="lp-svc-icon">📊</div>
+          <h4>Offer Strategy</h4>
+          <p>What to offer, how to structure it, and how to stay competitive without overpaying</p>
+        </div>
+        <div class="lp-svc-item">
+          <div class="lp-svc-icon">📋</div>
+          <h4>Contracts Done Right</h4>
+          <p>All Tennessee-approved forms, completed correctly nothing missed, nothing ambiguous</p>
+        </div>
+        <div class="lp-svc-item">
+          <div class="lp-svc-icon">🔍</div>
+          <h4>Inspection Guidance</h4>
+          <p>What matters, what doesn't, and how to respond once you have results in hand</p>
+        </div>
+        <div class="lp-svc-item">
+          <div class="lp-svc-icon">📅</div>
+          <h4>Transaction Coordination</h4>
+          <p>Deadlines, title, lender, closing all tracked so nothing falls through</p>
+        </div>
+        <div class="lp-svc-item">
+          <div class="lp-svc-icon">💬</div>
+          <h4>Real-Time Support</h4>
+          <p>Questions answered by a licensed broker at the moments that actually matter</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 HOW IT WORKS -->
+  <section class="lp-section lp-steps" id="lp-how">
+    <div class="lp-container">
+      <h2 class="lp-steps">Simple. Structured. Clear.</h2>
+      <p class="lp-steps-sub">Four steps from finding the home to closing day.</p>
+      <div class="lp-step-list">
+        <div class="lp-step reveal">
+          <div class="lp-step-num">01</div>
+          <div>
+            <h4>You find the home</h4>
+            <p>Zillow, Realtracs, listing agents however you prefer to search. You set up showings directly. We're not involved at this stage.</p>
+          </div>
+        </div>
+        <div class="lp-step reveal d1">
+          <div class="lp-step-num">02</div>
+          <div>
+            <h4>We build your offer together</h4>
+            <p>We run comps, structure the terms, and prepare all your documents. You get an offer that listing agents take seriously with structured, professional support behind the scenes.</p>
+          </div>
+        </div>
+        <div class="lp-step reveal d2">
+          <div class="lp-step-num">03</div>
+          <div>
+            <h4>You submit directly</h4>
+            <p>You communicate with the listing agent. That's the model you're in control, we've prepared you thoroughly for this moment.</p>
+          </div>
+        </div>
+        <div class="lp-step reveal d3">
+          <div class="lp-step-num">04</div>
+          <div>
+            <h4>We guide you to close</h4>
+            <p>We track every deadline, coordinate your inspection team, stay in contact with lender and title so nothing gets missed between contract and keys.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 PRICING -->
+  <section class="lp-section lp-pricing">
+    <div class="lp-container">
+      <h2 class="lp-pricing">Flat-fee support.<br><em>No commission.</em></h2>
+      <p class="lp-pricing-sub">You only pay for what you actually need.</p>
+      <div class="lp-price-grid">
+        <div class="lp-pc">
+          <h3>Offer Package</h3>
+          <div class="amt"><sup>$</sup>995</div>
+          <ul>
+            <li>Market analysis + pricing guidance</li>
+            <li>Offer strategy session with licensed broker</li>
+            <li>Tennessee contracts completed correctly</li>
+            <li>Submission guidance + offer email template</li>
+          </ul>
+          <button class="btn-lp-primary" style="width:100%;justify-content:center" onclick="showPage('questionnaires');setQTab('buyer')">Build My Offer →</button>
+        </div>
+        <div class="lp-pc best">
+          <div class="lp-pc-badge">Most Comprehensive</div>
+          <h3>Transaction Support</h3>
+          <div class="amt"><sup>$</sup>2,495</div>
+          <ul>
+            <li>Everything in Offer Package</li>
+            <li>Full contract-to-close coordination</li>
+            <li>Inspection + repair guidance</li>
+            <li>Deadline tracking + reminders</li>
+            <li>Ongoing licensed broker access</li>
+          </ul>
+          <button class="btn-lp-primary" style="width:100%;justify-content:center;background:var(--navy);color:white" onclick="showPage('questionnaires');setQTab('buyer')">Start My Transaction →</button>
+        </div>
+      </div>
+      <p class="lp-micro">You only pay for what you actually need.</p>
+    </div>
+  </section>
+
+  <!-- S6 DIFFERENTIATION -->
+  <section class="lp-section lp-diff">
+    <div class="lp-container">
+      <h2 class="lp-diff">Why this <em>works</em></h2>
+      <p class="lp-diff-sub">Same transaction. Different structure.</p>
+      <div class="lp-compare">
+        <div class="lp-compare-col trad">
+          <h4>Traditional Model</h4>
+          <div class="lp-compare-row">You hire an agent</div>
+          <div class="lp-compare-row">They represent you</div>
+          <div class="lp-compare-row">They speak on your behalf</div>
+          <div class="lp-compare-row">They take a percentage of the purchase price</div>
+        </div>
+        <div class="lp-compare-col ours">
+          <h4>BuyUnrepped</h4>
+          <div class="lp-compare-row">You stay unrepresented</div>
+          <div class="lp-compare-row">We support you behind the scenes</div>
+          <div class="lp-compare-row">You communicate directly</div>
+          <div class="lp-compare-row">You pay a flat fee</div>
+        </div>
+      </div>
+      <p class="lp-same">Same transaction. <strong>Different structure. Different cost.</strong></p>
+    </div>
+  </section>
+
+  <!-- S7 WHO THIS IS NOT FOR -->
+  <section class="lp-section lp-notfor">
+    <div class="lp-container">
+      <h2 class="lp-notfor">This is not for everyone.</h2>
+      <p class="lp-notfor-sub">We'd rather tell you that up front than have you find out mid-transaction.</p>
+      <div class="lp-notfor-grid">
+        <div class="lp-nf-card">
+          <div class="icon">🙅</div>
+          <h4>Buyers who want full-service representation</h4>
+          <p>If you want a licensed agent who owes you fiduciary duties and speaks on your behalf you need a buyer's agent, and that's a completely legitimate path.</p>
+        </div>
+        <div class="lp-nf-card">
+          <div class="icon">💬</div>
+          <h4>Buyers uncomfortable communicating directly with listing agents</h4>
+          <p>You'll be the one in that conversation. We prepare you thoroughly but we're not on the call. If that dynamic doesn't feel right, a buyer's agent is the better fit.</p>
+        </div>
+        <div class="lp-nf-card">
+          <div class="icon">🤝</div>
+          <h4>Buyers who want someone negotiating on their behalf</h4>
+          <p>We consult, coordinate, and manage. We do not negotiate or act as your agent. There's an important and intentional legal distinction there.</p>
+        </div>
+      </div>
+      <p class="lp-notfor-close">If you want control with <em>professional support behind the scenes</em> you'll fit here.</p>
+    </div>
+  </section>
+
+  <!-- S8 FINAL CTA -->
+  <div class="lp-final">
+    <div class="lp-final-inner">
+      <div class="lp-trust" style="margin:0 auto 1.75rem">Licensed TN Brokerage · Lic. #267134</div>
+      <h2 class="lp-final">If you're already looking at homes,<br>don't wait until you're <em>writing the offer.</em></h2>
+      <p>The difference between a clean deal and a messy one usually comes down to how the offer is structured from the start. That's the moment we're built for.</p>
+      <div class="lp-btns">
+        <button class="btn-lp-primary" onclick="showPage('questionnaires');setQTab('buyer')">Start Your Offer Strategy →</button>
+        <button class="btn-lp-secondary" onclick="showPage('contact')">Ask a Question First</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LP FOOTER -->
+  <div class="lp-footer">
+    <div class="lp-footer-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div class="lp-footer-brand">BuyUnrepped <span>| Kayla Brown, Principal Broker</span></div>
+        <div class="lp-footer-info">
+          TN Firm Lic. #267134 &nbsp;·&nbsp; Broker Lic. #339134 &nbsp;·&nbsp;
+          <a href="tel:6152083390" style="color:var(--gold-l);text-decoration:none">615-208-3390</a> &nbsp;·&nbsp;
+          2509 Cruzen St, Nashville, TN 37211
+        </div>
+      </div>
+      <div class="lp-footer-disc">BuyUnrepped is a licensed Tennessee real estate brokerage. We consult, coordinate, and manage we do not represent buyers or speak on their behalf. All services are provided under the supervision of Principal Broker Kayla Brown (Lic. #339134). Full-service buyer agents continue to play an important role in many transactions. BuyUnrepped exists to support a different, but equally legitimate, buyer path. This page is for informational purposes and does not constitute legal or financial advice.</div>
+      <div class="lp-eho"><span class="lp-eho-sym">⌂</span> Equal Housing Opportunity</div>
+    </div>
+  </div>
+
+</div><!-- end landing -->
+
+
+<!-- ═══════════════════ PAGE: SELLERS ═══════════════════ -->
+<div class="page" id="page-sellers">
+  <section style="background:var(--warm);padding-top:4rem">
+    <div class="container">
+      <div class="match-inner">
+        <div class="reveal">
+          <div class="eyebrow">For Sellers · Agent Matchmaking</div>
+          <h2 class="sec-title">You deserve a listing agent who's actually <em>right for you.</em></h2>
+          <p class="sec-desc" style="max-width:100%">With thousands of agents in Middle Tennessee, choosing the right one shouldn't be a coin flip. I've spent 9+ years building relationships with skilled, ethical listing agents across this market and I'll connect you with the one who fits your property, your neighborhood, and your goals.</p>
+          <div class="match-promise">
+            <h4>My Promise to You</h4>
+            <p>This is a merit-based match. No paid placements. No kickbacks. No sponsored recommendations. I connect you with agents based solely on their track record, local expertise, and fit with your specific situation and I'm always upfront about how it works.</p>
+          </div>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+            <button class="btn-primary" onclick="showPage('questionnaires');setQTab('seller')">Start with the Seller Questionnaire</button>
+            <button class="btn-outline" onclick="showPage('contact')">Ask Kayla a Question First</button>
+          </div>
+        </div>
+        <div class="match-img reveal d1">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=700&q=80" alt="Nashville home for sale">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--cream)">
+    <div class="container">
+      <div class="eyebrow reveal">The Process</div>
+      <h2 class="sec-title reveal">How the agent match <em>works</em></h2>
+      <div class="match-steps" style="max-width:700px;margin-top:2.5rem">
+        <div class="match-step reveal">
+          <div class="step-dot">1</div>
+          <div>
+            <h4>You fill out the seller questionnaire</h4>
+            <p>Tell me about your home, your goals, your timeline, and what matters most to you in an agent. The more detail, the better the match.</p>
+          </div>
+        </div>
+        <div class="match-step reveal d1">
+          <div class="step-dot">2</div>
+          <div>
+            <h4>I review and curate</h4>
+            <p>I identify 1–3 agents from my trusted network who are genuinely well-suited for your property and situation not just whoever's available.</p>
+          </div>
+        </div>
+        <div class="match-step reveal d2">
+          <div class="step-dot">3</div>
+          <div>
+            <h4>I make the introduction</h4>
+            <p>I send a warm introductory email connecting you both and share relevant context so the conversation starts from a place of understanding, not cold small talk.</p>
+          </div>
+        </div>
+        <div class="match-step reveal d3">
+          <div class="step-dot">4</div>
+          <div>
+            <h4>You take it from there</h4>
+            <p>Interview your match, ask hard questions, and decide. My job is the connection the relationship and transaction are between you and your agent.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:3rem;background:var(--navy);padding:2rem 2.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:750px">
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);font-style:italic">"I also handle more complex buyer situations investors, relocation buyers, and buyers who need someone to truly advocate for them."</p>
+          <p style="font-size:.78rem;color:var(--gold);margin-top:.75rem;font-weight:500"> Kayla Brown, Principal Broker</p>
+        </div>
+        <button class="btn-gold" onclick="showPage('contact')">Let's Discuss Your Situation</button>
+      </div>
+    </div>
+  </section>
+</div><!-- end sellers -->
+
+
+<!-- ═══════════════════ PAGE: AGENTS ═══════════════════ -->
+<div class="page" id="page-agents">
+  <section style="background:var(--warm);padding-top:4rem">
+    <div class="container">
+      <div class="eyebrow">For Agents</div>
+      <h2 class="sec-title">Let's build something <em>together.</em></h2>
+      <p class="sec-desc">Whether you're looking for referral opportunities, a resource for your clients navigating unrepresented transactions, or a coach who's been in the trenches I'm here for agents too.</p>
+      <div class="services-grid" style="margin-top:3rem">
+        <div class="svc-card reveal">
+          <div class="svc-icon">🔗</div>
+          <h3>Referral Partner</h3>
+          <p>I regularly connect qualified sellers with talented listing agents. If you serve Middle Tennessee with integrity and results, I'd like to know you. Let's talk about building a mutual referral relationship.</p>
+          <button class="svc-link" onclick="showPage('contact')">Connect with Kayla →</button>
+        </div>
+        <div class="svc-card reveal d1">
+          <div class="svc-icon">🤔</div>
+          <h3>Unrepresented Buyer Resource</h3>
+          <p>When a buyer contacts you directly without representation, it creates complexity. BuyUnrepped is a resource you can share it supports buyers through the process without creating dual agency concerns for you.</p>
+          <a href="https://www.buyunrepped.com" target="_blank" class="svc-link">Learn about BuyUnrepped →</a>
+        </div>
+        <div class="svc-card reveal d2">
+          <div class="svc-icon">📈</div>
+          <h3>Coaching & Growth</h3>
+          <p>For agents who want honest perspective on growing their business, navigating the post-NAR landscape, or developing systems that actually work I offer individual coaching conversations.</p>
+          <button class="svc-link" onclick="showPage('contact')">Ask about coaching →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end agents -->
+
+
+<!-- ═══════════════════ PAGE: QUESTIONNAIRES ═══════════════════ -->
+<div class="page" id="page-questionnaires">
+  <section class="q-section">
+    <div class="container">
+      <div class="eyebrow">Get Started</div>
+      <h2 class="sec-title">Tell me about <em>your situation</em></h2>
+      <p class="sec-desc" style="margin-bottom:2.5rem">The more I know up front, the better I can help. Fill out the questionnaire that fits your situation I'll follow up personally.</p>
+      <div class="q-tabs">
+        <div class="q-tab active" id="tab-buyer" onclick="setQTab('buyer')">I'm a Buyer</div>
+        <div class="q-tab" id="tab-seller" onclick="setQTab('seller')">I'm a Seller</div>
+        <div class="q-tab" id="tab-buysell" onclick="setQTab('buysell')">I'm Buying &amp; Selling</div>
+      </div>
+
+      <!-- BUYER PANE -->
+      <div class="q-pane active" id="pane-buyer">
+        <div class="q-intro">
+          <h3>Buyer Questionnaire</h3>
+          <p>Whether you're planning to use BuyUnrepped's flat-fee support or you're exploring your options this helps me understand where you are in the process and what kind of guidance would actually be useful.</p>
+          <p>After you submit, I'll reach out directly no automated sequences, no sales pitch. Just a real conversation.</p>
+          <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply. All information is kept confidential and never sold.</div>
+        </div>
+        <div class="q-form">
+          <div class="fg-row">
+            <div class="fg"><label>First Name *</label><input type="text" placeholder="First name"></div>
+            <div class="fg"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com"></div>
+            <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
+          </div>
+          <div class="fg"><label>Where are you looking to buy?</label><input type="text" placeholder="City, neighborhood, or zip code"></div>
+          <div class="fg-row">
+            <div class="fg"><label>Price Range</label>
+              <select>
+                <option value="">Select a range</option>
+                <option>Under $300,000</option>
+                <option>$300,000 – $450,000</option>
+                <option>$450,000 – $600,000</option>
+                <option>$600,000 – $800,000</option>
+                <option>$800,000 – $1,000,000</option>
+                <option>Over $1,000,000</option>
+              </select>
+            </div>
+            <div class="fg"><label>Timeline</label>
+              <select>
+                <option value="">Select one</option>
+                <option>Ready to make an offer now</option>
+                <option>Within the next 30 days</option>
+                <option>1–3 months</option>
+                <option>3–6 months</option>
+                <option>Just exploring for now</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Are you pre-approved for a mortgage?</label>
+            <select>
+              <option value="">Select one</option>
+              <option>Yes, fully pre-approved</option>
+              <option>Pre-qualification letter only</option>
+              <option>Not yet, but I'm working on it</option>
+              <option>Cash buyer</option>
+              <option>Not sure / need guidance</option>
+            </select>
+          </div>
+          <div class="fg"><label>Have you worked with a buyer's agent before?</label>
+            <select>
+              <option value="">Select one</option>
+              <option>Yes, and I'd like to again</option>
+              <option>Yes, but I prefer to go unrepresented this time</option>
+              <option>No, and I want to go unrepresented</option>
+              <option>No, I'm not sure what I want yet</option>
+            </select>
+          </div>
+          <div class="fg"><label>What support are you most interested in?</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox"> Offer strategy &amp; forms ($995 Offer Package)</label>
+              <label class="checkbox-item"><input type="checkbox"> Full transaction management through closing ($2,495)</label>
+              <label class="checkbox-item"><input type="checkbox"> General guidance not sure yet</label>
+              <label class="checkbox-item"><input type="checkbox"> Just have questions about the process</label>
+            </div>
+          </div>
+          <div class="fg"><label>What property type are you looking for?</label>
+            <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
+              <label class="checkbox-item"><input type="checkbox"> Single-family home</label>
+              <label class="checkbox-item"><input type="checkbox"> Condo / Townhome</label>
+              <label class="checkbox-item"><input type="checkbox"> Multi-family / Investment</label>
+              <label class="checkbox-item"><input type="checkbox"> New construction</label>
+              <label class="checkbox-item"><input type="checkbox"> Land</label>
+              <label class="checkbox-item"><input type="checkbox"> Not sure yet</label>
+            </div>
+          </div>
+          <div class="fg"><label>Anything else I should know about your situation?</label>
+            <textarea placeholder="Tell me anything you think is relevant first-time buyer, specific concerns, unique circumstances, etc."></textarea>
+          </div>
+          <button class="q-submit" onclick="this.textContent='✓ Submitted Kayla will be in touch!';this.style.background='var(--sage)'">Submit Buyer Questionnaire</button>
+        </div>
+      </div>
+
+      <!-- SELLER PANE -->
+      <div class="q-pane" id="pane-seller">
+        <div class="q-intro">
+          <h3>Seller Questionnaire</h3>
+          <p>You need a listing agent who's right for your property, your price point, and your personality. Fill this out so I can understand your situation and curate the right match from my trusted network.</p>
+          <p>No ads. No sponsored placements. Recommendations are based entirely on merit and fit.</p>
+          <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply. All information is kept confidential and never sold.</div>
+        </div>
+        <div class="q-form">
+          <div class="fg-row">
+            <div class="fg"><label>First Name *</label><input type="text" placeholder="First name"></div>
+            <div class="fg"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com"></div>
+            <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
+          </div>
+          <div class="fg"><label>Property Address (or general area if not ready to share)</label>
+            <input type="text" placeholder="Address or neighborhood / city">
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>Property Type</label>
+              <select>
+                <option value="">Select one</option>
+                <option>Single-family home</option>
+                <option>Condo / Townhome</option>
+                <option>Multi-family</option>
+                <option>Land / Lot</option>
+                <option>Investment property</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Estimated Value</label>
+              <select>
+                <option value="">Select a range</option>
+                <option>Under $300,000</option>
+                <option>$300,000 – $450,000</option>
+                <option>$450,000 – $600,000</option>
+                <option>$600,000 – $800,000</option>
+                <option>$800,000 – $1,000,000</option>
+                <option>Over $1,000,000</option>
+                <option>Not sure need a CMA</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>When are you thinking of listing?</label>
+            <select>
+              <option value="">Select one</option>
+              <option>ASAP I'm ready now</option>
+              <option>Within 30 days</option>
+              <option>1–3 months</option>
+              <option>3–6 months</option>
+              <option>Just exploring options</option>
+            </select>
+          </div>
+          <div class="fg"><label>Have you worked with a listing agent before?</label>
+            <select>
+              <option value="">Select one</option>
+              <option>Yes</option>
+              <option>No this is my first time selling</option>
+              <option>Yes, but I had a bad experience</option>
+            </select>
+          </div>
+          <div class="fg"><label>What matters most to you in a listing agent?</label>
+            <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
+              <label class="checkbox-item"><input type="checkbox"> Hyper-local market knowledge</label>
+              <label class="checkbox-item"><input type="checkbox"> Strong marketing / photography</label>
+              <label class="checkbox-item"><input type="checkbox"> Communication &amp; responsiveness</label>
+              <label class="checkbox-item"><input type="checkbox"> Track record / sold volume</label>
+              <label class="checkbox-item"><input type="checkbox"> Staging / presentation guidance</label>
+              <label class="checkbox-item"><input type="checkbox"> Negotiation strength</label>
+              <label class="checkbox-item"><input type="checkbox"> Lower commission rate</label>
+              <label class="checkbox-item"><input type="checkbox"> Honest, straightforward advice</label>
+            </div>
+          </div>
+          <div class="fg"><label>Describe your home's condition</label>
+            <select>
+              <option value="">Select one</option>
+              <option>Move-in ready / recently updated</option>
+              <option>Good condition, minor updates needed</option>
+              <option>Needs some work priced accordingly</option>
+              <option>Fixer-upper / investor opportunity</option>
+              <option>Not sure need a professional opinion</option>
+            </select>
+          </div>
+          <div class="fg"><label>Are you also buying a home?</label>
+            <select>
+              <option value="">Select one</option>
+              <option>Yes I need to buy and sell</option>
+              <option>No just selling</option>
+              <option>Maybe still figuring it out</option>
+            </select>
+          </div>
+          <div class="fg"><label>Anything else I should know?</label>
+            <textarea placeholder="Special circumstances, timeline pressures, unique features of your home, concerns about the process..."></textarea>
+          </div>
+          <button class="q-submit" onclick="this.textContent='✓ Submitted Kayla will be in touch!';this.style.background='var(--sage)'">Submit Seller Questionnaire</button>
+        </div>
+      </div>
+
+      <!-- BUY + SELL PANE -->
+      <div class="q-pane" id="pane-buysell">
+        <div class="q-intro">
+          <h3>Buying &amp; Selling Questionnaire</h3>
+          <p>Doing both at once is one of the most complex real estate situations there is. Timing, contingencies, bridge financing it requires a thoughtful approach. Tell me about both sides so I can point you in the right direction.</p>
+          <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply.</div>
+        </div>
+        <div class="q-form">
+          <div class="fg-row">
+            <div class="fg"><label>First Name *</label><input type="text" placeholder="First name"></div>
+            <div class="fg"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com"></div>
+            <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
+          </div>
+          <div class="fg"><label>Property you're selling (address or area)</label><input type="text" placeholder="City or neighborhood"></div>
+          <div class="fg"><label>Where are you hoping to buy?</label><input type="text" placeholder="City, neighborhood, or area"></div>
+          <div class="fg-row">
+            <div class="fg"><label>Estimated sale price</label>
+              <select>
+                <option value="">Select range</option>
+                <option>Under $300K</option><option>$300K–$500K</option><option>$500K–$750K</option><option>$750K+</option>
+              </select>
+            </div>
+            <div class="fg"><label>Target purchase price</label>
+              <select>
+                <option value="">Select range</option>
+                <option>Under $300K</option><option>$300K–$500K</option><option>$500K–$750K</option><option>$750K+</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Timeline</label>
+            <select>
+              <option value="">Select one</option>
+              <option>Need to sell first, then buy</option>
+              <option>Want to buy first, then sell</option>
+              <option>Looking to do both simultaneously</option>
+              <option>Still figuring out the logistics</option>
+            </select>
+          </div>
+          <div class="fg"><label>What's your biggest concern about doing both at once?</label>
+            <textarea placeholder="Timing, finances, contingencies, not knowing where to start..."></textarea>
+          </div>
+          <button class="q-submit" onclick="this.textContent='✓ Submitted Kayla will be in touch!';this.style.background='var(--sage)'">Submit Questionnaire</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div><!-- end questionnaires -->
+
+
+<!-- ═══════════════════ PAGE: EDUCATION ═══════════════════ -->
+<div class="page" id="page-education">
+  <section class="edu-section" style="padding-top:4rem">
+    <div class="container">
+      <div class="eyebrow">Education</div>
+      <h2 class="sec-title">What everyone should know about <em>real estate</em></h2>
+      <p class="sec-desc">No gatekeeping. No industry spin. Real information that helps buyers, sellers, agents, and the curious make better decisions.</p>
+      <div class="edu-grid" style="margin-top:3rem">
+
+        <div class="edu-card reveal">
+          <div class="edu-img"><img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=600&q=80" alt="Real estate documents"></div>
+          <div class="edu-body">
+            <span class="edu-cat cat-unrp">BuyUnrepped</span>
+            <h3>Should You Buy Without a Buyer's Agent?</h3>
+            <p>An honest breakdown of when going unrepresented makes sense and when it really doesn't. Includes the questions you should ask yourself before deciding.</p>
+            <button class="edu-read">Read Guide →</button>
+          </div>
+        </div>
+
+        <div class="edu-card reveal d1">
+          <div class="edu-img"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=80" alt="Home staging Nashville"></div>
+          <div class="edu-body">
+            <span class="edu-cat cat-seller">For Sellers</span>
+            <h3>Before You Show: The Seller's Honest Prep Checklist</h3>
+            <p>What actually matters before your home hits the market and what's a waste of money. From someone who has prepped hundreds of listings in Middle Tennessee.</p>
+            <button class="edu-read">Read Guide →</button>
+          </div>
+        </div>
+
+        <div class="edu-card reveal d2">
+          <div class="edu-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="NAR settlement explained"></div>
+          <div class="edu-body">
+            <span class="edu-cat cat-market">Industry</span>
+            <h3>The NAR Settlement: What It Actually Means for You</h3>
+            <p>The commission structure in real estate changed in August 2024. Here's what that means in plain language for buyers, sellers, and agents without the industry spin.</p>
+            <button class="edu-read">Read Guide →</button>
+          </div>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Nashville market data"></div>
+          <div class="edu-body">
+            <span class="edu-cat cat-market">Market</span>
+            <h3>Nashville Market Snapshot: What the Data Actually Says</h3>
+            <p>Real numbers on Middle Tennessee prices, inventory trends, and days on market explained clearly, without the hype agents use to pressure buyers and sellers into acting fast.</p>
+            <button class="edu-read">Read Guide →</button>
+          </div>
+        </div>
+
+        <div class="edu-card reveal d1">
+          <div class="edu-img"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="Real estate offer strategy"></div>
+          <div class="edu-body">
+            <span class="edu-cat cat-buyer">For Buyers</span>
+            <h3>How to Make a Strong Offer as an Unrepresented Buyer</h3>
+            <p>Listing agents receive dozens of offers. Here's how to structure yours so it gets taken seriously including the exact language that signals you know what you're doing.</p>
+            <button class="edu-read">Read Guide →</button>
+          </div>
+        </div>
+
+        <div class="edu-card reveal d2">
+          <div class="edu-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80" alt="Real estate agent coaching"></div>
+          <div class="edu-body">
+            <span class="edu-cat cat-agent">For Agents</span>
+            <h3>Working With Unrepresented Buyers: A Listing Agent's Guide</h3>
+            <p>What are your obligations? What can and can't you say? How do you protect yourself and your seller when an unrepresented buyer submits an offer? A practical, honest breakdown.</p>
+            <button class="edu-read">Read Guide →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div><!-- end education -->
+
+
+<!-- ═══════════════════ PAGE: BLOG ═══════════════════ -->
+<div class="page" id="page-blog">
+  <section class="blog-section" style="padding-top:4rem">
+    <div class="container">
+      <div class="eyebrow">Blog</div>
+      <h2 class="sec-title">Honest takes on <em>real estate</em></h2>
+      <p class="sec-desc">No fluff. No SEO filler. Just real perspective from someone who has been in the middle of Middle Tennessee real estate for nearly a decade.</p>
+
+      <div class="blog-featured">
+        <div class="blog-feat-img">
+          <img src="https://images.unsplash.com/photo-1582407947304-fd86f28f5e38?w=900&q=80" alt="Nashville real estate perspective">
+        </div>
+        <div class="blog-feat-body">
+          <span class="edu-cat cat-unrp">Featured Post</span>
+          <h2>"Why I Built BuyUnrepped" The Honest Version</h2>
+          <p>The real estate industry spent years building systems that served agents first and clients second. After the NAR settlement, buyers started asking harder questions. I decided to build something that actually answered them.</p>
+          <div class="blog-date">April 2026 · 6 min read</div>
+          <div style="margin-top:1.5rem"><button class="btn-primary">Read Post</button></div>
+        </div>
+      </div>
+
+      <div class="blog-grid">
+        <div class="blog-card reveal">
+          <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=80" alt="Nashville home"></div>
+          <div class="blog-card-body">
+            <span class="edu-cat cat-seller">Sellers</span>
+            <h3>The Listing Agent Interview Questions Most Sellers Never Ask</h3>
+            <p>Before you sign a listing agreement, these are the questions that actually separate the great agents from the average ones.</p>
+            <div class="blog-date">March 2026 · 5 min read</div>
+          </div>
+        </div>
+        <div class="blog-card reveal d1">
+          <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=500&q=80" alt="Real estate contract"></div>
+          <div class="blog-card-body">
+            <span class="edu-cat cat-buyer">Buyers</span>
+            <h3>What "Due Diligence" Actually Means in Tennessee (And Why It Matters)</h3>
+            <p>Tennessee's due diligence period is powerful but only if you know how to use it. Here's what you can and can't do during those critical days.</p>
+            <div class="blog-date">March 2026 · 7 min read</div>
+          </div>
+        </div>
+        <div class="blog-card reveal d2">
+          <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&q=80" alt="Real estate industry"></div>
+          <div class="blog-card-body">
+            <span class="edu-cat cat-market">Industry</span>
+            <h3>Is the 6% Commission Really Dead? What the Data Shows So Far</h3>
+            <p>A year after the NAR settlement took effect, here's what's actually changed in Middle Tennessee and what's stayed stubbornly the same.</p>
+            <div class="blog-date">February 2026 · 8 min read</div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=500&q=80" alt="Nashville neighborhood"></div>
+          <div class="blog-card-body">
+            <span class="edu-cat cat-market">Nashville</span>
+            <h3>The Neighborhoods I'd Tell a Friend About Right Now</h3>
+            <p>No sponsored content. Just the areas where I'm genuinely seeing good value, interesting inventory, and neighborhoods that feel like home.</p>
+            <div class="blog-date">February 2026 · 5 min read</div>
+          </div>
+        </div>
+        <div class="blog-card reveal d1">
+          <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&q=80" alt="Real estate coaching"></div>
+          <div class="blog-card-body">
+            <span class="edu-cat cat-agent">Agents</span>
+            <h3>What I'd Tell My Younger Agent Self (After 9 Years in This Market)</h3>
+            <p>The things I wish someone had said to me in year one about systems, client relationships, and protecting your integrity when things get complicated.</p>
+            <div class="blog-date">January 2026 · 6 min read</div>
+          </div>
+        </div>
+        <div class="blog-card reveal d2">
+          <div class="blog-card-img"><img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=500&q=80" alt="Home buying process"></div>
+          <div class="blog-card-body">
+            <span class="edu-cat cat-buyer">Buyers</span>
+            <h3>Going Unrepresented? Here's What Listing Agents Actually Think</h3>
+            <p>I've talked to a lot of listing agents about unrepresented buyers. Here's the honest picture what makes them nervous, and how to put them at ease.</p>
+            <div class="blog-date">January 2026 · 7 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end blog -->
+
+
+<!-- ═══════════════════ PAGE: ABOUT ═══════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div class="about-hero-img">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Professional real estate broker">
+    </div>
+    <div class="about-hero-text">
+      <div class="eyebrow">About Kayla</div>
+      <h1>Microbiology. Dental school. Cancer.<br><em>Then real estate.</em></h1>
+      <p>It's not the typical path to becoming a broker but it's mine, and it shaped everything about how I do this work.</p>
+    </div>
+  </div>
+
+  <section class="about-story">
+    <div class="container">
+      <div class="about-story-inner">
+        <div class="reveal">
+          <div class="eyebrow">The Origin Story</div>
+          <h2 class="sec-title">Why I do this the <em>real version</em></h2>
+          <div class="story-pull">"Becoming a top agent was never my dream. But helping people through one of the biggest decisions of their life? That part I fell into and I never looked back."</div>
+          <p class="story-body">I have a degree in Microbiology with a minor in Chemistry, and I was about a year into dental school well on my way to becoming an orthodontist when I was diagnosed with a rare cancer called Ewing's Sarcoma. I came back to Nashville for treatment. And during that time, my then-fiancé and I bought our first home. That's when I fell in love with the real estate transaction.</p>
+          <p class="story-body">What I discovered was that the same critical thinking and problem-solving that made me good in a lab made me great in a negotiation. I see real estate transactions the same way I once saw complex experiments every variable matters, every detail has a consequence, and preparation is everything.</p>
+          <p class="story-body">Over 9 years and $100M+ in Middle Tennessee transactions, I've built genuine relationships with lenders, inspectors, attorneys, title companies, and agents across this market. I know who does excellent work and who doesn't. And I've never stopped believing that the most valuable thing I can offer any client is the same thing: honesty.</p>
+          <p class="story-body">BuyUnrepped grew out of that conviction that buyers deserve real support even when they choose not to use a traditional buyer's agent. And my matchmaking work for sellers grew out of the same thing: the belief that connecting people with exactly the right partner is more valuable than doing everything yourself.</p>
+          <div class="creds-grid">
+            <div class="cred-item">
+              <h4>Licensed Since</h4>
+              <p>Tennessee Real Estate Broker<br>License #339134</p>
+            </div>
+            <div class="cred-item">
+              <h4>Brokerage</h4>
+              <p>BuyUnrepped<br>Firm License #267134</p>
+            </div>
+            <div class="cred-item">
+              <h4>Education</h4>
+              <p>B.S. Microbiology<br>Minor in Chemistry</p>
+            </div>
+            <div class="cred-item">
+              <h4>Volume</h4>
+              <p>$100M+ facilitated<br>Middle Tennessee</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal d1">
+          <div class="speaking-box">
+            <h3>🎤 Speaking & Coaching</h3>
+            <p>This is where I want to go next and I mean that seriously. Real estate education and industry transparency are things I'm genuinely passionate about. If you're hosting an event, running an association, or looking for a coach who'll tell you the truth about growing in this business, I'd love to talk.</p>
+            <div class="speak-tags">
+              <span class="speak-tag">Post-NAR Landscape</span>
+              <span class="speak-tag">Unrepresented Buyers</span>
+              <span class="speak-tag">Buyer Empowerment</span>
+              <span class="speak-tag">Market Transparency</span>
+              <span class="speak-tag">Agent Systems & Growth</span>
+              <span class="speak-tag">Nashville Market Insights</span>
+              <span class="speak-tag">Real Estate Education</span>
+            </div>
+            <button class="btn-gold" onclick="showPage('contact')">Book Kayla to Speak or Coach</button>
+          </div>
+
+          <div style="margin-top:2.5rem">
+            <div class="eyebrow">Client Stories</div>
+            <div class="testi-card" style="margin-top:1rem">
+              <div class="stars">★★★★★</div>
+              <p>Kayla isn't just good at real estate she's one of those rare people who actually cares whether the outcome is right for you, not just whether a deal closes. I've never had an agent tell me to walk away from a property. She did. She was right.</p>
+              <div class="testi-author">Nashville Buyer</div>
+              <div class="testi-role">Represented Purchase, Sylvan Park</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end about -->
+
+
+<!-- ═══════════════════ PAGE: CONTACT ═══════════════════ -->
+<div class="page" id="page-contact">
+  <section style="background:var(--warm);padding-top:4rem">
+    <div class="container">
+      <div class="eyebrow">Get In Touch</div>
+      <h2 class="sec-title">Let's have a real <em>conversation.</em></h2>
+      <p class="sec-desc" style="margin-bottom:3.5rem">Whether you're ready to move forward, still figuring it out, or just have a question you've been afraid to ask reach out. No pressure, no scripts.</p>
+      <div class="contact-inner">
+        <div class="contact-info reveal">
+          <div class="c-item">
+            <div class="c-icon">📞</div>
+            <div><h4>Call or Text</h4><p><a href="tel:6152083390">615-208-3390</a></p></div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">✉️</div>
+            <div><h4>Email</h4><p><a href="mailto:kayla@buyunrepped.com">kayla@buyunrepped.com</a></p></div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">📍</div>
+            <div><h4>Office Address</h4><p>2509 Cruzen St<br>Nashville, TN 37211</p></div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">🎤</div>
+            <div><h4>Speaking &amp; Coaching</h4><p>Tell me about your event or coaching needs in the form I'd love to explore it.</p></div>
+          </div>
+          <div class="c-quote">
+            <p>"I don't believe in hiding the ball. You deserve clear information, real numbers, and honest options every time."</p>
+            <cite> Kayla Brown, Principal Broker, BuyUnrepped</cite>
+          </div>
+        </div>
+        <div class="cf reveal d1">
+          <div class="fg-row">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="First name"></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
+          <div class="fg"><label>I'm reaching out because...</label>
+            <select>
+              <option value="">Select one</option>
+              <option>I want BuyUnrepped buyer support ($995 Offer Package)</option>
+              <option>I want BuyUnrepped transaction management ($2,495)</option>
+              <option>I'm a seller looking for an agent match</option>
+              <option>I want to book Kayla to speak</option>
+              <option>I'm interested in coaching</option>
+              <option>I'm an agent looking to connect / refer</option>
+              <option>I just have a real estate question</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell me more</label>
+            <textarea placeholder="What's on your mind? No detail is too small the more context, the better I can help."></textarea>
+          </div>
+          <button class="q-submit" onclick="this.textContent='✓ Message Sent Talk soon!';this.style.background='var(--sage)'">Send Message</button>
+          <p style="font-size:.73rem;color:var(--muted);line-height:1.65">I typically respond within one business day. Your information is never sold or shared. By submitting, you agree to be contacted by BuyUnrepped dba Kayla Brown. Reply STOP to opt out at any time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end contact -->
+
+
+<!-- ═══════════════════ FOOTER (on every page) ═══════════════════ -->
+<footer id="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">BuyUnrepped <span>/ Kayla Brown</span></div>
+        <div class="footer-copy">© 2026 BuyUnrepped · All Rights Reserved · Nashville, Tennessee</div>
+      </div>
+      <div class="footer-nav">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('landing')" style="color:var(--gold)">BuyUnrepped Landing</a>
+        <a onclick="showPage('buyers')">For Buyers</a>
+        <a onclick="showPage('sellers')">For Sellers</a>
+        <a onclick="showPage('agents')">For Agents</a>
+        <a onclick="showPage('education')">Education</a>
+        <a onclick="showPage('blog')">Blog</a>
+        <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('questionnaires');setQTab('buyer')">Buyer Q</a>
+        <a onclick="showPage('questionnaires');setQTab('seller')">Seller Q</a>
+        <a onclick="showPage('contact')">Contact</a>
+      </div>
+    </div>
+    <div class="trec-block">
+      <div class="trec-grid">
+        <div>
+          <div class="trec-head">Brokerage Information</div>
+          <div class="trec-row"><span class="trec-lbl">Firm Legal Name</span><span class="trec-val">BuyUnrepped</span></div>
+          <div class="trec-row"><span class="trec-lbl">DBA</span><span class="trec-val">BuyUnrepped</span></div>
+          <div class="trec-row"><span class="trec-lbl">Firm License No.</span><span class="trec-val">267134</span></div>
+          <div class="trec-row"><span class="trec-lbl">Firm Phone</span><span class="trec-val"><a href="tel:6152083390" class="trec-link">615-208-3390</a></span></div>
+          <div class="trec-row"><span class="trec-lbl">Firm Address</span><span class="trec-val">2509 Cruzen St, Nashville, TN 37211</span></div>
+          <div class="trec-row"><span class="trec-lbl">State of Licensure</span><span class="trec-val">Tennessee</span></div>
+        </div>
+        <div>
+          <div class="trec-head">Principal Broker</div>
+          <div class="trec-row"><span class="trec-lbl">Broker Name</span><span class="trec-val">Kayla Brown</span></div>
+          <div class="trec-row"><span class="trec-lbl">Broker License No.</span><span class="trec-val">339134</span></div>
+          <div class="trec-row"><span class="trec-lbl">Agent License No.</span><span class="trec-val">339134</span></div>
+          <div class="trec-row"><span class="trec-lbl">Entity Type</span><span class="trec-val">Licensed Tennessee Real Estate Brokerage</span></div>
+          <div class="trec-row"><span class="trec-lbl">Supervision</span><span class="trec-val">All services are provided under the supervision of Principal Broker Kayla Brown (Lic. #339134)</span></div>
+          <div class="trec-row"><span class="trec-lbl">IDX Listings</span><span class="trec-val">Not currently in use on this site</span></div>
+        </div>
+        <div class="trec-right">
+          <div class="trec-eho">
+            <div class="eho-sym">⌂</div>
+            <div>
+              <div class="eho-title">Equal Housing Opportunity</div>
+              <div class="eho-body">BuyUnrepped is an Equal Housing Opportunity brokerage. We are pledged to the letter and spirit of U.S. policy for the achievement of equal housing opportunity throughout the nation. We encourage and support an affirmative advertising and marketing program in which there are no barriers to obtaining housing because of race, color, religion, sex, handicap, familial status, or national origin.</div>
+            </div>
+          </div>
+          <div class="trec-note">BuyUnrepped (Firm Lic. #267134) is a licensed Tennessee real estate brokerage. Kayla Brown (Lic. #339134) is the Principal Broker. BuyUnrepped and Kayla Brown are not separate legal entities all services are rendered by and through the licensed brokerage BuyUnrepped under the supervision of Principal Broker Kayla Brown. BuyUnrepped does not act as a buyer's agent or fiduciary. Full-service buyer representation remains available through other licensed agents and brokerages. This website is for informational purposes only and does not constitute legal or financial advice.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    setTimeout(initReveals, 100);
+    syncNavForHero();
+  }
+}
+
+function setQTab(tab) {
+  document.querySelectorAll('.q-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.q-pane').forEach(p => p.classList.remove('active'));
+  const tabEl = document.getElementById('tab-' + tab);
+  const paneEl = document.getElementById('pane-' + tab);
+  if (tabEl) tabEl.classList.add('active');
+  if (paneEl) paneEl.classList.add('active');
+}
+
+function initReveals() {
+  const reveals = document.querySelectorAll('.reveal:not(.vis)');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+    });
+  }, {threshold: 0.1});
+  reveals.forEach(el => obs.observe(el));
+}
+
+function syncNavForHero() {
+  const nav = document.getElementById('main-nav');
+  const homeOn = document.getElementById('page-home')?.classList.contains('active');
+  const atTop = window.scrollY < 56;
+  if (homeOn && atTop) {
+    nav.classList.add('nav-over-hero');
+    nav.style.boxShadow = 'none';
+  } else {
+    nav.classList.remove('nav-over-hero');
+    nav.style.boxShadow = window.scrollY > 24 ? '0 2px 24px rgba(20,28,36,.06)' : 'none';
+  }
+}
+
+window.addEventListener('scroll', syncNavForHero, { passive: true });
+
+// Init on load
+initReveals();
+syncNavForHero();
+</script>
+</body>
+</html>
