@@ -452,8 +452,7 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .vendor-title-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
 .vendor-title-card{display:flex;flex-direction:column;background:transparent;border:none;box-shadow:var(--shadow-soft);border-radius:2px;padding:1.35rem 1.25rem;transition:box-shadow .2s}
 .vendor-title-card:hover{box-shadow:var(--shadow-card-hover)}
-.vendor-title-logo{height:52px;display:flex;align-items:center;justify-content:flex-start;margin-bottom:1rem}
-.vendor-title-logo img{max-height:48px;max-width:200px;width:auto;height:auto;object-fit:contain}
+.vendor-title-logo{display:none}
 .vendor-title-card h3{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:.35rem;line-height:1.3}
 .vendor-rating{display:flex;align-items:center;gap:.35rem;margin-bottom:.85rem}
 .vendor-rating-num{font-size:.88rem;font-weight:700;color:var(--navy)}
@@ -461,10 +460,9 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .vendor-stars i{font-style:normal;font-size:.72rem;color:var(--gold);line-height:1;opacity:.92}
 .vendor-title-card .btn-outline{padding:.55rem 1.1rem;font-size:.72rem;margin-top:auto;align-self:flex-start}
 .vendor-lender-stack{display:flex;flex-direction:column;gap:1.25rem}
-.vendor-lender-card{display:grid;grid-template-columns:minmax(0,140px) 1fr;gap:1.25rem;background:transparent;border:none;box-shadow:var(--shadow-soft);border-radius:2px;padding:1.35rem 1.4rem;transition:box-shadow .2s;align-items:start}
+.vendor-lender-card{display:grid;grid-template-columns:1fr;gap:1.25rem;background:transparent;border:none;box-shadow:var(--shadow-soft);border-radius:2px;padding:1.35rem 1.4rem;transition:box-shadow .2s;align-items:start}
 .vendor-lender-card:hover{box-shadow:var(--shadow-card-hover)}
-.vendor-lender-photo{width:100%;aspect-ratio:1;max-width:140px;border-radius:2px;overflow:hidden;background:var(--bg-soft);border:1px solid var(--border)}
-.vendor-lender-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.vendor-lender-photo{display:none}
 .vendor-lender-body{min-width:0}
 .vendor-lender-body h3{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--navy);margin-bottom:.25rem;line-height:1.25}
 .vendor-lender-co{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-top:.15rem}
@@ -481,7 +479,6 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .vendor-warranty-note p + p{margin-top:1rem}
 @media(max-width:640px){
   .vendor-lender-card{grid-template-columns:1fr;text-align:center}
-  .vendor-lender-photo{max-width:160px;margin:0 auto}
   .vendor-lender-meta .vendor-lender-links{justify-content:center}
   .vendor-tags{justify-content:center}
 }
@@ -2883,8 +2880,8 @@ function validateSimpleCaptcha(prefix, statusEl) {
 
 async function postToGoogleSheet(formData, formType) {
   var url = LEAD_API_ENDPOINT;
-  if (!url) return false;
-  if ((formData.get('company') || '').toString().trim()) return true; // honeypot hit
+  if (!url) return { ok: false, reason: 'no_endpoint' };
+  if ((formData.get('company') || '').toString().trim()) return { ok: true }; // honeypot hit
   var payload = {
     formType: formType,
     timestamp: new Date().toISOString(),
@@ -2903,9 +2900,17 @@ async function postToGoogleSheet(formData, formType) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    return !!res.ok;
+    if (res.ok) return { ok: true };
+    var detail = '';
+    try {
+      var data = await res.json();
+      detail = data && (data.error || data.detail || '');
+    } catch (_) {
+      detail = (await res.text()).slice(0, 120);
+    }
+    return { ok: false, reason: 'api_rejected', detail: detail, status: res.status };
   } catch (e) {
-    return false;
+    return { ok: false, reason: 'network_error' };
   }
 }
 
@@ -3129,42 +3134,14 @@ if (leadForm) leadForm.addEventListener('submit', async function (ev) {
     return;
   }
   if (!validateSimpleCaptcha('lead', statusEl)) return;
-  var sheetOk = await postToGoogleSheet(data, 'lead');
-  if (sheetOk) {
+  var sheetRes = await postToGoogleSheet(data, 'lead');
+  if (sheetRes.ok) {
     localStorage.setItem('bu_lead_done', '1');
     closeLeadModal();
     return;
   }
-  if (LEAD_FORMSPREE_ID) {
-    try {
-      var res = await fetch('https://formspree.io/f/' + LEAD_FORMSPREE_ID, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' }
-      });
-      if (res.ok) {
-        localStorage.setItem('bu_lead_done', '1');
-        closeLeadModal();
-        return;
-      }
-      statusEl.textContent = 'Could not send—try kayla@buyunrepped.com or 615-208-3390.';
-      statusEl.classList.add('err');
-    } catch (e) {
-      statusEl.textContent = 'Network error—try again or call 615-208-3390.';
-      statusEl.classList.add('err');
-    }
-  } else {
-    var name = data.get('name') || '';
-    var email = data.get('email') || '';
-    var phone = data.get('phone') || '';
-    var interest = data.get('interest') || '';
-    var msg = data.get('message') || '';
-    var src = data.get('source') || '';
-    var body = [src, '', 'Name: ' + name, 'Email: ' + email, 'Phone: ' + phone, 'Interest: ' + interest, '', msg].join('\n');
-    window.location.href = 'mailto:kayla@buyunrepped.com?subject=' + encodeURIComponent('BuyUnrepped website lead') + '&body=' + encodeURIComponent(body);
-    localStorage.setItem('bu_lead_done', '1');
-    closeLeadModal();
-  }
+  statusEl.textContent = 'Form service issue (' + (sheetRes.detail || sheetRes.reason || 'unknown') + ').';
+  statusEl.classList.add('err');
 });
 
 var vendorGateForm = document.getElementById('vendor-gate-form');
@@ -3188,44 +3165,19 @@ if (vendorGateForm) vendorGateForm.addEventListener('submit', async function (ev
     return;
   }
   if (!validateSimpleCaptcha('vendor', statusEl)) return;
-  var vendorSheetOk = await postToGoogleSheet(data, 'vendor');
-  if (vendorSheetOk) {
+  var vendorSheetRes = await postToGoogleSheet(data, 'vendor');
+  if (vendorSheetRes.ok) {
     revealVendors();
     return;
   }
-  var fid = VENDOR_GATE_FORMSPREE_ID || LEAD_FORMSPREE_ID;
+  statusEl.textContent = 'Form service issue (' + (vendorSheetRes.detail || vendorSheetRes.reason || 'unknown') + ').';
+  statusEl.classList.add('err');
   function revealVendors() {
     localStorage.setItem('bu_buyers_vendors_unlocked', '1');
     gate.classList.add('is-hidden');
     unlocked.classList.add('is-visible');
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(initReveals, 120);
-  }
-  if (fid) {
-    try {
-      var res = await fetch('https://formspree.io/f/' + fid, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' }
-      });
-      if (res.ok) {
-        revealVendors();
-        return;
-      }
-      statusEl.textContent = 'Could not send—try kayla@buyunrepped.com or call 615-208-3390.';
-      statusEl.classList.add('err');
-    } catch (e) {
-      statusEl.textContent = 'Network error—try again or call 615-208-3390.';
-      statusEl.classList.add('err');
-    }
-  } else {
-    var name = data.get('name') || '';
-    var email = data.get('email') || '';
-    var phone = data.get('phone') || '';
-    var src = data.get('source') || '';
-    var body = [src, '', 'Name: ' + name, 'Email: ' + email, 'Phone: ' + phone, 'Consent: subscribed via vendor list gate'].join('\n');
-    window.location.href = 'mailto:kayla@buyunrepped.com?subject=' + encodeURIComponent('Vendor list signup (BuyUnrepped)') + '&body=' + encodeURIComponent(body);
-    revealVendors();
   }
 });
 
