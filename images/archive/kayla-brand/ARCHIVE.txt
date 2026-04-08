@@ -1,0 +1,9 @@
+Archived brand photography for BuyUnrepped / Kayla Brown (lifestyle + headshots).
+Source: uploaded assets, copied into this repo for web use and backups.
+
+- 21 files: kayla_brown_buyunreped_tennessee_real_estate*.png (mixed lifestyle / professional)
+- Kayla_Brown_headshot_2026_a-*.png (primary headshot; site also uses images/kayla-brown-about.png)
+- nashville_skyline_buyunrepped_kayla_brown-*.png (hero/skyline variant)
+
+Use in HTML with descriptive alt text (Tennessee real estate, Nashville, coaching, etc.).
+Prefer compressing to WebP for production if file sizes are large.
