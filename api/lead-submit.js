@@ -36,11 +36,28 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    const upstream = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    const bodyStr = JSON.stringify(payload);
+    const headers = { "Content-Type": "application/json" };
+
+    // Apps Script /exec often responds with 302 to script.googleusercontent.com.
+    // Default fetch may follow with GET and drop the POST body, returning HTML (login/marketing page).
+    let upstream;
+    let url = webhookUrl;
+    for (let hop = 0; hop < 5; hop++) {
+      upstream = await fetch(url, {
+        method: "POST",
+        headers,
+        body: bodyStr,
+        redirect: "manual"
+      });
+      if (upstream.status >= 300 && upstream.status < 400) {
+        const loc = upstream.headers.get("location");
+        if (!loc) break;
+        url = new URL(loc, url).href;
+        continue;
+      }
+      break;
+    }
 
     const raw = await upstream.text();
     let parsed = null;
@@ -56,6 +73,15 @@ module.exports = async function handler(req, res) {
         error: "upstream_rejected",
         status: upstream.status,
         detail: raw.slice(0, 200)
+      });
+    }
+
+    if (!parsed && /^\s*</.test(raw)) {
+      return res.status(502).json({
+        ok: false,
+        error: "upstream_html_not_json",
+        detail:
+          "Google returned a web page instead of JSON. Redeploy the Web app as Anyone, or retry after fixing Workspace access."
       });
     }
 
