@@ -211,10 +211,21 @@ module.exports = async function handler(req, res) {
       };
     }
     if (!data.ok) {
-      return {
-        ok: false,
-        detail: (data.error || "slack_api_error").slice(0, 200)
-      };
+      const err = String(data.error || "slack_api_error");
+      let hint = err;
+      if (err === "missing_scope") {
+        hint =
+          "missing_scope — Slack api.slack.com → Your App → OAuth & Permissions: under Bot Token Scopes add chat:write (optionally chat:write.public). If you use a user token (xoxp), add User Token Scope chat:write. Save, then Reinstall App to Workspace and put the new token in Vercel.";
+      } else if (err === "not_in_channel") {
+        hint =
+          "not_in_channel — /invite your Slack app into that channel, or use chat:write.public with channel ID.";
+      } else if (err === "channel_not_found") {
+        hint =
+          "channel_not_found — Check SLACK_CHANNEL is the channel ID (C…), not the display name.";
+      } else if (err === "invalid_auth" || err === "token_revoked") {
+        hint = err + " — Generate a new token in the Slack app and update Vercel.";
+      }
+      return { ok: false, detail: hint.slice(0, 400) };
     }
     return { ok: true };
   }
