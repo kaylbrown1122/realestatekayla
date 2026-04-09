@@ -1631,7 +1631,7 @@ a.trec-link:hover{color:#fff}
           <form id="vendor-gate-form" class="cf" novalidate>
             <input type="hidden" name="source" value="Buyers vendor list — gated page signup">
             <input type="hidden" name="_subject" value="Vendor list signup (BuyUnrepped)">
-            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+            <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
             <div class="fg">
               <label for="vendor-captcha">Quick check: <span id="vendor-captcha-q">What is 2 + 3?</span></label>
               <input id="vendor-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
@@ -2172,7 +2172,7 @@ a.trec-link:hover{color:#fff}
         </div>
         <form id="buyer-questionnaire-form" class="q-form" novalidate>
           <input type="hidden" name="source" value="Buyer questionnaire (site)">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
           <div class="fg">
             <label for="buyer-q-captcha">Quick check: <span id="buyer-q-captcha-q">What is 2 + 3?</span></label>
             <input id="buyer-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
@@ -2264,7 +2264,7 @@ a.trec-link:hover{color:#fff}
         </div>
         <form id="seller-questionnaire-form" class="q-form" novalidate>
           <input type="hidden" name="source" value="Seller questionnaire (site)">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
           <div class="fg">
             <label for="seller-q-captcha">Quick check: <span id="seller-q-captcha-q">What is 2 + 3?</span></label>
             <input id="seller-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
@@ -2370,7 +2370,7 @@ a.trec-link:hover{color:#fff}
         </div>
         <form id="buysell-questionnaire-form" class="q-form" novalidate>
           <input type="hidden" name="source" value="Buy + Sell questionnaire (site)">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
           <div class="fg">
             <label for="buysell-q-captcha">Quick check: <span id="buysell-q-captcha-q">What is 2 + 3?</span></label>
             <input id="buysell-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
@@ -2724,7 +2724,7 @@ a.trec-link:hover{color:#fff}
         </div>
         <form id="contact-form" class="cf reveal d1" novalidate>
           <input type="hidden" name="source" value="Contact page — Get in touch">
-          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
           <div class="fg">
             <label for="contact-captcha">Quick check: <span id="contact-captcha-q">What is 2 + 3?</span></label>
             <input id="contact-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
@@ -2830,7 +2830,7 @@ a.trec-link:hover{color:#fff}
     <p class="sub">Leave your info and we'll follow up—no pressure. Or keep browsing; this won't show again this session if you dismiss it.</p>
     <form id="lead-capture-form" class="cf" novalidate>
       <input type="hidden" name="source" value="BuyUnrepped site — 3 min prompt">
-      <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+      <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
       <div class="fg">
         <label for="lead-captcha">Quick check: <span id="lead-captcha-q">What is 2 + 3?</span></label>
         <input id="lead-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
@@ -2909,7 +2909,7 @@ function validateSimpleCaptcha(prefix, statusEl) {
 async function postToGoogleSheet(formData, formType) {
   var url = LEAD_API_ENDPOINT;
   if (!url) return { ok: false, reason: 'no_endpoint' };
-  if ((formData.get('company') || '').toString().trim()) return { ok: true }; // honeypot hit
+  if ((formData.get('hp_trap') || '').toString().trim()) return { ok: true }; // honeypot hit
   var payload = {
     formType: formType,
     timestamp: new Date().toISOString(),
@@ -2957,7 +2957,7 @@ function contactRawToSheetFormData(raw) {
 }
 
 function buildQuestionnaireDetails(raw) {
-  var skip = { company: 1, captcha: 1, firstName: 1, lastName: 1, email: 1, phone: 1 };
+  var skip = { hp_trap: 1, captcha: 1, firstName: 1, lastName: 1, email: 1, phone: 1 };
   var byKey = {};
   raw.forEach(function (value, key) {
     if (skip[key]) return;
@@ -3201,7 +3201,7 @@ if (leadForm) leadForm.addEventListener('submit', async function (ev) {
   statusEl.textContent = '';
   statusEl.classList.remove('err');
   var data = new FormData(form);
-  if ((data.get('company') || '').toString().trim()) {
+  if ((data.get('hp_trap') || '').toString().trim()) {
     localStorage.setItem('bu_lead_done', '1');
     closeLeadModal();
     return;
@@ -3226,7 +3226,7 @@ if (contactForm) contactForm.addEventListener('submit', async function (ev) {
     statusEl.classList.remove('err');
   }
   var raw = new FormData(contactForm);
-  if ((raw.get('company') || '').toString().trim()) {
+  if ((raw.get('hp_trap') || '').toString().trim()) {
     return;
   }
   if (!validateSimpleCaptcha('contact', statusEl)) return;
@@ -3256,7 +3256,7 @@ if (buyerQForm) buyerQForm.addEventListener('submit', async function (ev) {
     statusEl.classList.remove('err');
   }
   var raw = new FormData(buyerQForm);
-  if ((raw.get('company') || '').toString().trim()) return;
+  if ((raw.get('hp_trap') || '').toString().trim()) return;
   if (!validateSimpleCaptcha('buyer-q', statusEl)) return;
   var fd = questionnaireRawToSheetFd(raw, 'buyer_questionnaire', 'BUYER QUESTIONNAIRE');
   var qRes = await postToGoogleSheet(fd, 'buyer_questionnaire');
@@ -3284,7 +3284,7 @@ if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
     statusEl.classList.remove('err');
   }
   var raw = new FormData(sellerQForm);
-  if ((raw.get('company') || '').toString().trim()) return;
+  if ((raw.get('hp_trap') || '').toString().trim()) return;
   if (!validateSimpleCaptcha('seller-q', statusEl)) return;
   var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
   var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
@@ -3312,7 +3312,7 @@ if (buysellQForm) buysellQForm.addEventListener('submit', async function (ev) {
     statusEl.classList.remove('err');
   }
   var raw = new FormData(buysellQForm);
-  if ((raw.get('company') || '').toString().trim()) return;
+  if ((raw.get('hp_trap') || '').toString().trim()) return;
   if (!validateSimpleCaptcha('buysell-q', statusEl)) return;
   var fd = questionnaireRawToSheetFd(raw, 'buy_sell_questionnaire', 'BUY + SELL QUESTIONNAIRE');
   var qRes = await postToGoogleSheet(fd, 'buy_sell_questionnaire');
@@ -3347,7 +3347,7 @@ if (vendorGateForm) vendorGateForm.addEventListener('submit', async function (ev
     return;
   }
   var data = new FormData(vendorGateForm);
-  if ((data.get('company') || '').toString().trim()) {
+  if ((data.get('hp_trap') || '').toString().trim()) {
     revealVendors();
     return;
   }

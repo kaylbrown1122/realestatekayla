@@ -127,6 +127,16 @@ module.exports = async function handler(req, res) {
     let upstream;
     let raw;
     const tag = formspreeSubjectLabel();
+    let msgOut = String(fields.message || "");
+    const MSG_MAX = 14000;
+    if (msgOut.length > MSG_MAX) {
+      msgOut =
+        msgOut.slice(0, MSG_MAX) +
+        "\n\n[Message truncated; original length " +
+        String(fields.message || "").length +
+        " characters.]";
+    }
+
     let originHeader = "https://www.realestatekayla.com";
     try {
       const u = new URL(String(fields.pageUrl || ""));
@@ -152,7 +162,7 @@ module.exports = async function handler(req, res) {
           _replyto: fields.email,
           phone: fields.phone,
           interest: fields.interest,
-          message: fields.message,
+          message: msgOut,
           consent: fields.consent,
           source: fields.source,
           pageUrl: fields.pageUrl,
