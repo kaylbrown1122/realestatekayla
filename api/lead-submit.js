@@ -188,6 +188,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    // When Slack is configured, use it only. Google Apps Script often 401/405 on Workspace;
+    // leaving GOOGLE_* env vars set was still calling Google and surfacing those errors.
     if (slackUrl) {
       const slackRes = await sendSlack();
       if (!slackRes.ok) {
@@ -197,11 +199,12 @@ module.exports = async function handler(req, res) {
           detail: slackRes.detail || "unknown"
         });
       }
+      return res.status(200).json({ ok: true });
     }
 
     if (googleUrl) {
       const googleRes = await sendGoogle();
-      if (!googleRes.ok && !slackUrl) {
+      if (!googleRes.ok) {
         return res.status(502).json({
           ok: false,
           error: googleRes.detail ? "upstream_app_error" : "upstream_rejected",
