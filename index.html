@@ -2701,15 +2701,21 @@ a.trec-link:hover{color:#fff}
             <cite> Kayla Brown, Principal Broker, BuyUnrepped</cite>
           </div>
         </div>
-        <div class="cf reveal d1">
-          <div class="fg-row">
-            <div class="fg"><label>First Name</label><input type="text" placeholder="First name"></div>
-            <div class="fg"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+        <form id="contact-form" class="cf reveal d1" novalidate>
+          <input type="hidden" name="source" value="Contact page — Get in touch">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <div class="fg">
+            <label for="contact-captcha">Quick check: <span id="contact-captcha-q">What is 2 + 3?</span></label>
+            <input id="contact-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
           </div>
-          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-          <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
-          <div class="fg"><label>I'm reaching out because...</label>
-            <select>
+          <div class="fg-row">
+            <div class="fg"><label for="contact-first">First Name</label><input id="contact-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
+            <div class="fg"><label for="contact-last">Last Name</label><input id="contact-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
+          </div>
+          <div class="fg"><label for="contact-email">Email</label><input id="contact-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
+          <div class="fg"><label for="contact-phone">Phone</label><input id="contact-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel"></div>
+          <div class="fg"><label for="contact-interest">I'm reaching out because...</label>
+            <select id="contact-interest" name="interest" required>
               <option value="">Select one</option>
               <option>I want the $995 offer package</option>
               <option>I want $2,495 transaction management (once I'm under contract)</option>
@@ -2720,12 +2726,13 @@ a.trec-link:hover{color:#fff}
               <option>I just have a real estate question</option>
             </select>
           </div>
-          <div class="fg"><label>Tell me more</label>
-            <textarea placeholder="What's on your mind? No detail is too small the more context, the better I can help."></textarea>
+          <div class="fg"><label for="contact-message">Tell me more</label>
+            <textarea id="contact-message" name="message" placeholder="What's on your mind? No detail is too small the more context, the better I can help."></textarea>
           </div>
-          <button class="q-submit" onclick="this.textContent='Message sent — talk soon!';this.style.background='var(--sage)'">Send Message</button>
+          <button type="submit" class="q-submit">Send Message</button>
+          <p id="contact-form-status" class="lead-modal-status" role="status" style="margin-top:.65rem"></p>
           <p style="font-size:.73rem;color:var(--muted);line-height:1.65">I typically respond within one business day. Your information is never sold or shared. By submitting, you agree to be contacted by BuyUnrepped dba Kayla Brown. Reply STOP to opt out at any time.</p>
-        </div>
+        </form>
       </div>
     </div>
   </section>
@@ -2912,6 +2919,20 @@ async function postToGoogleSheet(formData, formType) {
   } catch (e) {
     return { ok: false, reason: 'network_error' };
   }
+}
+
+function contactRawToSheetFormData(raw) {
+  var fd = new FormData();
+  fd.set('source', (raw.get('source') || '').toString());
+  var fn = (raw.get('firstName') || '').toString().trim();
+  var ln = (raw.get('lastName') || '').toString().trim();
+  fd.set('name', [fn, ln].filter(Boolean).join(' '));
+  fd.set('email', (raw.get('email') || '').toString());
+  fd.set('phone', (raw.get('phone') || '').toString());
+  fd.set('interest', (raw.get('interest') || '').toString());
+  fd.set('message', (raw.get('message') || '').toString());
+  fd.set('consent', (raw.get('consent') || '').toString());
+  return fd;
 }
 
 function closeNavMobile() {
@@ -3144,6 +3165,36 @@ if (leadForm) leadForm.addEventListener('submit', async function (ev) {
   statusEl.classList.add('err');
 });
 
+var contactForm = document.getElementById('contact-form');
+if (contactForm) contactForm.addEventListener('submit', async function (ev) {
+  ev.preventDefault();
+  var statusEl = document.getElementById('contact-form-status');
+  if (statusEl) {
+    statusEl.textContent = '';
+    statusEl.classList.remove('err');
+  }
+  var raw = new FormData(contactForm);
+  if ((raw.get('company') || '').toString().trim()) {
+    return;
+  }
+  if (!validateSimpleCaptcha('contact', statusEl)) return;
+  var sheetFd = contactRawToSheetFormData(raw);
+  var sheetRes = await postToGoogleSheet(sheetFd, 'contact');
+  if (sheetRes.ok) {
+    contactForm.reset();
+    initSimpleCaptcha('contact');
+    if (statusEl) {
+      statusEl.textContent = "Thanks — I'll be in touch soon.";
+      statusEl.classList.remove('err');
+    }
+    return;
+  }
+  if (statusEl) {
+    statusEl.textContent = 'Form service issue (' + (sheetRes.detail || sheetRes.reason || 'unknown') + ').';
+    statusEl.classList.add('err');
+  }
+});
+
 var vendorGateForm = document.getElementById('vendor-gate-form');
 if (vendorGateForm) vendorGateForm.addEventListener('submit', async function (ev) {
   ev.preventDefault();
@@ -3208,6 +3259,7 @@ document.addEventListener('keydown', function (e) {
 
 initSimpleCaptcha('lead');
 initSimpleCaptcha('vendor');
+initSimpleCaptcha('contact');
 initReveals();
 syncNavTabs();
 </script>
