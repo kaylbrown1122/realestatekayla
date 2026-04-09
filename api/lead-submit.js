@@ -1,13 +1,33 @@
 module.exports = async function handler(req, res) {
-  const slackUrl = (process.env.SLACK_WEBHOOK_URL || "").trim().replace(/^["']|["']$/g, "");
-  const googleUrl = (process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL || "").trim();
+  function trimEnv(v) {
+    return (v || "").trim().replace(/^["']|["']$/g, "");
+  }
+
+  let slackHookUrl = trimEnv(process.env.SLACK_WEBHOOK_URL);
+  let slackBotToken = trimEnv(process.env.SLACK_BOT_TOKEN);
+  const slackChannel = trimEnv(process.env.SLACK_CHANNEL);
+
+  // Bot token mistakenly pasted into SLACK_WEBHOOK_URL (starts with xoxb-/xoxp-/xapp-)
+  if (/^xox[bap]-/i.test(slackHookUrl)) {
+    slackBotToken = slackHookUrl;
+    slackHookUrl = "";
+  }
+
+  const googleUrl = trimEnv(process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL);
   const webhookToken = process.env.GOOGLE_SHEETS_WEBHOOK_TOKEN || "";
+
+  const slackHookOk =
+    !!slackHookUrl && /^https:\/\/hooks\.slack\.com\//i.test(slackHookUrl);
+  const slackBotOk = !!slackBotToken && !!slackChannel;
+  const slackReady = slackHookOk || slackBotOk;
 
   if (req.method === "GET") {
     return res.status(200).json({
       ok: true,
       service: "lead-submit",
-      slackConfigured: !!slackUrl,
+      slackConfigured: slackReady,
+      slackWebhookConfigured: slackHookOk,
+      slackBotConfigured: slackBotOk,
       googleConfigured: !!googleUrl,
       webhookConfigured: !!googleUrl,
       tokenConfigured: !!webhookToken
@@ -19,11 +39,12 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: "method_not_allowed" });
   }
 
-  if (!slackUrl && !googleUrl) {
+  if (!slackReady && !googleUrl) {
     return res.status(503).json({
       ok: false,
       error: "webhook_not_configured",
-      detail: "Set SLACK_WEBHOOK_URL and/or GOOGLE_APPS_SCRIPT_WEBHOOK_URL in Vercel."
+      detail:
+        "Set either SLACK_WEBHOOK_URL (Incoming Webhook https://hooks.slack.com/...) or SLACK_BOT_TOKEN + SLACK_CHANNEL (bot OAuth token xoxb-... and channel ID like C01234ABCDE)."
     });
   }
 
@@ -61,7 +82,7 @@ module.exports = async function handler(req, res) {
       return (
         "Google returned a web page (HTTP " +
         (status || "?") +
-        ") instead of JSON. Deploy Web app as Anyone, or use Slack only (SLACK_WEBHOOK_URL)."
+        ") instead of JSON. Deploy Web app as Anyone, or use Slack only."
       );
     }
     return String(raw || "").slice(0, 200);
@@ -75,16 +96,8 @@ module.exports = async function handler(req, res) {
       .slice(0, 1500);
   }
 
-  async function sendSlack() {
-    if (!/^https:\/\/hooks\.slack\.com\//i.test(slackUrl)) {
-      return {
-        ok: false,
-        detail:
-          "SLACK_WEBHOOK_URL must start with https://hooks.slack.com/ (check Vercel for typos, spaces, or stray quotes)."
-      };
-    }
-
-    const text = [
+  function buildSlackText() {
+    return [
       "*Real Estate Kayla — new form submission*",
       "*Type:* " + (slackPlain(fields.formType) || "(none)"),
       "*Name:* " + slackPlain(fields.name),
@@ -99,11 +112,14 @@ module.exports = async function handler(req, res) {
     ]
       .filter(Boolean)
       .join("\n");
+  }
 
+  async function sendSlackWebhook(url) {
+    const text = buildSlackText();
     let upstream;
     let raw;
     try {
-      upstream = await fetch(slackUrl, {
+      upstream = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text })
@@ -131,6 +147,72 @@ module.exports = async function handler(req, res) {
       }
     } catch (_) {}
     return { ok: true };
+  }
+
+  async function sendSlackBot(token, channel) {
+    const text = buildSlackText();
+    let upstream;
+    let raw;
+    try {
+      upstream = await fetch("https://slack.com/api/chat.postMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          channel: channel,
+          text: text,
+          mrkdwn: true
+        })
+      });
+      raw = await upstream.text();
+    } catch (err) {
+      return {
+        ok: false,
+        detail: (err && err.message ? err.message : String(err)).slice(0, 200)
+      };
+    }
+    let data;
+    try {
+      data = raw ? JSON.parse(raw) : {};
+    } catch (_) {
+      return {
+        ok: false,
+        detail: raw ? raw.slice(0, 200) : "Invalid Slack API response"
+      };
+    }
+    if (!data.ok) {
+      return {
+        ok: false,
+        detail: (data.error || "slack_api_error").slice(0, 200)
+      };
+    }
+    return { ok: true };
+  }
+
+  async function sendSlack() {
+    if (slackHookOk) {
+      return sendSlackWebhook(slackHookUrl);
+    }
+    if (slackBotOk) {
+      return sendSlackBot(slackBotToken, slackChannel);
+    }
+    if (slackHookUrl && !slackHookOk) {
+      return {
+        ok: false,
+        detail:
+          "SLACK_WEBHOOK_URL must be https://hooks.slack.com/... If you have a bot token (xoxb-...), use env vars SLACK_BOT_TOKEN and SLACK_CHANNEL instead."
+      };
+    }
+    if (slackBotToken && !slackChannel) {
+      return {
+        ok: false,
+        detail:
+          "SLACK_BOT_TOKEN is set but SLACK_CHANNEL is missing. Add SLACK_CHANNEL with your channel ID (e.g. C01234ABCDE from channel details in Slack)."
+      };
+    }
+    return { ok: false, detail: "Slack not configured" };
   }
 
   async function postToGasExec(url, headers, requestBody) {
@@ -210,9 +292,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    // When Slack is configured, use it only. Google Apps Script often 401/405 on Workspace;
-    // leaving GOOGLE_* env vars set was still calling Google and surfacing those errors.
-    if (slackUrl) {
+    if (slackReady) {
       const slackRes = await sendSlack();
       if (!slackRes.ok) {
         return res.status(502).json({
@@ -246,18 +326,3 @@ module.exports = async function handler(req, res) {
     });
   }
 };
-
-/*
-Google Apps Script optional: accept JSON body OR form field `data`.
-
-function parsePayload_(e) {
-  if (e.parameter && e.parameter.data) {
-    try { return JSON.parse(e.parameter.data); } catch (_) {}
-  }
-  try {
-    return JSON.parse((e.postData && e.postData.contents) || '{}');
-  } catch (_) {
-    return {};
-  }
-}
-*/
