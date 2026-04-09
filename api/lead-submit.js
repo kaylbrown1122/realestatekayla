@@ -35,30 +35,54 @@ module.exports = async function handler(req, res) {
     consent: body.consent || ""
   };
 
-  try {
-    const bodyStr = JSON.stringify(payload);
-    const headers = { "Content-Type": "application/json" };
+  function looksLikeHtml(s) {
+    return /^\s*</.test(String(s || ""));
+  }
 
-    // Apps Script /exec often responds with 302 to script.googleusercontent.com.
-    // Default fetch may follow with GET and drop the POST body, returning HTML (login/marketing page).
+  function safeUpstreamDetail(raw, status) {
+    if (looksLikeHtml(raw)) {
+      return (
+        "Google returned a web page (HTTP " +
+        (status || "?") +
+        ") instead of JSON. " +
+        "In Apps Script: Deploy the Web app with Who has access = Anyone. " +
+        "If you use Google Workspace, an admin may need to allow external web app execution."
+      );
+    }
+    return String(raw || "").slice(0, 200);
+  }
+
+  /**
+   * POST to Apps Script /exec following 3xx with another POST (same body).
+   * Default fetch follows 302 with GET and drops the JSON body.
+   */
+  async function postToGasExec(url, headers, body) {
+    let current = url;
     let upstream;
-    let url = webhookUrl;
-    for (let hop = 0; hop < 5; hop++) {
-      upstream = await fetch(url, {
+    for (let hop = 0; hop < 8; hop++) {
+      upstream = await fetch(current, {
         method: "POST",
         headers,
-        body: bodyStr,
+        body,
         redirect: "manual"
       });
       if (upstream.status >= 300 && upstream.status < 400) {
         const loc = upstream.headers.get("location");
         if (!loc) break;
-        url = new URL(loc, url).href;
+        current = new URL(loc, current).href;
         continue;
       }
       break;
     }
+    return upstream;
+  }
 
+  async function tryOnce(contentType, requestBody) {
+    const headers =
+      contentType === "json"
+        ? { "Content-Type": "application/json" }
+        : { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" };
+    const upstream = await postToGasExec(webhookUrl, headers, requestBody);
     const raw = await upstream.text();
     let parsed = null;
     try {
@@ -66,26 +90,45 @@ module.exports = async function handler(req, res) {
     } catch (_) {
       parsed = null;
     }
+    return { upstream, raw, parsed };
+  }
+
+  try {
+    const bodyStr = JSON.stringify(payload);
+
+    let { upstream, raw, parsed } = await tryOnce("json", bodyStr);
+
+    const appLogicalFailure =
+      parsed && typeof parsed === "object" && parsed.ok === false;
+    const tryForm =
+      !appLogicalFailure &&
+      (!upstream.ok || looksLikeHtml(raw) || parsed === null);
+
+    // Retry as form POST: some Google edges handle this more reliably than raw JSON.
+    // Apps Script must read e.parameter.data (see comment at bottom of this file).
+    if (tryForm) {
+      const formBody = new URLSearchParams();
+      formBody.set("data", bodyStr);
+      ({ upstream, raw, parsed } = await tryOnce("form", formBody.toString()));
+    }
 
     if (!upstream.ok) {
       return res.status(502).json({
         ok: false,
         error: "upstream_rejected",
         status: upstream.status,
-        detail: raw.slice(0, 200)
+        detail: safeUpstreamDetail(raw, upstream.status)
       });
     }
 
-    if (!parsed && /^\s*</.test(raw)) {
+    if (!parsed && looksLikeHtml(raw)) {
       return res.status(502).json({
         ok: false,
         error: "upstream_html_not_json",
-        detail:
-          "Google returned a web page instead of JSON. Redeploy the Web app as Anyone, or retry after fixing Workspace access."
+        detail: safeUpstreamDetail(raw, upstream.status)
       });
     }
 
-    // Google Apps Script Web Apps often return HTTP 200 with { ok: false } in the body.
     if (parsed && parsed.ok === false) {
       return res.status(502).json({
         ok: false,
@@ -99,3 +142,22 @@ module.exports = async function handler(req, res) {
     return res.status(502).json({ ok: false, error: "upstream_unreachable" });
   }
 };
+
+/*
+Apps Script: accept JSON body OR form field `data` (same JSON string).
+
+Replace your payload line with:
+
+function parsePayload_(e) {
+  if (e.parameter && e.parameter.data) {
+    try { return JSON.parse(e.parameter.data); } catch (_) {}
+  }
+  try {
+    return JSON.parse((e.postData && e.postData.contents) || '{}');
+  } catch (_) {
+    return {};
+  }
+}
+
+Then in doPost: const payload = parsePayload_(e);
+*/
