@@ -76,11 +76,11 @@ module.exports = async function handler(req, res) {
   }
 
   async function sendSlack() {
-    if (!/^https:\/\/hooks\.slack\.com\/services\//i.test(slackUrl)) {
+    if (!/^https:\/\/hooks\.slack\.com\//i.test(slackUrl)) {
       return {
         ok: false,
         detail:
-          "SLACK_WEBHOOK_URL must start with https://hooks.slack.com/services/ (check Vercel for typos, spaces, or extra quotes)."
+          "SLACK_WEBHOOK_URL must start with https://hooks.slack.com/ (check Vercel for typos, spaces, or stray quotes)."
       };
     }
 
