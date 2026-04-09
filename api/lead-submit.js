@@ -4,7 +4,11 @@ module.exports = async function handler(req, res) {
   }
 
   let slackHookUrl = trimEnv(process.env.SLACK_WEBHOOK_URL);
-  let slackBotToken = trimEnv(process.env.SLACK_BOT_TOKEN);
+  let slackBotToken = trimEnv(
+    process.env.SLACK_BOT_TOKEN ||
+      process.env.SLACK_TOKEN ||
+      process.env.SLACK_OAUTH_TOKEN
+  );
   const slackChannel = trimEnv(process.env.SLACK_CHANNEL);
 
   // Slack API tokens start with xox* (xoxb-, xoxp-, xoxe.xoxp-..., etc.), never http(s).
@@ -26,6 +30,24 @@ module.exports = async function handler(req, res) {
   const slackBotOk = !!slackBotToken && !!slackChannel;
   const slackReady = slackHookOk || slackBotOk;
 
+  function slackMisconfigDetail() {
+    if (slackBotToken && !slackChannel) {
+      return "You have a Slack token but SLACK_CHANNEL is missing. In Vercel add SLACK_CHANNEL with the channel ID (starts with C, e.g. C01234ABCDE — open channel in Slack → name → About → copy Channel ID). Redeploy.";
+    }
+    if (slackChannel && !slackBotToken && !slackHookOk) {
+      return "SLACK_CHANNEL is set but no token. Add SLACK_BOT_TOKEN (your xox… token) or SLACK_WEBHOOK_URL (https://hooks.slack.com/...). Redeploy.";
+    }
+    const hookRaw = trimEnv(process.env.SLACK_WEBHOOK_URL);
+    if (
+      hookRaw &&
+      !/^https:\/\/hooks\.slack\.com\//i.test(hookRaw) &&
+      !/^xox/i.test(hookRaw)
+    ) {
+      return "SLACK_WEBHOOK_URL is not a valid Incoming Webhook (must start with https://hooks.slack.com/) and is not a Slack token (starts with xox). Fix the value or use SLACK_BOT_TOKEN + SLACK_CHANNEL.";
+    }
+    return "Vercel needs either (1) SLACK_WEBHOOK_URL=https://hooks.slack.com/... or (2) SLACK_BOT_TOKEN + SLACK_CHANNEL. Enable for Production and redeploy. Check GET /api/lead-submit for slackBotTokenSet / slackChannelSet.";
+  }
+
   if (req.method === "GET") {
     return res.status(200).json({
       ok: true,
@@ -33,6 +55,8 @@ module.exports = async function handler(req, res) {
       slackConfigured: slackReady,
       slackWebhookConfigured: slackHookOk,
       slackBotConfigured: slackBotOk,
+      slackBotTokenSet: !!slackBotToken,
+      slackChannelSet: !!slackChannel,
       googleConfigured: !!googleUrl,
       webhookConfigured: !!googleUrl,
       tokenConfigured: !!webhookToken
@@ -48,8 +72,7 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({
       ok: false,
       error: "webhook_not_configured",
-      detail:
-        "Set either SLACK_WEBHOOK_URL (Incoming Webhook https://hooks.slack.com/...) or SLACK_BOT_TOKEN + SLACK_CHANNEL (bot OAuth token xoxb-... and channel ID like C01234ABCDE)."
+      detail: slackMisconfigDetail()
     });
   }
 
