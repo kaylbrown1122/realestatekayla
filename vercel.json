@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    { "source": "/trash", "destination": "/", "permanent": true },
+    { "source": "/before-you-show", "destination": "/", "permanent": true },
+    { "source": "/testimonial", "destination": "/", "permanent": true },
+    { "source": "/listings", "destination": "/", "permanent": true },
+    { "source": "/listingagent", "destination": "/", "permanent": true },
+    { "source": "/charity", "destination": "/", "permanent": true },
+    { "source": "/buyer-questionnaire", "destination": "/questionnaires?tab=buyer", "permanent": true },
+    { "source": "/listing-questionnaire", "destination": "/questionnaires?tab=seller", "permanent": true },
+    { "source": "/listing-buyer-questionnaire", "destination": "/questionnaires?tab=buysell", "permanent": true },
+    { "source": "/buy-your-dream-home", "destination": "/buyers", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/).*)",
