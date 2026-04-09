@@ -1,0 +1,18 @@
+---
+description: Read-only product context — BuyUnrepped app (external JSX)
+alwaysApply: true
+---
+
+# Read-only context file
+
+**Path:** `/Users/kaylabrown/Downloads/BuyUnrepped (1).jsx`
+
+This file is **reference-only** for what the business sells and how the product talks (offer flow, transaction tools, Tennessee RF401 / REALTORS® language, inspection types, flat-fee framing, disclaimers, partner/vendor flows, mailto patterns, etc.).
+
+## Rules
+
+- **Read** it when aligning the marketing site (`index.html`, etc.) with real product scope, pricing, compliance tone, and feature claims.
+- **Do not edit, move, rename, or copy** this file into the repo unless the user explicitly asks you to.
+- **Do not treat it as source code to run or import** in this project — it depends on many local modules not present here; it is context for copy and positioning only.
+
+If the user moves the file, they should update this rule with the new path.
