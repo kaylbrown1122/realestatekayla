@@ -746,7 +746,7 @@ a.trec-link:hover{color:#fff}
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "LocalBusiness"],
       "@id": "https://www.buyunrepped.com/#organization",
       "name": "BuyUnrepped",
       "url": "https://www.buyunrepped.com/",
@@ -767,17 +767,25 @@ a.trec-link:hover{color:#fff}
         { "@type": "AdministrativeArea", "name": "Middle Tennessee" },
         { "@type": "City", "name": "Nashville" }
       ],
+      "employee": { "@id": "https://www.buyunrepped.com/#kayla-brown" },
       "sameAs": ["https://www.buyunrepped.com/"]
     },
     {
       "@type": "RealEstateAgent",
       "@id": "https://www.buyunrepped.com/#kayla-brown",
       "name": "Kayla Brown",
+      "url": "https://www.buyunrepped.com/",
       "image": "https://www.buyunrepped.com/images/kayla-brown-about.png",
       "jobTitle": "Principal Broker",
+      "telephone": "+1-615-208-3390",
+      "email": "kayla@buyunrepped.com",
       "worksFor": { "@id": "https://www.buyunrepped.com/#organization" },
       "address": { "@type": "PostalAddress", "streetAddress": "2509 Cruzen St", "addressLocality": "Nashville", "addressRegion": "TN", "postalCode": "37211", "addressCountry": "US" },
-      "areaServed": { "@type": "State", "name": "Tennessee" },
+      "areaServed": [
+        { "@type": "State", "name": "Tennessee" },
+        { "@type": "AdministrativeArea", "name": "Middle Tennessee" },
+        { "@type": "City", "name": "Nashville" }
+      ],
       "identifier": { "@type": "PropertyValue", "name": "Tennessee Broker License", "value": "339134" }
     },
     {
@@ -883,11 +891,11 @@ a.trec-link:hover{color:#fff}
 <!-- ═══════════════════ NAV ═══════════════════ -->
 <nav id="main-nav">
   <div class="nav-top">
-    <button type="button" class="nav-logo" onclick="showPage('home')">BuyUnrepped<span class="brand-tm" aria-hidden="true">™</span> <span>/ Kayla Brown</span></button>
+    <a href="/" class="nav-logo">BuyUnrepped<span class="brand-tm" aria-hidden="true">™</span> <span>/ Kayla Brown</span></a>
     <div class="nav-top-actions">
       <a href="tel:6152083390" class="nav-phone-inline"><span class="ph-ic" aria-hidden="true"><svg class="ic-nav-phone"><use href="#ic-phone"/></svg></span>615-208-3390</a>
       <button type="button" class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <button type="button" class="nav-cta" onclick="showPage('contact')">Let's Talk</button>
+      <a href="/contact" class="nav-cta">Let's Talk</a>
     </div>
   </div>
   <div class="nav-tabs-row" id="nav-tabs-row">
@@ -897,20 +905,20 @@ a.trec-link:hover{color:#fff}
         <button type="button" class="nav-tab-parent" data-nav-group="buyers" data-go-page="buyers">Buyers<span class="nav-chev" aria-hidden="true"><svg><use href="#ic-chev-down"/></svg></span></button>
         <div class="nav-tab-panel" role="menu">
           <a href="#" class="nav-panel-hint">For buyers</a>
-          <a href="#" onclick="showPage('buyers'); return false;">How it works &amp; pricing</a>
-          <a href="#" onclick="showPage('buyers-playbook'); return false;">Search &amp; tour playbook</a>
-          <a href="#" onclick="showPage('buyers-vendors'); return false;">Title, lenders &amp; warranty picks</a>
-          <a href="#" onclick="showPage('landing'); return false;">Quick overview (ads)</a>
-          <a href="#" onclick="showPage('buyers'); setTimeout(function(){document.getElementById('pricing-anchor').scrollIntoView({behavior:'smooth'});},120); return false;">Jump to pricing</a>
-          <a href="#" onclick="showPage('questionnaires'); setQTab('buyer'); return false;">Buyer questionnaire</a>
+          <a href="/buyers">How it works &amp; pricing</a>
+          <a href="/buyers/playbook">Search &amp; tour playbook</a>
+          <a href="/buyers/vendors">Title, lenders &amp; warranty picks</a>
+          <a href="/welcome">Quick overview (ads)</a>
+          <a href="/buyers#pricing-anchor">Jump to pricing</a>
+          <a href="/questionnaires?tab=buyer">Buyer questionnaire</a>
         </div>
       </li>
       <li class="nav-tab-group">
         <button type="button" class="nav-tab-parent" data-nav-group="sellers" data-go-page="sellers">Sellers<span class="nav-chev" aria-hidden="true"><svg><use href="#ic-chev-down"/></svg></span></button>
         <div class="nav-tab-panel" role="menu">
           <a href="#" class="nav-panel-hint">For sellers</a>
-          <a href="#" onclick="showPage('sellers'); return false;">Agent matchmaking</a>
-          <a href="#" onclick="showPage('questionnaires'); setQTab('seller'); return false;">Seller questionnaire</a>
+          <a href="/sellers">Agent matchmaking</a>
+          <a href="/questionnaires?tab=seller">Seller questionnaire</a>
         </div>
       </li>
       <li><button type="button" class="nav-tab" data-nav="agents" onclick="showPage('agents')">Agents</button></li>
@@ -918,8 +926,8 @@ a.trec-link:hover{color:#fff}
         <button type="button" class="nav-tab-parent" data-nav-group="learn" data-go-page="education">Learn<span class="nav-chev" aria-hidden="true"><svg><use href="#ic-chev-down"/></svg></span></button>
         <div class="nav-tab-panel" role="menu">
           <a href="#" class="nav-panel-hint">Resources</a>
-          <a href="#" onclick="showPage('education'); return false;">Education</a>
-          <a href="#" onclick="showPage('blog'); return false;">Blog</a>
+          <a href="/education">Education</a>
+          <a href="/blog">Blog</a>
         </div>
       </li>
       <li><button type="button" class="nav-tab" data-nav="about" onclick="showPage('about')">About</button></li>
@@ -942,7 +950,7 @@ a.trec-link:hover{color:#fff}
       <p class="hero-sub">Traditional buyer-side compensation is often about 3% of the purchase price. BuyUnrepped is flat fee: $995 for a ready-to-submit offer plus $2,495 once you are under contract. That is $3,490 all in.</p>
       <p class="hero-sub">On average, that is more than $10,000 in found leverage versus paying a percentage.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="showPage('questionnaires');setQTab('buyer')">Build your offer →</button>
+        <button class="btn-primary" onclick="showPage('questionnaires', { tab: 'buyer' })">Build your offer →</button>
         <button class="btn-outline" type="button" onclick="document.getElementById('home-product').scrollIntoView({behavior:'smooth'})">See how this works</button>
       </div>
     </div>
@@ -995,6 +1003,16 @@ a.trec-link:hover{color:#fff}
           <p>What to inspect. What matters. What does not. How to respond.</p>
         </div>
         <div class="svc-card reveal d3">
+          <div class="svc-icon" aria-hidden="true"><svg><use href="#ic-message"/></svg></div>
+          <h3>Communicate like a pro</h3>
+          <p>We give you templates and scripts for each step so you sound clear and prepared with listing agents, lenders, and title.</p>
+        </div>
+        <div class="svc-card reveal d4">
+          <div class="svc-icon" aria-hidden="true"><svg><use href="#ic-users"/></svg></div>
+          <h3>Access trusted vendors</h3>
+          <p>Working with a local lender or title company that has built a solid reputation in the market goes a long way.</p>
+        </div>
+        <div class="svc-card reveal">
           <div class="svc-icon" aria-hidden="true"><svg><use href="#ic-check-circle"/></svg></div>
           <h3>Stay on track to closing</h3>
           <p>We coordinate behind the scenes so your deal does not drift.</p>
@@ -1016,17 +1034,17 @@ a.trec-link:hover{color:#fff}
           <p>Understand the process before you jump in</p>
           <button type="button" class="svc-link" onclick="event.stopPropagation();showPage('education')">Learn first →</button>
         </div>
-        <div class="svc-card reveal d1" onclick="showPage('questionnaires');setQTab('buyer')">
+        <div class="svc-card reveal d1" onclick="showPage('questionnaires', { tab: 'buyer' })">
           <div class="svc-icon" aria-hidden="true"><svg><use href="#ic-home"/></svg></div>
           <h3>Found a home</h3>
           <p>Let’s build your offer the right way</p>
-          <button type="button" class="svc-link" onclick="event.stopPropagation();showPage('questionnaires');setQTab('buyer')">Build your offer →</button>
+          <button type="button" class="svc-link" onclick="event.stopPropagation();showPage('questionnaires', { tab: 'buyer' })">Build your offer →</button>
         </div>
-        <div class="svc-card reveal d2" onclick="showPage('buyers');setTimeout(function(){var el=document.getElementById('pricing-anchor');if(el)el.scrollIntoView({behavior:'smooth'});},120)">
+        <div class="svc-card reveal d2" onclick="showPage('buyers', { scrollToId: 'pricing-anchor' })">
           <div class="svc-icon" aria-hidden="true"><svg><use href="#ic-clipboard"/></svg></div>
           <h3>Already under contract</h3>
           <p>We will help you finish strong</p>
-          <button type="button" class="svc-link" onclick="event.stopPropagation();showPage('buyers');setTimeout(function(){var el=document.getElementById('pricing-anchor');if(el)el.scrollIntoView({behavior:'smooth'});},120)">Set up your transaction →</button>
+          <button type="button" class="svc-link" onclick="event.stopPropagation();showPage('buyers', { scrollToId: 'pricing-anchor' })">Set up your transaction →</button>
         </div>
       </div>
     </div>
@@ -1071,7 +1089,7 @@ a.trec-link:hover{color:#fff}
             <li>Strategy consultation</li>
             <li>Comparative market analysis + broker price opinion (BPO)</li>
           </ul>
-          <button type="button" class="btn-outline" onclick="showPage('questionnaires');setQTab('buyer')">Build your offer</button>
+          <button type="button" class="btn-outline" onclick="showPage('questionnaires', { tab: 'buyer' })">Build your offer</button>
         </div>
         <div class="price-card featured">
           <div class="price-badge">After you're under contract</div>
@@ -1082,7 +1100,7 @@ a.trec-link:hover{color:#fff}
             <li>Platform access: templates and self-guided assistance</li>
             <li>Broker support when you need it most</li>
           </ul>
-          <button type="button" class="btn-gold" onclick="showPage('questionnaires');setQTab('buyer')">Get started</button>
+          <button type="button" class="btn-gold" onclick="showPage('questionnaires', { tab: 'buyer' })">Get started</button>
         </div>
       </div>
       <p class="sec-desc" style="color:rgba(255,255,255,.72);margin-top:2rem">$3,490 all in ($995 + $2,495) compared with a typical 3% buyer-side commission. On average, that is more than $10,000 in found leverage.</p>
@@ -1303,12 +1321,12 @@ a.trec-link:hover{color:#fff}
   <div class="buy-jump-strip">
     <div class="container buy-jump-inner">
       <span class="buy-jump-label">On this page</span>
-      <a href="#transaction-guide">Transaction guide</a>
-      <a href="#affordability-calculator">Affordability calculator</a>
-      <a href="#nashville-area-suburbs">Nashville-area communities</a>
-      <a href="#" onclick="showPage('buyers-playbook'); return false;">Search &amp; tour playbook</a>
-      <a href="#" onclick="showPage('buyers-vendors'); return false;">Title, lenders &amp; warranty</a>
-      <a href="#pricing-anchor">Flat-fee pricing</a>
+      <a href="/buyers#transaction-guide">Transaction guide</a>
+      <a href="/buyers#affordability-calculator">Affordability calculator</a>
+      <a href="/buyers#nashville-area-suburbs">Nashville-area communities</a>
+      <a href="/buyers/playbook">Search &amp; tour playbook</a>
+      <a href="/buyers/vendors">Title, lenders &amp; warranty</a>
+      <a href="/buyers#pricing-anchor">Flat-fee pricing</a>
     </div>
   </div>
 
@@ -1330,7 +1348,7 @@ a.trec-link:hover{color:#fff}
           <div>
             <h3>Search &amp; tour homes</h3>
             <p>Many unrepresented buyers use listing agents for access and questions about specific properties. Keep notes on condition, HOA rules, and anything that could affect value or your offer strategy.</p>
-            <p style="margin-top:.85rem;font-size:.88rem;line-height:1.7"><a href="#" class="playbook-inline-link" onclick="showPage('buyers-playbook'); return false;">Open the Search &amp; tour playbook</a> for scripts, etiquette, and a step-by-step flow built for unrepresented buyers. Bonus templates and downloads also live on <a href="https://www.buyunreppd.com/free-tips" target="_blank" rel="noopener noreferrer">the free tips hub</a>.</p>
+            <p style="margin-top:.85rem;font-size:.88rem;line-height:1.7"><a href="/buyers/playbook" class="playbook-inline-link">Open the Search &amp; tour playbook</a> for scripts, etiquette, and a step-by-step flow built for unrepresented buyers. Bonus templates and downloads also live on <a href="https://www.buyunreppd.com/free-tips" target="_blank" rel="noopener noreferrer">the free tips hub</a>.</p>
           </div>
         </div>
         <div class="buy-tx-step reveal d2">
@@ -1521,7 +1539,7 @@ a.trec-link:hover{color:#fff}
             <li>Comparative market analysis + broker price opinion (BPO)</li>
             <li>Submission guidance and agent-friendly offer email template</li>
           </ul>
-          <button class="btn-outline" onclick="showPage('questionnaires');setQTab('buyer')">Start with a Questionnaire</button>
+          <button class="btn-outline" onclick="showPage('questionnaires', { tab: 'buyer' })">Start with a Questionnaire</button>
           <p class="price-note">Flat fee for offer prep, pricing opinion, and forms. We do not represent you as a buyer's agent.</p>
         </div>
         <div class="price-card featured">
@@ -1536,7 +1554,7 @@ a.trec-link:hover{color:#fff}
             <li>Appraisal, lender, title, and closing team coordination</li>
             <li>Broker support by phone, text, and email when you need it most</li>
           </ul>
-          <button class="btn-gold" onclick="showPage('questionnaires');setQTab('buyer')">Get Started</button>
+          <button class="btn-gold" onclick="showPage('questionnaires', { tab: 'buyer' })">Get Started</button>
           <p class="price-note">$2,495 once you are under contract. Combined with the offer package, $3,490 all in versus typical 3% buyer-side compensation.</p>
         </div>
       </div>
@@ -1566,7 +1584,7 @@ a.trec-link:hover{color:#fff}
         </div>
       </div>
       <div style="margin-top:2.5rem;text-align:center">
-        <button class="btn-primary" onclick="showPage('questionnaires');setQTab('buyer')">Fill Out the Buyer Questionnaire</button>
+        <button class="btn-primary" onclick="showPage('questionnaires', { tab: 'buyer' })">Fill Out the Buyer Questionnaire</button>
         <span style="display:inline-block;width:1rem"></span>
         <a href="https://www.buyunrepped.com" target="_blank" class="btn-outline">Visit BuyUnrepped.com</a>
       </div>
@@ -1613,8 +1631,8 @@ a.trec-link:hover{color:#fff}
         <h1>Tips, Tricks, &amp; Scripts <em>before the Offer</em></h1>
         <p class="playbook-hero-lead">You're approved. You know your title company. It's time to chat with a listing agent... From scheduling your showing, to asking about the property, to submitting an actual offer - we've got you covered!</p>
         <div class="playbook-hero-actions">
-          <button type="button" class="btn-gold" onclick="showPage('buyers')">Back to buyer hub</button>
-          <a class="text-link" href="#" onclick="showPage('buyers-vendors'); return false;">Title, lenders &amp; warranty picks →</a>
+          <a href="/buyers" class="btn-gold" style="display:inline-block;text-align:center;text-decoration:none;line-height:normal">Back to buyer hub</a>
+          <a class="text-link" href="/buyers/vendors">Title, lenders &amp; warranty picks →</a>
           <a class="text-link" href="https://www.buyunreppd.com/free-tips" target="_blank" rel="noopener noreferrer">Original on free tips hub →</a>
         </div>
       </div>
@@ -1828,7 +1846,7 @@ a.trec-link:hover{color:#fff}
     <div id="vendor-unlocked" class="vendor-unlocked">
       <div class="container">
         <p class="reveal" style="margin-bottom:1.75rem">
-          <button type="button" class="btn-outline" onclick="showPage('buyers')" style="margin:0">← Back to buyer hub</button>
+          <a href="/buyers" class="btn-outline" style="margin:0;display:inline-block;text-align:center;text-decoration:none;line-height:normal">← Back to buyer hub</a>
         </p>
         <section class="vendor-section reveal" aria-labelledby="vendor-titles-heading">
           <h2 id="vendor-titles-heading">Title companies</h2>
@@ -1979,7 +1997,7 @@ a.trec-link:hover{color:#fff}
         TN Firm Lic. #267134
       </div>
       <div class="lp-btns">
-        <button class="btn-lp-primary" onclick="showPage('questionnaires');setQTab('buyer')">Start Your Offer Strategy →</button>
+        <button class="btn-lp-primary" onclick="showPage('questionnaires', { tab: 'buyer' })">Start Your Offer Strategy →</button>
         <button class="btn-lp-secondary" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'})">See How It Works</button>
       </div>
     </div>
@@ -2108,7 +2126,7 @@ a.trec-link:hover{color:#fff}
             <li>CMA + broker price opinion (BPO)</li>
             <li>Submission guidance + offer email template</li>
           </ul>
-          <button class="btn-lp-primary" style="width:100%;justify-content:center" onclick="showPage('questionnaires');setQTab('buyer')">Build My Offer →</button>
+          <button class="btn-lp-primary" style="width:100%;justify-content:center" onclick="showPage('questionnaires', { tab: 'buyer' })">Build My Offer →</button>
         </div>
         <div class="lp-pc best">
           <div class="lp-pc-badge">After Contract</div>
@@ -2121,7 +2139,7 @@ a.trec-link:hover{color:#fff}
             <li>Deadlines, lender, title, closing team</li>
             <li>Broker support when you need it most</li>
           </ul>
-          <button class="btn-lp-primary" style="width:100%;justify-content:center;background:var(--navy);color:white" onclick="showPage('questionnaires');setQTab('buyer')">Start My Transaction →</button>
+          <button class="btn-lp-primary" style="width:100%;justify-content:center;background:var(--navy);color:white" onclick="showPage('questionnaires', { tab: 'buyer' })">Start My Transaction →</button>
         </div>
       </div>
       <p class="lp-micro">$995 offer + $2,495 transaction = $3,490 all in. Compare to ~3% buyer-side commission.</p>
@@ -2186,7 +2204,7 @@ a.trec-link:hover{color:#fff}
       <h2 class="lp-final">If you're already looking at homes,<br>don't wait until you're <em>writing the offer.</em></h2>
       <p>The difference between a clean deal and a messy one usually comes down to how the offer is structured from the start. That's the moment we're built for.</p>
       <div class="lp-btns">
-        <button class="btn-lp-primary" onclick="showPage('questionnaires');setQTab('buyer')">Start Your Offer Strategy →</button>
+        <button class="btn-lp-primary" onclick="showPage('questionnaires', { tab: 'buyer' })">Start Your Offer Strategy →</button>
         <button class="btn-lp-secondary" onclick="showPage('contact')">Ask a Question First</button>
       </div>
     </div>
@@ -2225,7 +2243,7 @@ a.trec-link:hover{color:#fff}
             <p>This is a merit-based match. No paid placements. No kickbacks. No sponsored recommendations. I connect you with agents based solely on their track record, local expertise, and fit with your specific situation and I'm always upfront about how it works.</p>
           </div>
           <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
-            <button class="btn-primary" onclick="showPage('questionnaires');setQTab('seller')">Seller: Start Questionnaire</button>
+            <button class="btn-primary" onclick="showPage('questionnaires', { tab: 'seller' })">Seller: Start Questionnaire</button>
             <button class="btn-outline" onclick="showPage('contact')">Buyer: Find a Full-Service Agent</button>
           </div>
         </div>
@@ -2287,8 +2305,8 @@ a.trec-link:hover{color:#fff}
   <section style="background:var(--warm);padding-top:4rem">
     <div class="container">
       <div class="eyebrow">For Agents</div>
-      <h2 class="sec-title">Let's build something <em>together.</em></h2>
-      <p class="sec-desc">Whether you're looking for referral opportunities, a resource for your clients navigating unrepresented transactions, or coaching on building a business and systems that fit your life—not a one-size-fits-all script—I'm here for agents too.</p>
+      <h2 class="sec-title">Let's build something together.</h2>
+      <p class="sec-desc">Whether you're looking for a resource for your listings when an unrepresented buyer is involved, referral opportunities, or coaching on building a business and systems that fit your life (not a one-size-fits-all script), I'm here for agents too!</p>
       <div class="services-grid" style="margin-top:3rem">
         <div class="svc-card reveal">
           <div class="svc-icon" aria-hidden="true"><svg><use href="#ic-link"/></svg></div>
@@ -2934,19 +2952,19 @@ a.trec-link:hover{color:#fff}
         <div class="footer-tm">BuyUnrepped™ is a trademark. All rights reserved.</div>
       </div>
       <div class="footer-nav">
-        <a onclick="showPage('home')">Home</a>
-        <a onclick="showPage('landing')" style="color:var(--gold)">BuyUnrepped Landing</a>
-        <a onclick="showPage('buyers')">For Buyers</a>
-        <a onclick="showPage('buyers-playbook')">Search &amp; tour playbook</a>
-        <a onclick="showPage('buyers-vendors')">Title, lenders &amp; warranty</a>
-        <a onclick="showPage('sellers')">For Sellers</a>
-        <a onclick="showPage('agents')">For Agents</a>
-        <a onclick="showPage('education')">Education</a>
-        <a onclick="showPage('blog')">Blog</a>
-        <a onclick="showPage('about')">About</a>
-        <a onclick="showPage('questionnaires');setQTab('buyer')">Buyer Q</a>
-        <a onclick="showPage('questionnaires');setQTab('seller')">Seller Q</a>
-        <a onclick="showPage('contact')">Contact</a>
+        <a href="/">Home</a>
+        <a href="/welcome" style="color:var(--gold)">BuyUnrepped Landing</a>
+        <a href="/buyers">For Buyers</a>
+        <a href="/buyers/playbook">Search &amp; tour playbook</a>
+        <a href="/buyers/vendors">Title, lenders &amp; warranty</a>
+        <a href="/sellers">For Sellers</a>
+        <a href="/agents">For Agents</a>
+        <a href="/education">Education</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About</a>
+        <a href="/questionnaires?tab=buyer">Buyer Q</a>
+        <a href="/questionnaires?tab=seller">Seller Q</a>
+        <a href="/contact">Contact</a>
         <a href="tennessee-homebuying-resources.html">TN Homebuying Guide</a>
       </div>
     </div>
@@ -3159,6 +3177,62 @@ function closeNavMobile() {
   document.querySelectorAll('.nav-tab-group.m-open').forEach(g => g.classList.remove('m-open'));
 }
 
+var BU_PAGE_TO_PATH = {
+  home: '/',
+  buyers: '/buyers',
+  'buyers-playbook': '/buyers/playbook',
+  'buyers-vendors': '/buyers/vendors',
+  landing: '/welcome',
+  sellers: '/sellers',
+  agents: '/agents',
+  education: '/education',
+  blog: '/blog',
+  about: '/about',
+  contact: '/contact',
+  questionnaires: '/questionnaires'
+};
+var BU_PATH_TO_PAGE = {};
+Object.keys(BU_PAGE_TO_PATH).forEach(function (k) {
+  BU_PATH_TO_PAGE[BU_PAGE_TO_PATH[k]] = k;
+});
+
+function normalizePathname(p) {
+  if (!p) return '/';
+  p = String(p).split('?')[0];
+  if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+  return p || '/';
+}
+
+function pathToPage(path) {
+  var n = normalizePathname(path);
+  return BU_PATH_TO_PAGE[n] || null;
+}
+
+function buildHistoryUrl(name, tab) {
+  var path = BU_PAGE_TO_PATH[name] || '/';
+  if (name === 'questionnaires' && tab && tab !== 'buyer') return path + '?tab=' + encodeURIComponent(tab);
+  return path;
+}
+
+function applyPageView(name, opts) {
+  opts = opts || {};
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (!target) return;
+  target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: opts.instantScroll ? 'auto' : 'smooth' });
+  setTimeout(function () {
+    initReveals();
+    if (opts.scrollToId) {
+      var el = document.getElementById(opts.scrollToId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, opts.scrollToId ? 120 : 100);
+  closeNavMobile();
+  syncNavTabs();
+  if (name === 'buyers-vendors') initBuyersVendorsGate();
+}
+
 function getNavKeyForPage(name) {
   if (name === 'landing' || name === 'buyers' || name === 'buyers-playbook' || name === 'buyers-vendors') return 'buyers';
   if (name === 'sellers') return 'sellers';
@@ -3186,20 +3260,66 @@ function syncNavTabs() {
   });
 }
 
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById('page-' + name);
-  if (target) {
-    target.classList.add('active');
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    setTimeout(initReveals, 100);
-    closeNavMobile();
-    syncNavTabs();
-    if (history.replaceState) {
-      var path = window.location.pathname || '/';
-      history.replaceState(null, '', name === 'home' ? path : path + '#' + name);
-    }
-    if (name === 'buyers-vendors') initBuyersVendorsGate();
+function showPage(name, opts) {
+  opts = opts || {};
+  applyPageView(name, opts);
+  if (name === 'questionnaires') {
+    var t = opts.tab || 'buyer';
+    setQTab(t, { skipUrl: true });
+  }
+  if (opts.skipHistory) return;
+  if (history.pushState) {
+    var tabForUrl = name === 'questionnaires' ? (opts.tab || 'buyer') : null;
+    history.pushState({ buPage: name }, '', buildHistoryUrl(name, tabForUrl));
+  }
+}
+
+window.addEventListener('popstate', function () {
+  var path = normalizePathname(location.pathname);
+  var name = pathToPage(path);
+  var tab = new URLSearchParams(location.search).get('tab');
+  if (!name) {
+    applyPageView('home', { skipHistory: true, instantScroll: true });
+    return;
+  }
+  applyPageView(name, { skipHistory: true, instantScroll: true });
+  if (name === 'questionnaires') {
+    if (/^(buyer|seller|buysell)$/.test(tab || '')) setQTab(tab, { skipUrl: true });
+    else setQTab('buyer', { skipUrl: true });
+  }
+});
+
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a[href^="/"]');
+  if (!a) return;
+  if (a.getAttribute('target') === '_blank' || a.hasAttribute('download')) return;
+  var href = a.getAttribute('href');
+  if (!href || href.startsWith('//')) return;
+  var url;
+  try { url = new URL(href, location.origin); } catch (x) { return; }
+  if (url.origin !== location.origin) return;
+  var path = normalizePathname(url.pathname);
+  var name = pathToPage(path);
+  if (!name) return;
+  e.preventDefault();
+  var scrollToId = url.hash && url.hash.length > 1 ? url.hash.slice(1) : undefined;
+  var tabParam = url.searchParams.get('tab');
+  showPage(name, { tab: tabParam || undefined, scrollToId: scrollToId });
+}, true);
+
+function setQTab(tab, opts) {
+  opts = opts || {};
+  document.querySelectorAll('.q-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.q-pane').forEach(p => p.classList.remove('active'));
+  const tabEl = document.getElementById('tab-' + tab);
+  const paneEl = document.getElementById('pane-' + tab);
+  if (tabEl) tabEl.classList.add('active');
+  if (paneEl) paneEl.classList.add('active');
+  syncNavTabs();
+  if (opts.skipUrl) return;
+  var pq = document.getElementById('page-questionnaires');
+  if (pq && pq.classList.contains('active') && history.replaceState) {
+    history.replaceState({ buPage: 'questionnaires', tab: tab }, '', buildHistoryUrl('questionnaires', tab));
   }
 }
 
@@ -3215,16 +3335,6 @@ function initBuyersVendorsGate() {
     gate.classList.remove('is-hidden');
     unlocked.classList.remove('is-visible');
   }
-}
-
-function setQTab(tab) {
-  document.querySelectorAll('.q-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.q-pane').forEach(p => p.classList.remove('active'));
-  const tabEl = document.getElementById('tab-' + tab);
-  const paneEl = document.getElementById('pane-' + tab);
-  if (tabEl) tabEl.classList.add('active');
-  if (paneEl) paneEl.classList.add('active');
-  syncNavTabs();
 }
 
 function initReveals() {
@@ -3552,9 +3662,24 @@ document.addEventListener('keydown', function (e) {
   }, 180000);
 })();
 
-(function hashBoot() {
-  var m = /^#([a-z0-9-]+)$/.exec(location.hash || '');
-  if (m && document.getElementById('page-' + m[1])) showPage(m[1]);
+(function pathBoot() {
+  var hm = /^#([a-z0-9-]+)$/.exec(location.hash || '');
+  if (hm && BU_PAGE_TO_PATH[hm[1]]) {
+    history.replaceState({ buPage: hm[1] }, '', BU_PAGE_TO_PATH[hm[1]]);
+  }
+  var path = normalizePathname(location.pathname);
+  var name = pathToPage(path);
+  var tab = new URLSearchParams(location.search).get('tab');
+  if (name) {
+    applyPageView(name, { skipHistory: true, instantScroll: true });
+    if (name === 'questionnaires') {
+      if (/^(buyer|seller|buysell)$/.test(tab || '')) setQTab(tab, { skipUrl: true });
+      else setQTab('buyer', { skipUrl: true });
+    }
+  } else if (path !== '/' && path !== '') {
+    applyPageView('home', { skipHistory: true, instantScroll: true });
+    history.replaceState({ buPage: 'home' }, '', '/');
+  }
 })();
 
 initSimpleCaptcha('lead');
