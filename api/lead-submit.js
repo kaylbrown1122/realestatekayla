@@ -7,8 +7,13 @@ module.exports = async function handler(req, res) {
   let slackBotToken = trimEnv(process.env.SLACK_BOT_TOKEN);
   const slackChannel = trimEnv(process.env.SLACK_CHANNEL);
 
-  // Bot token mistakenly pasted into SLACK_WEBHOOK_URL (starts with xoxb-/xoxp-/xapp-)
-  if (/^xox[bap]-/i.test(slackHookUrl)) {
+  // Slack API tokens start with xox* (xoxb-, xoxp-, xoxe.xoxp-..., etc.), never http(s).
+  // If one was pasted into SLACK_WEBHOOK_URL, treat it as SLACK_BOT_TOKEN.
+  if (
+    slackHookUrl &&
+    /^xox/i.test(slackHookUrl) &&
+    !/^https?:\/\//i.test(slackHookUrl)
+  ) {
     slackBotToken = slackHookUrl;
     slackHookUrl = "";
   }
