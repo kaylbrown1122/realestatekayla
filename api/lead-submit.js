@@ -25,6 +25,10 @@ module.exports = async function handler(req, res) {
   const googleUrl = trimEnv(process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL);
   const webhookToken = process.env.GOOGLE_SHEETS_WEBHOOK_TOKEN || "";
 
+  /** Easiest reliable path: https://formspree.io — create form, copy id from URL /f/XXXX */
+  const formspreeId = trimEnv(process.env.FORMSPREE_FORM_ID);
+  const formspreeOk = !!formspreeId && /^[a-zA-Z0-9_-]+$/.test(formspreeId);
+
   const slackHookOk =
     !!slackHookUrl && /^https:\/\/hooks\.slack\.com\//i.test(slackHookUrl);
   const slackBotOk = !!slackBotToken && !!slackChannel;
@@ -45,13 +49,14 @@ module.exports = async function handler(req, res) {
     ) {
       return "SLACK_WEBHOOK_URL is not a valid Incoming Webhook (must start with https://hooks.slack.com/) and is not a Slack token (starts with xox). Fix the value or use SLACK_BOT_TOKEN + SLACK_CHANNEL.";
     }
-    return "Vercel needs either (1) SLACK_WEBHOOK_URL=https://hooks.slack.com/... or (2) SLACK_BOT_TOKEN + SLACK_CHANNEL. Enable for Production and redeploy. Check GET /api/lead-submit for slackBotTokenSet / slackChannelSet.";
+    return "Easiest fix: set FORMSPREE_FORM_ID in Vercel (free at formspree.io). Or SLACK_WEBHOOK_URL / SLACK_BOT_TOKEN+SLACK_CHANNEL. Production + redeploy. GET /api/lead-submit shows what is set.";
   }
 
   if (req.method === "GET") {
     return res.status(200).json({
       ok: true,
       service: "lead-submit",
+      formspreeConfigured: formspreeOk,
       slackConfigured: slackReady,
       slackWebhookConfigured: slackHookOk,
       slackBotConfigured: slackBotOk,
@@ -68,7 +73,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: "method_not_allowed" });
   }
 
-  if (!slackReady && !googleUrl) {
+  if (!formspreeOk && !slackReady && !googleUrl) {
     return res.status(503).json({
       ok: false,
       error: "webhook_not_configured",
@@ -100,6 +105,55 @@ module.exports = async function handler(req, res) {
     ...fields,
     token: webhookToken
   };
+
+  async function sendFormspree() {
+    const url = "https://formspree.io/f/" + encodeURIComponent(formspreeId);
+    let upstream;
+    let raw;
+    try {
+      upstream = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          formType: fields.formType,
+          name: fields.name,
+          email: fields.email,
+          _replyto: fields.email,
+          phone: fields.phone,
+          interest: fields.interest,
+          message: fields.message,
+          consent: fields.consent,
+          source: fields.source,
+          pageUrl: fields.pageUrl,
+          timestamp: fields.timestamp,
+          _subject:
+            "Real Estate Kayla: " +
+            (fields.formType || "lead") +
+            " — " +
+            (fields.name || "(no name)")
+        })
+      });
+      raw = await upstream.text();
+    } catch (err) {
+      return {
+        ok: false,
+        detail: (err && err.message ? err.message : String(err)).slice(0, 200)
+      };
+    }
+    if (upstream.ok) {
+      return { ok: true };
+    }
+    try {
+      const j = JSON.parse(raw);
+      if (j.error) {
+        return { ok: false, detail: String(j.error).slice(0, 200) };
+      }
+    } catch (_) {}
+    return { ok: false, detail: (raw || "formspree error").slice(0, 200) };
+  }
 
   function looksLikeHtml(s) {
     return /^\s*</.test(String(s || ""));
@@ -331,6 +385,18 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    if (formspreeOk) {
+      const fsRes = await sendFormspree();
+      if (!fsRes.ok) {
+        return res.status(502).json({
+          ok: false,
+          error: "formspree_rejected",
+          detail: fsRes.detail || "unknown"
+        });
+      }
+      return res.status(200).json({ ok: true });
+    }
+
     if (slackReady) {
       const slackRes = await sendSlack();
       if (!slackRes.ok) {
