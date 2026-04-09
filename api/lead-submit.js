@@ -1,6 +1,6 @@
 module.exports = async function handler(req, res) {
-  const slackUrl = process.env.SLACK_WEBHOOK_URL;
-  const googleUrl = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL;
+  const slackUrl = (process.env.SLACK_WEBHOOK_URL || "").trim().replace(/^["']|["']$/g, "");
+  const googleUrl = (process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL || "").trim();
   const webhookToken = process.env.GOOGLE_SHEETS_WEBHOOK_TOKEN || "";
 
   if (req.method === "GET") {
@@ -27,7 +27,13 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
+  let body;
+  try {
+    body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
+  } catch (_) {
+    return res.status(400).json({ ok: false, error: "invalid_json" });
+  }
+
   const fields = {
     formType: body.formType || "",
     timestamp: body.timestamp || new Date().toISOString(),
@@ -70,6 +76,14 @@ module.exports = async function handler(req, res) {
   }
 
   async function sendSlack() {
+    if (!/^https:\/\/hooks\.slack\.com\/services\//i.test(slackUrl)) {
+      return {
+        ok: false,
+        detail:
+          "SLACK_WEBHOOK_URL must start with https://hooks.slack.com/services/ (check Vercel for typos, spaces, or extra quotes)."
+      };
+    }
+
     const text = [
       "*Real Estate Kayla — new form submission*",
       "*Type:* " + (slackPlain(fields.formType) || "(none)"),
@@ -86,13 +100,21 @@ module.exports = async function handler(req, res) {
       .filter(Boolean)
       .join("\n");
 
-    const upstream = await fetch(slackUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text })
-    });
-
-    const raw = await upstream.text();
+    let upstream;
+    let raw;
+    try {
+      upstream = await fetch(slackUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+      });
+      raw = await upstream.text();
+    } catch (err) {
+      return {
+        ok: false,
+        detail: (err && err.message ? err.message : String(err)).slice(0, 200)
+      };
+    }
     if (!upstream.ok) {
       return {
         ok: false,
@@ -216,7 +238,12 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    return res.status(502).json({ ok: false, error: "upstream_unreachable" });
+    const msg = err && err.message ? err.message : String(err);
+    return res.status(502).json({
+      ok: false,
+      error: "upstream_unreachable",
+      detail: msg.slice(0, 200)
+    });
   }
 };
 
