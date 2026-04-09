@@ -127,12 +127,22 @@ module.exports = async function handler(req, res) {
     let upstream;
     let raw;
     const tag = formspreeSubjectLabel();
+    let originHeader = "https://www.realestatekayla.com";
+    try {
+      const u = new URL(String(fields.pageUrl || ""));
+      if (u.protocol === "https:" || u.protocol === "http:") {
+        originHeader = u.origin;
+      }
+    } catch (_) {}
     try {
       upstream = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json"
+          Accept: "application/json",
+          // Formspree "restrict to domain" checks Origin; Vercel is server-side so send the page origin explicitly.
+          Origin: originHeader,
+          Referer: (fields.pageUrl && String(fields.pageUrl)) || originHeader + "/"
         },
         body: JSON.stringify({
           submission_tag: tag,
@@ -160,15 +170,44 @@ module.exports = async function handler(req, res) {
         detail: (err && err.message ? err.message : String(err)).slice(0, 200)
       };
     }
+
+    let data = null;
+    try {
+      data = raw ? JSON.parse(raw) : null;
+    } catch (_) {
+      data = null;
+    }
+
+    // Formspree often returns HTTP 200 with { ok: false, errors: {...} } for validation — do not treat as success.
+    if (data && data.ok === false) {
+      const errs = data.errors;
+      let errStr = data.error || "formspree_validation";
+      if (errs && typeof errs === "object") {
+        errStr = Object.keys(errs)
+          .map((k) => k + ": " + (Array.isArray(errs[k]) ? errs[k].join(", ") : errs[k]))
+          .join("; ")
+          .slice(0, 400);
+      }
+      return { ok: false, detail: errStr };
+    }
+
+    if (upstream.ok && data && data.ok === true) {
+      return { ok: true };
+    }
+
+    if (!upstream.ok) {
+      try {
+        if (data && data.error) {
+          return { ok: false, detail: String(data.error).slice(0, 200) };
+        }
+      } catch (_) {}
+      return { ok: false, detail: (raw || "formspree error").slice(0, 200) };
+    }
+
+    // 200 + non-JSON or legacy shape
     if (upstream.ok) {
       return { ok: true };
     }
-    try {
-      const j = JSON.parse(raw);
-      if (j.error) {
-        return { ok: false, detail: String(j.error).slice(0, 200) };
-      }
-    } catch (_) {}
     return { ok: false, detail: (raw || "formspree error").slice(0, 200) };
   }
 
