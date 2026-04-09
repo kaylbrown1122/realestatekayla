@@ -2170,19 +2170,25 @@ a.trec-link:hover{color:#fff}
           <p>After you submit, I'll reach out directly no automated sequences, no sales pitch. Just a real conversation.</p>
           <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply. All information is kept confidential and never sold.</div>
         </div>
-        <div class="q-form">
-          <div class="fg-row">
-            <div class="fg"><label>First Name *</label><input type="text" placeholder="First name"></div>
-            <div class="fg"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+        <form id="buyer-questionnaire-form" class="q-form" novalidate>
+          <input type="hidden" name="source" value="Buyer questionnaire (site)">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <div class="fg">
+            <label for="buyer-q-captcha">Quick check: <span id="buyer-q-captcha-q">What is 2 + 3?</span></label>
+            <input id="buyer-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
           </div>
           <div class="fg-row">
-            <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com"></div>
-            <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
+            <div class="fg"><label for="buyer-q-first">First Name *</label><input id="buyer-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
+            <div class="fg"><label for="buyer-q-last">Last Name *</label><input id="buyer-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
           </div>
-          <div class="fg"><label>Where are you looking to buy?</label><input type="text" placeholder="City, neighborhood, or zip code"></div>
           <div class="fg-row">
-            <div class="fg"><label>Price Range</label>
-              <select>
+            <div class="fg"><label for="buyer-q-email">Email *</label><input id="buyer-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
+            <div class="fg"><label for="buyer-q-phone">Phone</label><input id="buyer-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel"></div>
+          </div>
+          <div class="fg"><label for="buyer-q-where">Where are you looking to buy?</label><input id="buyer-q-where" name="buy_where" type="text" placeholder="City, neighborhood, or zip code"></div>
+          <div class="fg-row">
+            <div class="fg"><label for="buyer-q-price">Price Range</label>
+              <select id="buyer-q-price" name="buy_price_range">
                 <option value="">Select a range</option>
                 <option>Under $300,000</option>
                 <option>$300,000 – $450,000</option>
@@ -2192,8 +2198,8 @@ a.trec-link:hover{color:#fff}
                 <option>Over $1,000,000</option>
               </select>
             </div>
-            <div class="fg"><label>Timeline</label>
-              <select>
+            <div class="fg"><label for="buyer-q-timeline">Timeline</label>
+              <select id="buyer-q-timeline" name="buy_timeline">
                 <option value="">Select one</option>
                 <option>Ready to make an offer now</option>
                 <option>Within the next 30 days</option>
@@ -2203,8 +2209,8 @@ a.trec-link:hover{color:#fff}
               </select>
             </div>
           </div>
-          <div class="fg"><label>Are you pre-approved for a mortgage?</label>
-            <select>
+          <div class="fg"><label for="buyer-q-preapproval">Are you pre-approved for a mortgage?</label>
+            <select id="buyer-q-preapproval" name="buy_preapproval">
               <option value="">Select one</option>
               <option>Yes, fully pre-approved</option>
               <option>Pre-qualification letter only</option>
@@ -2213,8 +2219,8 @@ a.trec-link:hover{color:#fff}
               <option>Not sure / need guidance</option>
             </select>
           </div>
-          <div class="fg"><label>Have you worked with a buyer's agent before?</label>
-            <select>
+          <div class="fg"><label for="buyer-q-prior-agent">Have you worked with a buyer's agent before?</label>
+            <select id="buyer-q-prior-agent" name="buy_prior_agent">
               <option value="">Select one</option>
               <option>Yes, and I'd like to again</option>
               <option>Yes, but I prefer to go unrepresented this time</option>
@@ -2224,27 +2230,28 @@ a.trec-link:hover{color:#fff}
           </div>
           <div class="fg"><label>What support are you most interested in?</label>
             <div class="checkbox-group">
-              <label class="checkbox-item"><input type="checkbox"> Offer strategy &amp; forms ($995)</label>
-              <label class="checkbox-item"><input type="checkbox"> Transaction management once I'm under contract ($2,495)</label>
-              <label class="checkbox-item"><input type="checkbox"> General guidance not sure yet</label>
-              <label class="checkbox-item"><input type="checkbox"> Just have questions about the process</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_support" value="Offer strategy &amp; forms ($995)"> Offer strategy &amp; forms ($995)</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_support" value="Transaction management once under contract ($2,495)"> Transaction management once I'm under contract ($2,495)</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_support" value="General guidance — not sure yet"> General guidance not sure yet</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_support" value="Just have questions about the process"> Just have questions about the process</label>
             </div>
           </div>
           <div class="fg"><label>What property type are you looking for?</label>
             <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
-              <label class="checkbox-item"><input type="checkbox"> Single-family home</label>
-              <label class="checkbox-item"><input type="checkbox"> Condo / Townhome</label>
-              <label class="checkbox-item"><input type="checkbox"> Multi-family / Investment</label>
-              <label class="checkbox-item"><input type="checkbox"> New construction</label>
-              <label class="checkbox-item"><input type="checkbox"> Land</label>
-              <label class="checkbox-item"><input type="checkbox"> Not sure yet</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_property_type" value="Single-family home"> Single-family home</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_property_type" value="Condo / Townhome"> Condo / Townhome</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_property_type" value="Multi-family / Investment"> Multi-family / Investment</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_property_type" value="New construction"> New construction</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_property_type" value="Land"> Land</label>
+              <label class="checkbox-item"><input type="checkbox" name="buyer_property_type" value="Not sure yet"> Not sure yet</label>
             </div>
           </div>
-          <div class="fg"><label>Anything else I should know about your situation?</label>
-            <textarea placeholder="Tell me anything you think is relevant first-time buyer, specific concerns, unique circumstances, etc."></textarea>
+          <div class="fg"><label for="buyer-q-notes">Anything else I should know about your situation?</label>
+            <textarea id="buyer-q-notes" name="buy_notes" placeholder="Tell me anything you think is relevant first-time buyer, specific concerns, unique circumstances, etc."></textarea>
           </div>
-          <button class="q-submit" onclick="this.textContent='Submitted — Kayla will be in touch!';this.style.background='var(--sage)'">Submit Buyer Questionnaire</button>
-        </div>
+          <button type="submit" class="q-submit">Submit Buyer Questionnaire</button>
+          <p id="buyer-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
+        </form>
       </div>
 
       <!-- SELLER PANE -->
@@ -2255,21 +2262,27 @@ a.trec-link:hover{color:#fff}
           <p>No ads. No sponsored placements. Recommendations are based entirely on merit and fit.</p>
           <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply. All information is kept confidential and never sold.</div>
         </div>
-        <div class="q-form">
-          <div class="fg-row">
-            <div class="fg"><label>First Name *</label><input type="text" placeholder="First name"></div>
-            <div class="fg"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+        <form id="seller-questionnaire-form" class="q-form" novalidate>
+          <input type="hidden" name="source" value="Seller questionnaire (site)">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <div class="fg">
+            <label for="seller-q-captcha">Quick check: <span id="seller-q-captcha-q">What is 2 + 3?</span></label>
+            <input id="seller-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
           </div>
           <div class="fg-row">
-            <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com"></div>
-            <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
-          </div>
-          <div class="fg"><label>Property Address (or general area if not ready to share)</label>
-            <input type="text" placeholder="Address or neighborhood / city">
+            <div class="fg"><label for="seller-q-first">First Name *</label><input id="seller-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
+            <div class="fg"><label for="seller-q-last">Last Name *</label><input id="seller-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
           </div>
           <div class="fg-row">
-            <div class="fg"><label>Property Type</label>
-              <select>
+            <div class="fg"><label for="seller-q-email">Email *</label><input id="seller-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
+            <div class="fg"><label for="seller-q-phone">Phone</label><input id="seller-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel"></div>
+          </div>
+          <div class="fg"><label for="seller-q-address">Property Address (or general area if not ready to share)</label>
+            <input id="seller-q-address" name="seller_property_area" type="text" placeholder="Address or neighborhood / city">
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label for="seller-q-type">Property Type</label>
+              <select id="seller-q-type" name="seller_property_type">
                 <option value="">Select one</option>
                 <option>Single-family home</option>
                 <option>Condo / Townhome</option>
@@ -2279,8 +2292,8 @@ a.trec-link:hover{color:#fff}
                 <option>Other</option>
               </select>
             </div>
-            <div class="fg"><label>Estimated Value</label>
-              <select>
+            <div class="fg"><label for="seller-q-value">Estimated Value</label>
+              <select id="seller-q-value" name="seller_value_range">
                 <option value="">Select a range</option>
                 <option>Under $300,000</option>
                 <option>$300,000 – $450,000</option>
@@ -2292,8 +2305,8 @@ a.trec-link:hover{color:#fff}
               </select>
             </div>
           </div>
-          <div class="fg"><label>When are you thinking of listing?</label>
-            <select>
+          <div class="fg"><label for="seller-q-list-when">When are you thinking of listing?</label>
+            <select id="seller-q-list-when" name="seller_listing_timeline">
               <option value="">Select one</option>
               <option>ASAP I'm ready now</option>
               <option>Within 30 days</option>
@@ -2302,8 +2315,8 @@ a.trec-link:hover{color:#fff}
               <option>Just exploring options</option>
             </select>
           </div>
-          <div class="fg"><label>Have you worked with a listing agent before?</label>
-            <select>
+          <div class="fg"><label for="seller-q-prior">Have you worked with a listing agent before?</label>
+            <select id="seller-q-prior" name="seller_prior_listing_agent">
               <option value="">Select one</option>
               <option>Yes</option>
               <option>No this is my first time selling</option>
@@ -2312,18 +2325,18 @@ a.trec-link:hover{color:#fff}
           </div>
           <div class="fg"><label>What matters most to you in a listing agent?</label>
             <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
-              <label class="checkbox-item"><input type="checkbox"> Hyper-local market knowledge</label>
-              <label class="checkbox-item"><input type="checkbox"> Strong marketing / photography</label>
-              <label class="checkbox-item"><input type="checkbox"> Communication &amp; responsiveness</label>
-              <label class="checkbox-item"><input type="checkbox"> Track record / sold volume</label>
-              <label class="checkbox-item"><input type="checkbox"> Staging / presentation guidance</label>
-              <label class="checkbox-item"><input type="checkbox"> Negotiation strength</label>
-              <label class="checkbox-item"><input type="checkbox"> Lower commission rate</label>
-              <label class="checkbox-item"><input type="checkbox"> Honest, straightforward advice</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Hyper-local market knowledge"> Hyper-local market knowledge</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Strong marketing / photography"> Strong marketing / photography</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Communication &amp; responsiveness"> Communication &amp; responsiveness</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Track record / sold volume"> Track record / sold volume</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Staging / presentation guidance"> Staging / presentation guidance</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Negotiation strength"> Negotiation strength</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Lower commission rate"> Lower commission rate</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Honest, straightforward advice"> Honest, straightforward advice</label>
             </div>
           </div>
-          <div class="fg"><label>Describe your home's condition</label>
-            <select>
+          <div class="fg"><label for="seller-q-condition">Describe your home's condition</label>
+            <select id="seller-q-condition" name="seller_home_condition">
               <option value="">Select one</option>
               <option>Move-in ready / recently updated</option>
               <option>Good condition, minor updates needed</option>
@@ -2332,19 +2345,20 @@ a.trec-link:hover{color:#fff}
               <option>Not sure need a professional opinion</option>
             </select>
           </div>
-          <div class="fg"><label>Are you also buying a home?</label>
-            <select>
+          <div class="fg"><label for="seller-q-also-buy">Are you also buying a home?</label>
+            <select id="seller-q-also-buy" name="seller_also_buying">
               <option value="">Select one</option>
               <option>Yes I need to buy and sell</option>
               <option>No just selling</option>
               <option>Maybe still figuring it out</option>
             </select>
           </div>
-          <div class="fg"><label>Anything else I should know?</label>
-            <textarea placeholder="Special circumstances, timeline pressures, unique features of your home, concerns about the process..."></textarea>
+          <div class="fg"><label for="seller-q-notes">Anything else I should know?</label>
+            <textarea id="seller-q-notes" name="seller_notes" placeholder="Special circumstances, timeline pressures, unique features of your home, concerns about the process..."></textarea>
           </div>
-          <button class="q-submit" onclick="this.textContent='Submitted — Kayla will be in touch!';this.style.background='var(--sage)'">Submit Seller Questionnaire</button>
-        </div>
+          <button type="submit" class="q-submit">Submit Seller Questionnaire</button>
+          <p id="seller-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
+        </form>
       </div>
 
       <!-- BUY + SELL PANE -->
@@ -2354,33 +2368,39 @@ a.trec-link:hover{color:#fff}
           <p>Doing both at once is one of the most complex real estate situations there is. Timing, contingencies, bridge financing it requires a thoughtful approach. Tell me about both sides so I can point you in the right direction.</p>
           <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply.</div>
         </div>
-        <div class="q-form">
-          <div class="fg-row">
-            <div class="fg"><label>First Name *</label><input type="text" placeholder="First name"></div>
-            <div class="fg"><label>Last Name *</label><input type="text" placeholder="Last name"></div>
+        <form id="buysell-questionnaire-form" class="q-form" novalidate>
+          <input type="hidden" name="source" value="Buy + Sell questionnaire (site)">
+          <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <div class="fg">
+            <label for="buysell-q-captcha">Quick check: <span id="buysell-q-captcha-q">What is 2 + 3?</span></label>
+            <input id="buysell-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
           </div>
           <div class="fg-row">
-            <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com"></div>
-            <div class="fg"><label>Phone</label><input type="tel" placeholder="(615) 000-0000"></div>
+            <div class="fg"><label for="buysell-q-first">First Name *</label><input id="buysell-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
+            <div class="fg"><label for="buysell-q-last">Last Name *</label><input id="buysell-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
           </div>
-          <div class="fg"><label>Property you're selling (address or area)</label><input type="text" placeholder="City or neighborhood"></div>
-          <div class="fg"><label>Where are you hoping to buy?</label><input type="text" placeholder="City, neighborhood, or area"></div>
           <div class="fg-row">
-            <div class="fg"><label>Estimated sale price</label>
-              <select>
+            <div class="fg"><label for="buysell-q-email">Email *</label><input id="buysell-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
+            <div class="fg"><label for="buysell-q-phone">Phone</label><input id="buysell-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel"></div>
+          </div>
+          <div class="fg"><label for="buysell-q-sell">Property you're selling (address or area)</label><input id="buysell-q-sell" name="buysell_selling" type="text" placeholder="City or neighborhood"></div>
+          <div class="fg"><label for="buysell-q-buy">Where are you hoping to buy?</label><input id="buysell-q-buy" name="buysell_buying_area" type="text" placeholder="City, neighborhood, or area"></div>
+          <div class="fg-row">
+            <div class="fg"><label for="buysell-q-sale-price">Estimated sale price</label>
+              <select id="buysell-q-sale-price" name="buysell_sale_price_range">
                 <option value="">Select range</option>
                 <option>Under $300K</option><option>$300K–$500K</option><option>$500K–$750K</option><option>$750K+</option>
               </select>
             </div>
-            <div class="fg"><label>Target purchase price</label>
-              <select>
+            <div class="fg"><label for="buysell-q-buy-price">Target purchase price</label>
+              <select id="buysell-q-buy-price" name="buysell_purchase_price_range">
                 <option value="">Select range</option>
                 <option>Under $300K</option><option>$300K–$500K</option><option>$500K–$750K</option><option>$750K+</option>
               </select>
             </div>
           </div>
-          <div class="fg"><label>Timeline</label>
-            <select>
+          <div class="fg"><label for="buysell-q-timeline">Timeline</label>
+            <select id="buysell-q-timeline" name="buysell_timeline">
               <option value="">Select one</option>
               <option>Need to sell first, then buy</option>
               <option>Want to buy first, then sell</option>
@@ -2388,11 +2408,12 @@ a.trec-link:hover{color:#fff}
               <option>Still figuring out the logistics</option>
             </select>
           </div>
-          <div class="fg"><label>What's your biggest concern about doing both at once?</label>
-            <textarea placeholder="Timing, finances, contingencies, not knowing where to start..."></textarea>
+          <div class="fg"><label for="buysell-q-concern">What's your biggest concern about doing both at once?</label>
+            <textarea id="buysell-q-concern" name="buysell_concern" placeholder="Timing, finances, contingencies, not knowing where to start..."></textarea>
           </div>
-          <button class="q-submit" onclick="this.textContent='Submitted — Kayla will be in touch!';this.style.background='var(--sage)'">Submit Questionnaire</button>
-        </div>
+          <button type="submit" class="q-submit">Submit Buy + Sell Questionnaire</button>
+          <p id="buysell-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
+        </form>
       </div>
 
     </div>
@@ -2935,6 +2956,37 @@ function contactRawToSheetFormData(raw) {
   return fd;
 }
 
+function buildQuestionnaireDetails(raw) {
+  var skip = { company: 1, captcha: 1, firstName: 1, lastName: 1, email: 1, phone: 1 };
+  var byKey = {};
+  raw.forEach(function (value, key) {
+    if (skip[key]) return;
+    if (value === '' || value == null) return;
+    if (!byKey[key]) byKey[key] = [];
+    byKey[key].push(String(value));
+  });
+  var lines = [];
+  Object.keys(byKey).sort().forEach(function (key) {
+    lines.push(key + ': ' + byKey[key].join(', '));
+  });
+  return lines.join('\n');
+}
+
+function questionnaireRawToSheetFd(raw, formTypeKey, emailLabel) {
+  var fd = new FormData();
+  fd.set('source', (raw.get('source') || '').toString());
+  var fn = (raw.get('firstName') || '').toString().trim();
+  var ln = (raw.get('lastName') || '').toString().trim();
+  fd.set('name', [fn, ln].filter(Boolean).join(' '));
+  fd.set('email', (raw.get('email') || '').toString());
+  fd.set('phone', (raw.get('phone') || '').toString());
+  fd.set('interest', emailLabel);
+  fd.set('formType', formTypeKey);
+  fd.set('consent', 'yes — website questionnaire');
+  fd.set('message', '=== ' + emailLabel + ' ===\n\n' + buildQuestionnaireDetails(raw));
+  return fd;
+}
+
 function closeNavMobile() {
   const nav = document.getElementById('main-nav');
   const burger = document.getElementById('nav-burger');
@@ -3195,6 +3247,90 @@ if (contactForm) contactForm.addEventListener('submit', async function (ev) {
   }
 });
 
+var buyerQForm = document.getElementById('buyer-questionnaire-form');
+if (buyerQForm) buyerQForm.addEventListener('submit', async function (ev) {
+  ev.preventDefault();
+  var statusEl = document.getElementById('buyer-q-status');
+  if (statusEl) {
+    statusEl.textContent = '';
+    statusEl.classList.remove('err');
+  }
+  var raw = new FormData(buyerQForm);
+  if ((raw.get('company') || '').toString().trim()) return;
+  if (!validateSimpleCaptcha('buyer-q', statusEl)) return;
+  var fd = questionnaireRawToSheetFd(raw, 'buyer_questionnaire', 'BUYER QUESTIONNAIRE');
+  var qRes = await postToGoogleSheet(fd, 'buyer_questionnaire');
+  if (qRes.ok) {
+    buyerQForm.reset();
+    initSimpleCaptcha('buyer-q');
+    if (statusEl) {
+      statusEl.textContent = 'Submitted — Kayla will be in touch!';
+      statusEl.classList.remove('err');
+    }
+    return;
+  }
+  if (statusEl) {
+    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+    statusEl.classList.add('err');
+  }
+});
+
+var sellerQForm = document.getElementById('seller-questionnaire-form');
+if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
+  ev.preventDefault();
+  var statusEl = document.getElementById('seller-q-status');
+  if (statusEl) {
+    statusEl.textContent = '';
+    statusEl.classList.remove('err');
+  }
+  var raw = new FormData(sellerQForm);
+  if ((raw.get('company') || '').toString().trim()) return;
+  if (!validateSimpleCaptcha('seller-q', statusEl)) return;
+  var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
+  var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
+  if (qRes.ok) {
+    sellerQForm.reset();
+    initSimpleCaptcha('seller-q');
+    if (statusEl) {
+      statusEl.textContent = 'Submitted — Kayla will be in touch!';
+      statusEl.classList.remove('err');
+    }
+    return;
+  }
+  if (statusEl) {
+    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+    statusEl.classList.add('err');
+  }
+});
+
+var buysellQForm = document.getElementById('buysell-questionnaire-form');
+if (buysellQForm) buysellQForm.addEventListener('submit', async function (ev) {
+  ev.preventDefault();
+  var statusEl = document.getElementById('buysell-q-status');
+  if (statusEl) {
+    statusEl.textContent = '';
+    statusEl.classList.remove('err');
+  }
+  var raw = new FormData(buysellQForm);
+  if ((raw.get('company') || '').toString().trim()) return;
+  if (!validateSimpleCaptcha('buysell-q', statusEl)) return;
+  var fd = questionnaireRawToSheetFd(raw, 'buy_sell_questionnaire', 'BUY + SELL QUESTIONNAIRE');
+  var qRes = await postToGoogleSheet(fd, 'buy_sell_questionnaire');
+  if (qRes.ok) {
+    buysellQForm.reset();
+    initSimpleCaptcha('buysell-q');
+    if (statusEl) {
+      statusEl.textContent = 'Submitted — Kayla will be in touch!';
+      statusEl.classList.remove('err');
+    }
+    return;
+  }
+  if (statusEl) {
+    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+    statusEl.classList.add('err');
+  }
+});
+
 var vendorGateForm = document.getElementById('vendor-gate-form');
 if (vendorGateForm) vendorGateForm.addEventListener('submit', async function (ev) {
   ev.preventDefault();
@@ -3260,6 +3396,9 @@ document.addEventListener('keydown', function (e) {
 initSimpleCaptcha('lead');
 initSimpleCaptcha('vendor');
 initSimpleCaptcha('contact');
+initSimpleCaptcha('buyer-q');
+initSimpleCaptcha('seller-q');
+initSimpleCaptcha('buysell-q');
 initReveals();
 syncNavTabs();
 </script>

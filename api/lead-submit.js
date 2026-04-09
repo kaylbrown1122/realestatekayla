@@ -106,10 +106,27 @@ module.exports = async function handler(req, res) {
     token: webhookToken
   };
 
+  function formspreeSubjectLabel() {
+    const ft = String(fields.formType || "").toLowerCase();
+    const map = {
+      buyer_questionnaire: "[BUYER QUESTIONNAIRE]",
+      seller_questionnaire: "[SELLER QUESTIONNAIRE]",
+      buy_sell_questionnaire: "[BUY + SELL QUESTIONNAIRE]",
+      contact: "[CONTACT]",
+      lead: "[LEAD — timed prompt]",
+      vendor: "[VENDOR LIST SIGNUP]"
+    };
+    return (
+      map[ft] ||
+      "[" + (fields.formType || "FORM").toString().toUpperCase() + "]"
+    );
+  }
+
   async function sendFormspree() {
     const url = "https://formspree.io/f/" + encodeURIComponent(formspreeId);
     let upstream;
     let raw;
+    const tag = formspreeSubjectLabel();
     try {
       upstream = await fetch(url, {
         method: "POST",
@@ -118,6 +135,7 @@ module.exports = async function handler(req, res) {
           Accept: "application/json"
         },
         body: JSON.stringify({
+          submission_tag: tag,
           formType: fields.formType,
           name: fields.name,
           email: fields.email,
@@ -130,9 +148,8 @@ module.exports = async function handler(req, res) {
           pageUrl: fields.pageUrl,
           timestamp: fields.timestamp,
           _subject:
-            "Real Estate Kayla: " +
-            (fields.formType || "lead") +
-            " — " +
+            tag +
+            " Real Estate Kayla — " +
             (fields.name || "(no name)")
         })
       });
