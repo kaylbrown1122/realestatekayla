@@ -240,42 +240,26 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .sq-nav .btn-outline,.sq-nav .q-submit{margin-top:0}
 
 /* Seller intake (hidden pilot page) */
-.seller-intake-section{background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:3.25rem 0 4.5rem}
+#page-seller-intake .hero{background:var(--bg-white)}
+#page-seller-intake .hero-text{background:var(--bg-white)}
+#page-seller-intake .hero-img img{object-position:center 44%;filter:brightness(.9) saturate(1.05)}
+#page-seller-intake .stats-bar .stat-n{font-size:clamp(1.35rem,2.3vw,2rem)}
+#page-seller-intake .stats-bar .stat{min-width:170px}
+#page-seller-intake .pricing-grid{max-width:920px;grid-template-columns:.9fr 1.1fr}
+#page-seller-intake .price-card > p{margin-bottom:1rem}
 .si-wrap{max-width:1120px;margin:0 auto}
-.si-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:3rem;align-items:center;margin-bottom:3.5rem}
 .si-title{font-family:'DM Serif Display',serif;font-size:clamp(2.45rem,4vw,4.1rem);line-height:1.05;color:var(--navy);margin:0 0 1.15rem}
 .si-title em{font-style:italic;color:var(--gold)}
 .si-deck{font-size:1rem;line-height:1.82;color:var(--muted);max-width:620px;margin:0 0 1.75rem}
 .si-deck strong{color:var(--navy)}
 .si-actions{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:2rem}
-.si-meta-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:680px}
-.si-meta-item{padding:1rem 1rem 1rem 0;border-right:1px solid var(--border)}
-.si-meta-item:last-child{border-right:none;padding-left:1rem}
-.si-meta-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
-.si-meta-value{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--navy);line-height:1.1}
-.si-visual{position:relative;min-height:470px}
-.si-visual img{width:100%;height:470px;object-fit:cover;border-radius:2px;display:block;filter:brightness(.88) saturate(1.06)}
-.si-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(21,59,82,.2) 100%);pointer-events:none}
-.si-visual-note{position:absolute;left:-1.25rem;bottom:1.5rem;background:var(--navy);color:var(--ink-on-dark);padding:1.3rem 1.45rem;border-left:3px solid var(--gold);box-shadow:var(--shadow-card-hover);max-width:285px}
-.si-visual-note strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#fff;margin-bottom:.35rem;line-height:1.2}
-.si-visual-note span{display:block;font-size:.78rem;line-height:1.58;color:var(--ink-muted-on-dark)}
-.si-positioning{display:grid;grid-template-columns:.9fr 1.1fr;gap:1.5rem;margin-bottom:3.25rem}
-.si-price-panel{background:var(--navy);color:var(--ink-on-dark);padding:2rem;border-radius:2px;border-left:3px solid var(--gold);box-shadow:var(--shadow-soft)}
-.si-price-panel h2{font-family:'DM Serif Display',serif;font-size:1.55rem;line-height:1.2;color:#fff;margin-bottom:.85rem}
-.si-price-panel p{font-size:.88rem;line-height:1.72;color:var(--ink-muted-on-dark);margin-bottom:1rem}
-.si-price-panel p:last-child{margin-bottom:0}
-.si-price{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:var(--gold);line-height:1;margin:.35rem 0 .7rem}
-.si-fit-panel{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:1.75rem 1.9rem;box-shadow:var(--shadow-soft)}
-.si-fit-panel h2{font-family:'DM Serif Display',serif;font-size:1.45rem;color:var(--navy);line-height:1.25;margin-bottom:.7rem}
-.si-fit-panel p{font-size:.9rem;line-height:1.76;color:var(--muted);margin:0 0 1rem}
-.si-fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.25rem}
-.si-fit-item{border-left:3px solid var(--accent,var(--bu-sky));background:var(--warm);padding:.8rem .9rem;font-size:.82rem;line-height:1.55;color:var(--text)}
-.si-scope{margin:0 0 2rem}
-.si-scope-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:2rem;align-items:end;margin-bottom:1.35rem}
-.si-scope-head h2{font-family:'DM Serif Display',serif;font-size:clamp(1.7rem,2.8vw,2.5rem);color:var(--navy);line-height:1.12;margin:0}
-.si-scope-head p{font-size:.94rem;line-height:1.8;color:var(--muted);margin:0}
-.si-scope-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.si-block{--accent:var(--bu-sky);background:var(--bg-white);border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:2px;padding:1.35rem 1.3rem 1.45rem;box-shadow:var(--shadow-soft);min-height:100%}
+.si-dic-note{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:400;line-height:1.58;color:var(--ink-muted-on-dark);margin-top:.45rem}
+.si-fit-list{margin:.85rem 0 0 1.1rem;padding:0}
+.si-fit-list li{font-size:.88rem;line-height:1.72;color:var(--muted);margin:.4rem 0}
+.si-scope{margin:0}
+.si-scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.si-block{--accent:var(--bu-sky);background:transparent;border:none;box-shadow:var(--shadow-soft);border-radius:2px;padding:2rem;transition:transform .2s,box-shadow .2s;min-height:100%}
+.si-block:hover{transform:translateY(-3px);box-shadow:var(--shadow-card-hover)}
 .si-block:nth-child(2){--accent:var(--gold)}
 .si-block:nth-child(3){--accent:var(--emerald)}
 .si-block:nth-child(4){--accent:var(--rust)}
@@ -283,26 +267,21 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .si-block:nth-child(6){--accent:var(--bu-sky)}
 .si-block:nth-child(7){--accent:var(--gold)}
 .si-block:nth-child(8){--accent:var(--emerald)}
-.si-block--wide{grid-column:span 2;background:var(--navy);border-color:rgba(255,255,255,.08);border-top-color:var(--gold)}
-.si-block h3{display:flex;align-items:center;gap:.55rem;font-family:'DM Serif Display',serif;font-size:1.13rem;color:var(--navy);margin:0 0 .65rem;line-height:1.25}
+.si-block--wide{grid-column:span 2;background:var(--navy)}
+.si-block h3{display:flex;align-items:center;gap:.65rem;font-family:'DM Serif Display',serif;font-size:1.16rem;color:var(--navy);margin:0 0 .85rem;line-height:1.25}
 .si-block--wide h3{color:#fff}
 .si-card-icon{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:var(--tint-blue);border:1px solid var(--border);color:var(--accent);border-radius:2px;flex-shrink:0}
 .si-block--wide .si-card-icon{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:var(--gold)}
 .si-card-icon svg{width:1rem;height:1rem;display:block}
 .si-block p:last-child,.si-block ul:last-child{margin-bottom:0}
-.si-scope p,.si-scope li{font-size:.86rem;line-height:1.72;color:var(--text)}
+.si-scope p,.si-scope li{font-size:.86rem;line-height:1.72;color:var(--muted)}
 .si-block--wide p,.si-block--wide li{color:var(--ink-muted-on-dark)}
 .si-scope ul{margin:.45rem 0 .85rem 1.15rem}
 .si-scope ul li{margin:.25rem 0}
-.si-disclosure{background:rgba(46,163,230,.06);border:1px solid var(--border);border-left:3px solid var(--bu-sky);padding:1.35rem 1.5rem;border-radius:2px;margin:2rem 0}
-.si-disclosure p{font-size:.86rem;line-height:1.72;color:var(--text);margin-bottom:.65rem}
-.si-disclosure p:last-child{margin-bottom:0}
-.si-disclosure strong{color:var(--navy)}
-.si-before-form{font-size:.92rem;line-height:1.75;color:var(--muted);margin:1.5rem 0 2rem;padding-top:1rem;border-top:1px solid var(--border)}
-.si-form-h{font-family:'DM Serif Display',serif;font-size:1.65rem;color:var(--navy);margin:2.5rem 0 1.25rem}
 .si-cta-card{background:var(--bg-white);border:1px solid var(--border);border-left:3px solid var(--bu-sky);border-radius:2px;padding:1.6rem 1.75rem;box-shadow:var(--shadow-soft);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
 .si-cta-card h2{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--navy);line-height:1.25;margin-bottom:.35rem}
 .si-cta-card p{font-size:.86rem;line-height:1.7;color:var(--muted);margin:0;max-width:580px}
+.si-cta-card p + p{margin-top:.6rem}
 .si-cta-actions{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
 .radio-group{display:flex;flex-direction:column;gap:.45rem}
 .radio-item{display:flex;align-items:flex-start;gap:.55rem;cursor:pointer;font-size:.86rem;line-height:1.45;color:var(--text)}
@@ -314,13 +293,9 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .si-success h3{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;margin-bottom:1rem}
 p.si-mute{font-size:.78rem;color:var(--muted);line-height:1.6}
 @media (max-width:900px){
-  .si-positioning,.si-scope-head{grid-template-columns:1fr}
+  #page-seller-intake .pricing-grid{grid-template-columns:1fr}
   .si-scope-grid{grid-template-columns:1fr 1fr}
   .si-block--wide{grid-column:span 1}
-  .si-visual-note{left:1rem;right:1rem;max-width:none}
-  .si-meta-strip{grid-template-columns:1fr}
-  .si-meta-item,.si-meta-item:last-child{border-right:none;border-bottom:1px solid var(--border);padding:1rem 0}
-  .si-meta-item:last-child{border-bottom:none}
 }
 
 /* EDUCATION */
@@ -579,10 +554,9 @@ p.si-mute{font-size:.78rem;color:var(--muted);line-height:1.6}
 .vendor-warranty-note p{font-size:.9rem;line-height:1.78;color:var(--text);margin:0}
 .vendor-warranty-note p + p{margin-top:1rem}
 @media(max-width:640px){
-  .si-fit-grid,.si-scope-grid{grid-template-columns:1fr}
-  .si-visual,.si-visual img{min-height:360px;height:360px}
+  .si-scope-grid{grid-template-columns:1fr}
   .si-title{font-size:clamp(2.15rem,12vw,2.75rem)}
-  .si-price-panel,.si-fit-panel,.si-cta-card{padding:1.35rem 1.25rem}
+  .si-cta-card{padding:1.35rem 1.25rem}
   .vendor-lender-card{grid-template-columns:1fr;text-align:center}
   .vendor-lender-meta .vendor-lender-links{justify-content:center}
   .vendor-tags{justify-content:center}
@@ -1024,6 +998,7 @@ a.trec-link:hover{color:#fff}
           <a href="#" class="nav-panel-hint">For sellers</a>
           <a href="/sellers">Agent matchmaking</a>
           <a href="/questionnaires?tab=seller">Seller questionnaire</a>
+          <a href="/bu-seller-intake">Listing Pilot Product</a>
         </div>
       </li>
       <li><button type="button" class="nav-tab" data-nav="agents" onclick="showPage('agents')">Agents</button></li>
@@ -2843,68 +2818,81 @@ a.trec-link:hover{color:#fff}
 
 <!-- Hidden pilot: not linked in nav. Direct URL only. -->
 <div class="page" id="page-seller-intake">
-  <section class="seller-intake-section">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">BuyUnrepped &middot; Seller</div>
+      <h1 class="si-title">Sell your home. Stay in <em>control.</em></h1>
+      <p class="si-deck">You stay in control. We handle the structure, compliance, and MLS execution so your listing shows up clean and credible from day one.</p>
+      <p class="si-mute" style="margin:-.5rem 0 1.75rem">Built and overseen by a licensed Tennessee Principal Broker with hands-on experience facilitating 200+ transactions across Middle Tennessee.</p>
+      <div class="si-actions">
+        <a href="/questionnaires?tab=seller" class="btn-primary">Start Seller Intake</a>
+        <a href="/sellers" class="btn-outline">Back to Seller Page</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="images/seller-intake-home.png" alt="Nashville area home with BuyUnrepped seller sign">
+      <div class="hero-img-overlay"></div>
+      <div class="hero-badge">
+        <div>
+          <div class="badge-big">$2,495</div>
+          <div class="badge-sm">flat fee per property</div>
+        </div>
+        <div style="border-left:1px solid var(--border);padding-left:1rem">
+          <div class="badge-big" style="font-size:1.4rem">6<span>-</span>month</div>
+          <div class="badge-sm">limited service agreement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-n">6-month limited</div><div class="stat-l">Agreement</div></div>
+      <div class="stat"><div class="stat-n">We handle it</div><div class="stat-l">MLS + compliance</div></div>
+      <div class="stat"><div class="stat-n">You run it</div><div class="stat-l">Showings + prep</div></div>
+    </div>
+  </div>
+
+  <!-- POSITIONING -->
+  <section style="background:var(--cream)">
     <div class="container">
       <div class="si-wrap">
-
-        <div class="si-hero">
-          <div>
-            <div class="eyebrow">BuyUnrepped &middot; Seller</div>
-            <h1 class="si-title">Sell your home. Stay in <em>control.</em></h1>
-            <p class="si-deck">You stay in control. We handle the structure, compliance, and MLS execution so your listing shows up clean and credible from day one.</p>
-            <p class="si-mute" style="margin:-.5rem 0 1.75rem">Built and overseen by a licensed Tennessee Principal Broker with hands-on experience facilitating 200+ transactions across Middle Tennessee.</p>
-            <div class="si-actions">
-              <a href="/questionnaires?tab=seller" class="btn-primary">Start Seller Intake</a>
-              <a href="/sellers" class="btn-outline">Back to Seller Page</a>
-            </div>
-            <div class="si-meta-strip" aria-label="Seller support summary">
-              <div class="si-meta-item">
-                <div class="si-meta-label">Agreement</div>
-                <div class="si-meta-value">6-month limited</div>
-              </div>
-              <div class="si-meta-item">
-                <div class="si-meta-label">MLS + compliance</div>
-                <div class="si-meta-value">We handle it</div>
-              </div>
-              <div class="si-meta-item">
-                <div class="si-meta-label">Showings + prep</div>
-                <div class="si-meta-value">You run it</div>
-              </div>
-            </div>
-          </div>
-          <div class="si-visual" aria-label="Nashville-area home exterior">
-            <img src="images/seller-intake-home.png" alt="Nashville area home with BuyUnrepped seller sign">
-            <div class="si-visual-note">
-              <strong>More than MLS-only. Less than full-service.</strong>
-              <span>Built for sellers who want control with licensed broker structure behind the scenes.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="si-positioning">
-          <div class="si-price-panel">
-            <h2>Flat-fee seller-side support</h2>
-            <div class="si-price">$2,495</div>
-            <p>Per property. One package covers one listing — a second property requires a new package.</p>
-            <p>You pay for structure where it matters, not for someone to take over the process.</p>
-          </div>
-          <div class="si-fit-panel">
-            <h2>What this is — and what it isn't</h2>
-            <p>More than an MLS-only listing. Less than full-service representation.</p>
-            <ul style="margin:.85rem 0 0 1.1rem;padding:0">
-              <li style="font-size:.88rem;line-height:1.72;color:var(--muted);margin:.4rem 0">Not full-service listing representation</li>
-              <li style="font-size:.88rem;line-height:1.72;color:var(--muted);margin:.4rem 0">Not an MLS-only upload</li>
+        <div class="diff-inner">
+          <div class="reveal">
+            <div class="eyebrow">The product</div>
+            <h2 class="sec-title">What this is — and what it isn't</h2>
+            <p class="sec-desc">More than an MLS-only listing. Less than full-service representation.</p>
+            <ul class="si-fit-list">
+              <li>Not full-service listing representation</li>
+              <li>Not an MLS-only upload</li>
             </ul>
           </div>
+          <div class="diff-img reveal d1">
+            <img src="images/seller-intake-photographer-kitchen.jpg" alt="Real estate photographer taking a listing photo of a high-end kitchen">
+            <div class="diff-img-card">
+              <div class="dic-label">Seller support</div>
+              <div class="dic-val">More than MLS-only.<br>Less than full-service.</div>
+              <span class="si-dic-note">Built for sellers who want control with licensed broker structure behind the scenes.</span>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Row 1: [What we handle — wide] [Pre-listing] [Communication]  -->
-        <!-- Row 2: [What you handle] [Yard sign] [When this works] [Not the right fit?] -->
-        <!-- Row 3: [Agreement — wide, lone]                                              -->
+  <!-- SCOPE -->
+  <section style="background:var(--warm)">
+    <div class="container">
+      <div class="si-wrap">
         <div class="si-scope" aria-label="Seller support details">
+          <div class="eyebrow reveal">Seller support</div>
+          <h2 class="sec-title reveal">Structure where it matters</h2>
           <div class="si-scope-grid">
 
-            <article class="si-block si-block--wide">
+            <article class="si-block si-block--wide reveal">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-check-circle"/></svg></span>What we handle</h3>
               <ul>
                 <li>Pricing guidance and CMA</li>
@@ -2917,7 +2905,7 @@ a.trec-link:hover{color:#fff}
               <p>Optional add-on: Stager or designer coordination (in-person visit, additional fee — ask during intake)</p>
             </article>
 
-            <article class="si-block">
+            <article class="si-block reveal d1">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-home"/></svg></span>Pre-listing review <span style="font-size:.75rem;font-weight:400;color:var(--gold)">(remote)</span></h3>
               <p>Send photos or video of your home before going live. We give direct, practical feedback on presentation and what to address before listing.</p>
               <ul>
@@ -2926,7 +2914,7 @@ a.trec-link:hover{color:#fff}
               </ul>
             </article>
 
-            <article class="si-block">
+            <article class="si-block reveal d2">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-message"/></svg></span>Communication</h3>
               <p>Structured so nothing falls through.</p>
               <ul>
@@ -2937,7 +2925,7 @@ a.trec-link:hover{color:#fff}
               </ul>
             </article>
 
-            <article class="si-block">
+            <article class="si-block reveal">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-users"/></svg></span>What you handle</h3>
               <ul>
                 <li>Prep the home for market — we point the direction, you execute</li>
@@ -2948,13 +2936,13 @@ a.trec-link:hover{color:#fff}
               </ul>
             </article>
 
-            <article class="si-block">
+            <article class="si-block reveal d1">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-link"/></svg></span>Yard sign <span style="font-size:.75rem;font-weight:400;color:var(--muted)">(add-on)</span></h3>
               <p><strong>$200 — installed</strong></p>
               <p>White acrylic hanger with a 24&times;36&Prime; metal panel. Directs buyers to a private listing page with your photos and full details. The same QR code is added to your MLS listing. All inquiries are sent to you for follow up.</p>
             </article>
 
-            <article class="si-block">
+            <article class="si-block reveal d2">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-search"/></svg></span>When this works</h3>
               <ul>
                 <li>You want control over your listing</li>
@@ -2964,26 +2952,51 @@ a.trec-link:hover{color:#fff}
               </ul>
             </article>
 
-            <article class="si-block">
+            <article class="si-block reveal d3">
               <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-chart"/></svg></span>Not the right fit?</h3>
               <p>If this structure isn't what you need, we'll connect you with the right listing agent for your situation — not a pay-to-play referral — a real introduction based on your property, your goals, and how you want to sell.</p>
               <p>We'll point you in the right direction either way.</p>
             </article>
 
-            <article class="si-block si-block--wide">
-              <h3><span class="si-card-icon" aria-hidden="true"><svg><use href="#ic-file"/></svg></span>Agreement and fees</h3>
-              <ul>
-                <li><strong>$2,495 flat fee per property</strong></li>
-                <li>One property per package — a second listing requires a new package</li>
-                <li>6-month limited service agreement (required under TREC rules)</li>
-                <li>Non-refundable once work begins</li>
-              </ul>
-            </article>
-
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="si-cta-card">
+  <!-- PRICING -->
+  <section class="pricing-section">
+    <div class="container">
+      <div class="eyebrow reveal">Pricing</div>
+      <h2 class="sec-title reveal">Flat-fee seller-side support</h2>
+      <div class="pricing-grid">
+        <div class="price-card featured reveal">
+          <div class="price-badge">Per property</div>
+          <h3>Flat-fee seller-side support</h3>
+          <div class="price-amount"><span>$</span>2,495</div>
+          <p>Per property. One package covers one listing — a second property requires a new package.</p>
+          <p>You pay for structure where it matters, not for someone to take over the process.</p>
+          <a href="/questionnaires?tab=seller" class="btn-gold">Start Seller Intake</a>
+        </div>
+        <div class="price-card reveal d1">
+          <h3>Agreement and fees</h3>
+          <ul class="price-includes">
+            <li><strong>$2,495 flat fee per property</strong></li>
+            <li>One property per package — a second listing requires a new package</li>
+            <li>6-month limited service agreement (required under TREC rules)</li>
+            <li>Non-refundable once work begins</li>
+          </ul>
+          <a href="/sellers" class="btn-outline">Back to Seller Page</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--cream)">
+    <div class="container">
+      <div class="si-wrap">
+        <div class="si-cta-card reveal">
           <div>
             <h2>Ready to see if this fits?</h2>
             <p>Complete the intake and we'll review your property, confirm fit, and walk through next steps and timing. Not every property is the right match for this structure.</p>
@@ -2994,7 +3007,6 @@ a.trec-link:hover{color:#fff}
             <a href="/sellers" class="btn-outline">Back to Seller Page</a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -3670,7 +3682,7 @@ function getNavKeyForPage(name) {
     if (ps && ps.classList.contains('active')) return 'sellers';
     return 'buyers';
   }
-  if (name === 'seller-intake') return 'z-no-nav';
+  if (name === 'seller-intake') return 'sellers';
   return 'home';
 }
 
