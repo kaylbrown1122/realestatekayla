@@ -240,7 +240,7 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .sq-nav .btn-outline,.sq-nav .q-submit{margin-top:0}
 
 /* Seller intake (hidden pilot page) */
-.si-wrap{max-width:980px;margin:0 auto}
+.si-wrap{max-width:1080px;margin:0 auto}
 .si-lead p{font-size:.95rem;line-height:1.78;color:var(--muted);margin-bottom:1rem}
 .si-lead p:last-child{margin-bottom:0}
 .si-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem;align-items:start}
@@ -250,7 +250,12 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .si-kv{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:1rem}
 .si-kv .k{background:var(--warm);border:1px solid var(--border);padding:.65rem .75rem;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .si-kv .k strong{display:block;color:var(--navy);font-size:.92rem;text-transform:none;letter-spacing:0;margin-top:.2rem}
-.si-scope{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:2rem 2rem 1.75rem;margin:2.25rem 0;box-shadow:var(--shadow-soft)}
+.si-scope{margin:2rem 0 1.4rem}
+.si-lede{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:1.35rem 1.5rem;box-shadow:var(--shadow-soft);font-size:.9rem;line-height:1.75;color:var(--muted);margin:0 0 1rem}
+.si-scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.si-block{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:1.25rem 1.3rem;box-shadow:var(--shadow-soft)}
+.si-block h3{font-family:'DM Serif Display',serif;font-size:1.12rem;color:var(--navy);margin:0 0 .55rem;line-height:1.25}
+.si-block p:last-child,.si-block ul:last-child{margin-bottom:0}
 .si-scope h3{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);margin:1.5rem 0 .65rem;line-height:1.25}
 .si-scope h3:first-of-type{margin-top:0}
 .si-scope p,.si-scope li{font-size:.86rem;line-height:1.72;color:var(--text)}
@@ -273,6 +278,9 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .si-success p{font-size:.95rem;line-height:1.78;color:var(--ink-muted-on-dark);margin:0}
 .si-success h3{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;margin-bottom:1rem}
 p.si-mute{font-size:.78rem;color:var(--muted);line-height:1.6}
+@media (max-width:900px){
+  .si-scope-grid{grid-template-columns:1fr}
+}
 
 /* EDUCATION */
 .edu-section{background:var(--cream)}
@@ -2787,63 +2795,79 @@ a.trec-link:hover{color:#fff}
         <div class="eyebrow">BuyUnrepped &middot; Seller pilot (private link)</div>
         <h1 class="sec-title" style="margin-bottom:1rem">Sell your home. Stay in control.</h1>
         <div class="si-scope" aria-labelledby="si-how-heading">
-          <h2 class="sec-title" id="si-how-heading" style="font-size:clamp(1.35rem,2.2vw,1.75rem);margin-bottom:1rem">What this is</h2>
-          <h3>What this is</h3>
-          <p>You don't necessarily need a full-service listing agent to sell your home.</p>
-          <p>But you do need pricing, structure, and a clear plan before you go live.</p>
-          <p>This is a seller-side version of BuyUnrepped.</p>
-          <p><strong>You run the listing.</strong><br><strong>We help you structure it.</strong></p>
-          <h3>How it works</h3>
-          <p>You handle the front end.<br>We support the strategy behind the scenes.</p>
-          <p>That includes:</p>
-          <ul>
-            <li>pricing the home with real context</li>
-            <li>getting it live in the MLS correctly</li>
-            <li>walking through offers and next steps</li>
-            <li>keeping things on track once you're under contract</li>
-          </ul>
-          <h3>What you get</h3>
-          <p><strong>Flat-fee support: $2,495</strong></p>
-          <ul>
-            <li>CMA and pricing guidance</li>
-            <li>MLS listing setup</li>
-            <li>help positioning the listing</li>
-            <li>offer review and strategy calls</li>
-            <li>contract-to-close coordination once under contract</li>
-          </ul>
-          <p>You'll know exactly how your listing is positioned and how to respond when offers come in.</p>
-          <h3>Fees and structure</h3>
-          <p>There's a gap between doing it completely on your own and hiring a full-service listing agent.</p>
-          <p>BuyUnrepped sits in the middle.</p>
-          <p>More than an MLS-only listing.<br>Less than full-service representation.</p>
-          <p>You're paying for structure, strategy, and support where it matters.<br>Not for someone to take over the entire process.</p>
-          <h3>Your role</h3>
-          <p>You stay in control of the listing.</p>
-          <p><strong>You:</strong></p>
-          <ul>
-            <li>manage showings</li>
-            <li>communicate with buyers and agents</li>
-            <li>decide how to respond to offers</li>
-          </ul>
-          <p>We help you think through it. You run it.</p>
-          <h3>The difference</h3>
-          <p>No one is stepping in front of you.<br>No one is speaking on your behalf.</p>
-          <p>This is a structured way to sell your home on your own, without going in blind.</p>
-          <h3>When this works best</h3>
-          <p>This tends to be a good fit if you:</p>
-          <ul>
-            <li>want control over the process</li>
-            <li>are comfortable communicating directly</li>
-            <li>still want guidance and structure behind you</li>
-          </ul>
-          <h3>Not sure?</h3>
-          <p>If you decide you want full-service representation, we'll connect you with a strong listing agent.</p>
-          <h3>Next step</h3>
-          <p>If this feels like the right fit, complete the intake below.</p>
-          <p>We'll review your property and walk through next steps.</p>
+          <h2 class="sec-title" id="si-how-heading" style="font-size:clamp(1.35rem,2.2vw,1.75rem);margin-bottom:1rem">Seller-side support, structured clearly.</h2>
+          <p class="si-lede">You don't necessarily need a full-service listing agent to sell your home. But you do need pricing, structure, and a clear plan before you go live.</p>
+          <div class="si-scope-grid">
+            <article class="si-block">
+              <h3>What this is</h3>
+              <p>This is a seller-side version of BuyUnrepped.</p>
+              <p><strong>You run the listing.</strong><br><strong>We help you structure it.</strong></p>
+            </article>
+            <article class="si-block">
+              <h3>How it works</h3>
+              <p>You handle the front end.<br>We support the strategy behind the scenes.</p>
+              <p>That includes:</p>
+              <ul>
+                <li>pricing the home with real context</li>
+                <li>getting it live in the MLS correctly</li>
+                <li>walking through offers and next steps</li>
+                <li>keeping things on track once you're under contract</li>
+              </ul>
+            </article>
+            <article class="si-block">
+              <h3>What you get</h3>
+              <p><strong>Flat-fee support: $2,495</strong></p>
+              <ul>
+                <li>CMA and pricing guidance</li>
+                <li>MLS listing setup</li>
+                <li>help positioning the listing</li>
+                <li>offer review and strategy calls</li>
+                <li>contract-to-close coordination once under contract</li>
+              </ul>
+              <p>You'll know exactly how your listing is positioned and how to respond when offers come in.</p>
+            </article>
+            <article class="si-block">
+              <h3>Fees and structure</h3>
+              <p>There's a gap between doing it completely on your own and hiring a full-service listing agent.</p>
+              <p>BuyUnrepped sits in the middle.</p>
+              <p>More than an MLS-only listing.<br>Less than full-service representation.</p>
+              <p>You're paying for structure, strategy, and support where it matters.<br>Not for someone to take over the entire process.</p>
+            </article>
+            <article class="si-block">
+              <h3>Your role</h3>
+              <p>You stay in control of the listing.</p>
+              <p><strong>You:</strong></p>
+              <ul>
+                <li>manage showings</li>
+                <li>communicate with buyers and agents</li>
+                <li>decide how to respond to offers</li>
+              </ul>
+              <p>We help you think through it. You run it.</p>
+            </article>
+            <article class="si-block">
+              <h3>The difference</h3>
+              <p>No one is stepping in front of you.<br>No one is speaking on your behalf.</p>
+              <p>This is a structured way to sell your home on your own, without going in blind.</p>
+            </article>
+            <article class="si-block">
+              <h3>When this works best</h3>
+              <p>This tends to be a good fit if you:</p>
+              <ul>
+                <li>want control over the process</li>
+                <li>are comfortable communicating directly</li>
+                <li>still want guidance and structure behind you</li>
+              </ul>
+            </article>
+            <article class="si-block">
+              <h3>Not sure?</h3>
+              <p>If you decide you want full-service representation, we'll connect you with a strong listing agent.</p>
+              <h3 style="margin-top:1rem">Next step</h3>
+              <p>If this feels like the right fit, complete the intake below.</p>
+              <p>We'll review your property and walk through next steps.</p>
+            </article>
+          </div>
         </div>
 
-        <h2 class="si-form-h">CTA</h2>
         <div class="si-cta-card">
           <p style="font-size:.9rem;line-height:1.75;color:var(--muted);margin-bottom:1rem">Takes you to the seller questionnaire so submissions stay in one place.</p>
           <div class="si-cta-actions">
