@@ -231,11 +231,25 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .checkbox-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--bu-sky)}
 .q-submit{background:var(--bu-sky);color:#fff;border:none;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background .2s;margin-top:.5rem}
 .q-submit:hover{background:#258cbd}
+.sq-card{background:var(--bg-white);border:1px solid var(--border);box-shadow:var(--shadow-soft);padding:1.5rem;border-radius:2px}
+.sq-progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.sq-progress span{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sq-step{display:none}
+.sq-step.is-active{display:block}
+.sq-nav{display:flex;justify-content:space-between;gap:.75rem;margin-top:1rem}
+.sq-nav .btn-outline,.sq-nav .q-submit{margin-top:0}
 
 /* Seller intake (hidden pilot page) */
-.si-wrap{max-width:760px;margin:0 auto}
+.si-wrap{max-width:980px;margin:0 auto}
 .si-lead p{font-size:.95rem;line-height:1.78;color:var(--muted);margin-bottom:1rem}
 .si-lead p:last-child{margin-bottom:0}
+.si-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem;align-items:start}
+.si-panel{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;box-shadow:var(--shadow-soft);padding:1.5rem}
+.si-panel h3{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--navy);margin-bottom:.7rem}
+.si-panel p{font-size:.88rem;line-height:1.7;color:var(--muted)}
+.si-kv{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:1rem}
+.si-kv .k{background:var(--warm);border:1px solid var(--border);padding:.65rem .75rem;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.si-kv .k strong{display:block;color:var(--navy);font-size:.92rem;text-transform:none;letter-spacing:0;margin-top:.2rem}
 .si-scope{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:2rem 2rem 1.75rem;margin:2.25rem 0;box-shadow:var(--shadow-soft)}
 .si-scope h3{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);margin:1.5rem 0 .65rem;line-height:1.25}
 .si-scope h3:first-of-type{margin-top:0}
@@ -248,6 +262,8 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .si-disclosure strong{color:var(--navy)}
 .si-before-form{font-size:.92rem;line-height:1.75;color:var(--muted);margin:1.5rem 0 2rem;padding-top:1rem;border-top:1px solid var(--border)}
 .si-form-h{font-family:'DM Serif Display',serif;font-size:1.65rem;color:var(--navy);margin:2.5rem 0 1.25rem}
+.si-cta-card{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:1.5rem 1.75rem;box-shadow:var(--shadow-soft)}
+.si-cta-actions{display:flex;gap:.8rem;flex-wrap:wrap}
 .radio-group{display:flex;flex-direction:column;gap:.45rem}
 .radio-item{display:flex;align-items:flex-start;gap:.55rem;cursor:pointer;font-size:.86rem;line-height:1.45;color:var(--text)}
 .radio-item input[type=radio]{width:16px;height:16px;margin-top:.18rem;accent-color:var(--bu-sky);flex-shrink:0}
@@ -257,7 +273,6 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .si-success p{font-size:.95rem;line-height:1.78;color:var(--ink-muted-on-dark);margin:0}
 .si-success h3{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;margin-bottom:1rem}
 p.si-mute{font-size:.78rem;color:var(--muted);line-height:1.6}
-#seller-intake-form.is-hidden{display:none!important}
 
 /* EDUCATION */
 .edu-section{background:var(--cream)}
@@ -599,7 +614,7 @@ a.trec-link:hover{color:#fff}
   :root{--nav-height:58px}
   .hero{grid-template-columns:1fr}
   .hero-img{min-height:52vw;height:auto}
-  .diff-inner,.match-inner,.about-story-inner,.contact-inner,.about-hero,.q-pane.active{grid-template-columns:1fr;gap:2.5rem}
+  .diff-inner,.match-inner,.about-story-inner,.contact-inner,.about-hero,.q-pane.active,.si-hero{grid-template-columns:1fr;gap:2.5rem}
   .buy-calc-grid{grid-template-columns:1fr}
   .buy-suburbs-grid{grid-template-columns:1fr}
   .buy-tx-step{grid-template-columns:1fr;gap:.35rem}
@@ -2488,90 +2503,108 @@ a.trec-link:hover{color:#fff}
         <form id="seller-questionnaire-form" class="q-form" novalidate>
           <input type="hidden" name="source" value="Seller questionnaire (site)">
           <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
-          <div class="fg">
-            <label for="seller-q-captcha">Quick check: <span id="seller-q-captcha-q">What is 2 + 3?</span></label>
-            <input id="seller-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
-          </div>
-          <div class="fg-row">
-            <div class="fg"><label for="seller-q-first">First Name *</label><input id="seller-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
-            <div class="fg"><label for="seller-q-last">Last Name *</label><input id="seller-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
-          </div>
-          <div class="fg-row">
-            <div class="fg"><label for="seller-q-email">Email *</label><input id="seller-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
-            <div class="fg"><label for="seller-q-phone">Phone *</label><input id="seller-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel" required></div>
-          </div>
-
-          <div class="fg">
-            <label style="margin-bottom:.35rem">Preferred Method of Communication (required)</label>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Call" required> Call</label>
-              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Text"> Text</label>
-              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Email"> Email</label>
-              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Carrier Pigeon"> Carrier Pigeon</label>
-              <label class="radio-item"><input type="radio" name="seller_comm_method" value="All of the above are fine"> All of the above are fine</label>
+          <div class="sq-card">
+            <div class="sq-progress">
+              <span id="seller-q-step-label">Step 1 of 4</span>
             </div>
-          </div>
 
-          <div class="fg">
-            <label style="margin-bottom:.35rem">Best Times to Contact You (required)</label>
-            <div class="checkbox-group">
-              <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Morning"> Morning</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Afternoon"> Afternoon</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Night"> Night</label>
+            <div class="sq-step is-active" data-step="1">
+              <div class="fg">
+                <label for="seller-q-captcha">Quick check: <span id="seller-q-captcha-q">What is 2 + 3?</span></label>
+                <input id="seller-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
+              </div>
+              <div class="fg-row">
+                <div class="fg"><label for="seller-q-first">First Name *</label><input id="seller-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
+                <div class="fg"><label for="seller-q-last">Last Name *</label><input id="seller-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
+              </div>
+              <div class="fg-row">
+                <div class="fg"><label for="seller-q-email">Email *</label><input id="seller-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
+                <div class="fg"><label for="seller-q-phone">Phone *</label><input id="seller-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel" required></div>
+              </div>
+
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Preferred Method of Communication (required)</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_comm_method" value="Call" required> Call</label>
+                  <label class="radio-item"><input type="radio" name="seller_comm_method" value="Text"> Text</label>
+                  <label class="radio-item"><input type="radio" name="seller_comm_method" value="Email"> Email</label>
+                  <label class="radio-item"><input type="radio" name="seller_comm_method" value="Carrier Pigeon"> Carrier Pigeon</label>
+                  <label class="radio-item"><input type="radio" name="seller_comm_method" value="All of the above are fine"> All of the above are fine</label>
+                </div>
+              </div>
+
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Best Times to Contact You (required)</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Morning"> Morning</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Afternoon"> Afternoon</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Night"> Night</label>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="fg"><label for="seller-q-why">Why are you selling your home? (required)</label>
-            <textarea id="seller-q-why" name="seller_why_selling" required></textarea>
-          </div>
+            <div class="sq-step" data-step="2">
+              <div class="fg"><label for="seller-q-why">Why are you selling your home? (required)</label>
+                <textarea id="seller-q-why" name="seller_why_selling" required></textarea>
+              </div>
 
-          <div class="fg"><label for="seller-q-ideal-agent">What's your ideal agent like?</label>
-            <textarea id="seller-q-ideal-agent" name="seller_ideal_agent"></textarea>
-          </div>
+              <div class="fg"><label for="seller-q-ideal-agent">What's your ideal agent like?</label>
+                <textarea id="seller-q-ideal-agent" name="seller_ideal_agent"></textarea>
+              </div>
 
-          <div class="fg"><label for="seller-q-important">Anything important to you?</label>
-            <textarea id="seller-q-important" name="seller_important_notes"></textarea>
-          </div>
-
-          <div class="fg"><label for="seller-q-type">Type of Residence</label>
-            <select id="seller-q-type" name="seller_property_type">
-              <option value="">Select one</option>
-              <option>Single-Family Home</option>
-              <option>Townhome</option>
-              <option>Condo</option>
-              <option>Vacant Land</option>
-              <option>Multifamily</option>
-              <option>HPR (Attached)</option>
-              <option>HPR (Detached)</option>
-            </select>
-          </div>
-
-          <div class="fg"><label for="seller-q-worth">How much do you think the property is worth today?</label>
-            <textarea id="seller-q-worth" name="seller_estimated_worth"></textarea>
-          </div>
-
-          <div class="fg"><label for="seller-q-upgrades">Please list any upgrades/updates you've completed since you acquired the property (and cost if you have it)</label>
-            <textarea id="seller-q-upgrades" name="seller_upgrades"></textarea>
-          </div>
-
-          <div class="fg"><label for="seller-q-interior">Describe the inside of your home. Bed/ Bath count; finishes, etc</label>
-            <textarea id="seller-q-interior" name="seller_interior_description"></textarea>
-          </div>
-
-          <div class="fg"><label for="seller-q-timeframe">What is your time frame for moving, and why?</label>
-            <textarea id="seller-q-timeframe" name="seller_move_timeframe"></textarea>
-          </div>
-
-          <div class="fg">
-            <label style="margin-bottom:.35rem">Do you typically prefer any of the following:</label>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="seller_service_style" value="Boutique 1:1 Service"> Boutique 1:1 Service</label>
-              <label class="radio-item"><input type="radio" name="seller_service_style" value="Larger Team with Multiple Points of Contact - everyone has a specific role"> Larger Team with Multiple Points of Contact - everyone has a specific role</label>
+              <div class="fg"><label for="seller-q-important">Anything important to you?</label>
+                <textarea id="seller-q-important" name="seller_important_notes"></textarea>
+              </div>
             </div>
-          </div>
 
-          <button type="submit" class="q-submit">Submit Seller Questionnaire</button>
-          <p id="seller-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
+            <div class="sq-step" data-step="3">
+              <div class="fg"><label for="seller-q-type">Type of Residence</label>
+                <select id="seller-q-type" name="seller_property_type">
+                  <option value="">Select one</option>
+                  <option>Single-Family Home</option>
+                  <option>Townhome</option>
+                  <option>Condo</option>
+                  <option>Vacant Land</option>
+                  <option>Multifamily</option>
+                  <option>HPR (Attached)</option>
+                  <option>HPR (Detached)</option>
+                </select>
+              </div>
+
+              <div class="fg"><label for="seller-q-worth">How much do you think the property is worth today?</label>
+                <textarea id="seller-q-worth" name="seller_estimated_worth"></textarea>
+              </div>
+
+              <div class="fg"><label for="seller-q-upgrades">Please list any upgrades/updates you've completed since you acquired the property (and cost if you have it)</label>
+                <textarea id="seller-q-upgrades" name="seller_upgrades"></textarea>
+              </div>
+            </div>
+
+            <div class="sq-step" data-step="4">
+              <div class="fg"><label for="seller-q-interior">Describe the inside of your home. Bed/ Bath count; finishes, etc</label>
+                <textarea id="seller-q-interior" name="seller_interior_description"></textarea>
+              </div>
+
+              <div class="fg"><label for="seller-q-timeframe">What is your time frame for moving, and why?</label>
+                <textarea id="seller-q-timeframe" name="seller_move_timeframe"></textarea>
+              </div>
+
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Do you typically prefer any of the following:</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_service_style" value="Boutique 1:1 Service"> Boutique 1:1 Service</label>
+                  <label class="radio-item"><input type="radio" name="seller_service_style" value="Larger Team with Multiple Points of Contact - everyone has a specific role"> Larger Team with Multiple Points of Contact - everyone has a specific role</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="sq-nav">
+              <button type="button" id="seller-q-prev" class="btn-outline" style="visibility:hidden">Back</button>
+              <button type="button" id="seller-q-next" class="btn-outline">Next</button>
+              <button type="submit" id="seller-q-submit" class="q-submit" style="display:none">Submit Seller Questionnaire</button>
+            </div>
+            <p id="seller-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
+          </div>
         </form>
       </div>
 
@@ -2642,10 +2675,23 @@ a.trec-link:hover{color:#fff}
       <div class="si-wrap">
         <div class="eyebrow">BuyUnrepped &middot; Seller pilot (private link)</div>
         <h1 class="sec-title" style="margin-bottom:1rem">Sell with structure. Stay in control.</h1>
-        <div class="si-lead">
-          <p>You're considering a seller-side version of <strong>BuyUnrepped</strong>: MLS exposure, pricing strategy, offer review, and transaction coordination without full-service listing representation.</p>
-          <p>This intake helps us understand your property, your goals, and whether BuyUnrepped seller support is the right fit.</p>
-          <p>BuyUnrepped is designed for sellers who want professional structure while managing their own listing, showings, communication, and negotiation decisions.</p>
+        <div class="si-hero">
+          <div class="si-lead si-panel">
+            <h3>What this page is for</h3>
+            <p>You're considering a seller-side version of <strong>BuyUnrepped</strong>: MLS exposure, pricing strategy, offer review, and transaction coordination without full-service listing representation.</p>
+            <p>This intake preview helps us understand your property, your goals, and whether this structure is the right fit before the first call.</p>
+            <div class="si-kv">
+              <div class="k">Pilot Structure<strong>Flat-fee support</strong></div>
+              <div class="k">Service Model<strong>You stay in control</strong></div>
+              <div class="k">Primary Focus<strong>MLS + pricing + offer strategy</strong></div>
+              <div class="k">Execution<strong>Use seller questionnaire</strong></div>
+            </div>
+          </div>
+          <div class="si-disclosure" style="margin:0">
+            <p><strong>Important:</strong> BuyUnrepped seller support is limited in scope.</p>
+            <p><strong>You remain responsible for</strong> setting the list price; approving listing details; managing showings; communicating with buyers and agents; making all negotiation decisions.</p>
+            <p>BuyUnrepped may provide pricing guidance, MLS setup, compliance document support, offer review, and transaction coordination. BuyUnrepped does not provide full-service listing representation unless separately agreed in writing.</p>
+          </div>
         </div>
 
         <div class="si-scope" aria-labelledby="si-how-heading">
@@ -2708,192 +2754,14 @@ a.trec-link:hover{color:#fff}
           <p>If you decide you want full-service representation, we can connect you with a strong listing agent. <strong>There is no cost to you for that introduction.</strong></p>
         </div>
 
-        <div class="si-disclosure">
-          <p><strong>Important:</strong> BuyUnrepped seller support is limited in scope.</p>
-          <p><strong>You remain responsible for</strong> setting the list price; approving listing details; managing showings; communicating with buyers and agents; making all negotiation decisions.</p>
-          <p>BuyUnrepped may provide pricing guidance, MLS setup, compliance document support, offer review, and transaction coordination. BuyUnrepped does not provide full-service listing representation unless separately agreed in writing.</p>
+        <h2 class="si-form-h">Seller Questionnaire</h2>
+        <div class="si-cta-card">
+          <p style="font-size:.9rem;line-height:1.75;color:var(--muted);margin-bottom:1rem">This private page now routes to the main seller questionnaire form so all submissions flow through one place.</p>
+          <div class="si-cta-actions">
+            <a href="/questionnaires?tab=seller" class="btn-primary">Go to Seller Questionnaire</a>
+            <a href="/sellers" class="btn-outline">Back to Seller Page</a>
+          </div>
         </div>
-
-        <p class="si-before-form">If this structure makes sense for you, complete the intake below and we'll review your property and next steps.</p>
-
-        <h2 class="si-form-h">Seller Intake Form</h2>
-        <div id="seller-intake-success" class="si-success" role="status" aria-live="polite" tabindex="-1">
-          <h3>Thank you. We received your seller intake.</h3>
-          <p>We'll review the property details and follow up with next steps. If BuyUnrepped seller support appears to be a fit, we'll schedule a call to review pricing, scope, expectations, and whether this structure makes sense for your situation.</p>
-        </div>
-        <form id="seller-intake-form" class="q-form" novalidate>
-          <input type="hidden" name="source" value="BuyUnrepped seller intake (pilot, direct link)">
-          <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
-          <div class="fg">
-            <label for="si-captcha">Quick check: <span id="si-captcha-q">What is 2 + 3?</span></label>
-            <input id="si-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
-          </div>
-          <h4 class="q-section-h" style="margin-top:0">Section 1: Basic information</h4>
-          <div class="fg-row">
-            <div class="fg"><label for="si-first">First name *</label><input id="si-first" name="firstName" type="text" autocomplete="given-name" required></div>
-            <div class="fg"><label for="si-last">Last name *</label><input id="si-last" name="lastName" type="text" autocomplete="family-name" required></div>
-          </div>
-          <div class="fg-row">
-            <div class="fg"><label for="si-phone">Phone number *</label><input id="si-phone" name="phone" type="tel" autocomplete="tel" required></div>
-            <div class="fg"><label for="si-email">Email address *</label><input id="si-email" name="email" type="email" autocomplete="email" required inputmode="email"></div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Preferred contact method *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_pref_contact" value="Call" required> Call</label>
-              <label class="radio-item"><input type="radio" name="si_pref_contact" value="Text"> Text</label>
-              <label class="radio-item"><input type="radio" name="si_pref_contact" value="Email"> Email</label>
-            </div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Best times to contact you</span>
-            <div class="checkbox-group">
-              <label class="checkbox-item"><input type="checkbox" name="si_best_times" value="Morning"> Morning</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_best_times" value="Afternoon"> Afternoon</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_best_times" value="Evening"> Evening</label>
-            </div>
-          </div>
-          <div class="fg"><label for="si-coseller-name">Co-seller name, if applicable</label><input id="si-coseller-name" name="si_coseller_name" type="text" autocomplete="name"></div>
-          <div class="fg-row">
-            <div class="fg"><label for="si-coseller-phone">Co-seller phone number</label><input id="si-coseller-phone" name="si_coseller_phone" type="tel" autocomplete="tel"></div>
-            <div class="fg"><label for="si-coseller-email">Co-seller email</label><input id="si-coseller-email" name="si_coseller_email" type="email" autocomplete="email"></div>
-          </div>
-
-          <h4 class="q-section-h">Section 2: Property information</h4>
-          <div class="fg"><label for="si-address">Property address *</label><input id="si-address" name="si_property_address" type="text" autocomplete="street-address" required></div>
-          <div class="fg"><label for="si-type">Type of property *</label>
-            <select id="si-type" name="si_property_type" required>
-              <option value="">Select one</option>
-              <option>Single-family home</option>
-              <option>Townhome</option>
-              <option>Condo</option>
-              <option>Vacant land</option>
-              <option>Multifamily</option>
-              <option>HPR attached</option>
-              <option>HPR detached</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="fg"><label for="si-occupancy">Current occupancy *</label>
-            <select id="si-occupancy" name="si_occupancy" required>
-              <option value="">Select one</option>
-              <option>Owner-occupied</option>
-              <option>Tenant-occupied</option>
-              <option>Vacant</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="fg"><label for="si-bedbath">Bedroom / bathroom count *</label><input id="si-bedbath" name="si_bed_bath" type="text" required placeholder="e.g. 3 bed / 2.5 bath"></div>
-          <div class="fg-row">
-            <div class="fg"><label for="si-sqft">Approximate square footage *</label><input id="si-sqft" name="si_sqft" type="text" inputmode="numeric" required></div>
-            <div class="fg"><label for="si-year">Year built, if known</label><input id="si-year" name="si_year_built" type="text" inputmode="numeric" placeholder="e.g. 1995"></div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Any HOA? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_hoa" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_hoa" value="No"> No</label>
-              <label class="radio-item"><input type="radio" name="si_hoa" value="Not sure"> Not sure</label>
-            </div>
-          </div>
-          <div class="fg"><label for="si-worth">What do you think the property is worth today? *</label><textarea id="si-worth" name="si_est_worth" required rows="2" placeholder="Your estimate or range"></textarea></div>
-          <div class="fg"><label for="si-target">Do you have a target list price in mind?</label><textarea id="si-target" name="si_target_list" rows="2"></textarea></div>
-
-          <h4 class="q-section-h">Section 3: Property condition and updates</h4>
-          <div class="fg"><label for="si-inside">Describe the inside of the home. *</label>
-            <textarea id="si-inside" name="si_desc_inside" required rows="4" placeholder="Finishes, layout, condition, and anything a buyer would notice"></textarea>
-          </div>
-          <div class="fg"><label for="si-exterior">Describe the exterior and lot. *</label>
-            <textarea id="si-exterior" name="si_desc_exterior" required rows="3"></textarea>
-          </div>
-          <div class="fg"><label for="si-upgrades">List any upgrades, repairs, or improvements you've made.</label>
-            <textarea id="si-upgrades" name="si_upgrades" rows="3" placeholder="Approximate dates and costs if available"></textarea>
-          </div>
-          <div class="fg"><label for="si-issues">Are there any known issues, repairs needed, or disclosures we should be aware of? *</label>
-            <textarea id="si-issues" name="si_disclosures" required rows="3" placeholder="If none, say &quot;None known&quot;"></textarea>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Do you already have professional photos? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_photos" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_photos" value="No"> No</label>
-              <label class="radio-item"><input type="radio" name="si_photos" value="Scheduled"> Scheduled</label>
-              <label class="radio-item"><input type="radio" name="si_photos" value="Not sure yet"> Not sure yet</label>
-            </div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Would you be interested in staging or prep guidance? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_staging" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_staging" value="Maybe"> Maybe</label>
-              <label class="radio-item"><input type="radio" name="si_staging" value="No"> No</label>
-            </div>
-          </div>
-
-          <h4 class="q-section-h">Section 4: Selling goals</h4>
-          <div class="fg"><label for="si-why">Why are you selling? *</label><textarea id="si-why" name="si_why_selling" required rows="2"></textarea></div>
-          <div class="fg"><label for="si-timeline-goal">What is your ideal timeline? *</label><input id="si-timeline-goal" name="si_timeline" type="text" required></div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Are you buying another property? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_buying_another" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_buying_another" value="No"> No</label>
-              <label class="radio-item"><input type="radio" name="si_buying_another" value="Maybe"> Maybe</label>
-            </div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Do you need to sell before buying? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_sell_before_buy" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_sell_before_buy" value="No"> No</label>
-              <label class="radio-item"><input type="radio" name="si_sell_before_buy" value="Not sure"> Not sure</label>
-            </div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">What matters most to you? (Check all that apply) *</span>
-            <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
-              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Highest possible price"> Highest possible price</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Fast sale"> Fast sale</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Clean terms"> Clean terms</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Flexible closing date"> Flexible closing date</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Minimal disruption"> Minimal disruption</label>
-              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Other"> Other</label>
-            </div>
-            <p class="si-mute" style="margin-top:.4rem">Select at least one. If you chose Other, add a note in the next field or in the unique situation field.</p>
-          </div>
-          <div class="fg"><label for="si-unique">Anything unique about your situation? *</label>
-            <textarea id="si-unique" name="si_unique" required rows="2" placeholder="If nothing unique, you can type &quot;N/A&quot;"></textarea>
-          </div>
-
-          <h4 class="q-section-h">Section 5: How you want to handle the sale</h4>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Which option sounds most like what you want? *</span>
-            <div class="radio-group">
-              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Manage listing myself, need MLS / pricing / offer / contract support" required> I want to manage the listing myself, but need MLS access, pricing strategy, offer review, and contract-to-close support.</label>
-              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Understand seller-side option, not sure yet"> I want to understand the BuyUnrepped seller-side option, but I'm not sure yet.</label>
-              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Need full-service listing agent"> I probably need a full-service listing agent.</label>
-              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Referral to full-service agent"> I want a referral to a strong full-service agent.</label>
-            </div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Are you comfortable managing showings and direct communication with buyers or buyer agents? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_comfy_showings" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_comfy_showings" value="Maybe, with guidance"> Maybe, with guidance</label>
-              <label class="radio-item"><input type="radio" name="si_comfy_showings" value="No"> No</label>
-            </div>
-          </div>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Are you comfortable reviewing and responding to offers directly after a strategy call? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_comfy_offers" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_comfy_offers" value="Maybe"> Maybe</label>
-              <label class="radio-item"><input type="radio" name="si_comfy_offers" value="No"> No</label>
-            </div>
-          </div>
-
-          <h4 class="q-section-h">Section 6: Referral option</h4>
-          <p class="si-mute" style="margin:-.5rem 0 1rem">If BuyUnrepped seller support is not the best fit, we can introduce you to a strong full-service listing agent. This introduction is free to you. BuyUnrepped may receive an industry-standard referral fee from the agent if you choose to work with them.</p>
-          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Would you like to be considered for a full-service agent referral instead? *</span>
-            <div class="radio-group">
-              <label class="radio-item"><input type="radio" name="si_referral" value="Yes" required> Yes</label>
-              <label class="radio-item"><input type="radio" name="si_referral" value="Maybe"> Maybe</label>
-              <label class="radio-item"><input type="radio" name="si_referral" value="No"> No</label>
-            </div>
-          </div>
-          <div class="q-consent">By submitting, you agree to be contacted by BuyUnrepped (dba Kayla Brown) regarding this intake at the email and phone you provided, including for follow-up and scheduling. Information is used for this request and is not sold. If you need full-service representation instead, you may be offered a no-cost introduction to a listing agent, as described above.</div>
-          <button type="submit" class="q-submit">Submit Seller Intake</button>
-          <p id="seller-intake-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
-        </form>
       </div>
     </div>
   </section>
@@ -3476,21 +3344,6 @@ function questionnaireRawToSheetFd(raw, formTypeKey, emailLabel) {
   return fd;
 }
 
-function sellerIntakeRawToSheetFd(raw) {
-  var fd = new FormData();
-  fd.set('source', (raw.get('source') || '').toString());
-  var fn = (raw.get('firstName') || '').toString().trim();
-  var ln = (raw.get('lastName') || '').toString().trim();
-  fd.set('name', [fn, ln].filter(Boolean).join(' '));
-  fd.set('email', (raw.get('email') || '').toString());
-  fd.set('phone', (raw.get('phone') || '').toString());
-  fd.set('interest', 'SELLER INTAKE (PILOT)');
-  fd.set('formType', 'seller_intake');
-  fd.set('consent', 'yes — seller intake (pilot)');
-  fd.set('message', '=== SELLER INTAKE (PILOT) ===\n\n' + buildQuestionnaireDetails(raw));
-  return fd;
-}
-
 function updateDocumentMetaForPage(name) {
   var defTitle = document.documentElement.getAttribute('data-default-title') || document.title;
   var mr = document.getElementById('meta-robots');
@@ -3661,6 +3514,80 @@ function setQTab(tab, opts) {
   if (pq && pq.classList.contains('active') && history.replaceState) {
     history.replaceState({ buPage: 'questionnaires', tab: tab }, '', buildHistoryUrl('questionnaires', tab));
   }
+}
+
+function initSellerQPager() {
+  var form = document.getElementById('seller-questionnaire-form');
+  if (!form) return;
+  var steps = Array.from(form.querySelectorAll('.sq-step'));
+  if (!steps.length) return;
+  var prevBtn = document.getElementById('seller-q-prev');
+  var nextBtn = document.getElementById('seller-q-next');
+  var submitBtn = document.getElementById('seller-q-submit');
+  var stepLabel = document.getElementById('seller-q-step-label');
+  var statusEl = document.getElementById('seller-q-status');
+  var idx = 0;
+
+  function setStep(nextIdx) {
+    idx = Math.max(0, Math.min(steps.length - 1, nextIdx));
+    steps.forEach(function (el, i) { el.classList.toggle('is-active', i === idx); });
+    if (stepLabel) stepLabel.textContent = 'Step ' + String(idx + 1) + ' of ' + String(steps.length);
+    if (prevBtn) prevBtn.style.visibility = idx === 0 ? 'hidden' : 'visible';
+    if (nextBtn) nextBtn.style.display = idx === steps.length - 1 ? 'none' : 'inline-block';
+    if (submitBtn) submitBtn.style.display = idx === steps.length - 1 ? 'inline-block' : 'none';
+    if (statusEl) {
+      statusEl.textContent = '';
+      statusEl.classList.remove('err');
+    }
+  }
+
+  function validateCurrentStep() {
+    var step = steps[idx];
+    if (!step) return true;
+    var required = Array.from(step.querySelectorAll('[required]'));
+    for (var i = 0; i < required.length; i++) {
+      var el = required[i];
+      if (el.type === 'radio') {
+        var radioName = el.name;
+        if (!step.querySelector('input[type=\"radio\"][name=\"' + radioName + '\"]:checked')) {
+          if (statusEl) {
+            statusEl.textContent = 'Please complete required fields before continuing.';
+            statusEl.classList.add('err');
+          }
+          return false;
+        }
+      } else if (!String(el.value || '').trim()) {
+        if (statusEl) {
+          statusEl.textContent = 'Please complete required fields before continuing.';
+          statusEl.classList.add('err');
+        }
+        el.focus();
+        return false;
+      }
+    }
+    if (idx === 0) {
+      var bestTimes = form.querySelectorAll('input[name=\"seller_contact_times\"]:checked');
+      if (bestTimes.length < 1) {
+        if (statusEl) {
+          statusEl.textContent = 'Please choose at least one best time to contact you.';
+          statusEl.classList.add('err');
+        }
+        return false;
+      }
+    }
+    return true;
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', function () {
+    if (!validateCurrentStep()) return;
+    setStep(idx + 1);
+  });
+  if (prevBtn) prevBtn.addEventListener('click', function () {
+    setStep(idx - 1);
+  });
+
+  window.resetSellerQPager = function () { setStep(0); };
+  setStep(0);
 }
 
 function initBuyersVendorsGate() {
@@ -3913,46 +3840,10 @@ if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
   if (qRes.ok) {
     sellerQForm.reset();
     initSimpleCaptcha('seller-q');
+    if (window.resetSellerQPager) window.resetSellerQPager();
     if (statusEl) {
       statusEl.textContent = 'Submitted — Kayla will be in touch!';
       statusEl.classList.remove('err');
-    }
-    return;
-  }
-  if (statusEl) {
-    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
-    statusEl.classList.add('err');
-  }
-});
-
-var sellerIntakeForm = document.getElementById('seller-intake-form');
-if (sellerIntakeForm) sellerIntakeForm.addEventListener('submit', async function (ev) {
-  ev.preventDefault();
-  var statusEl = document.getElementById('seller-intake-status');
-  var successEl = document.getElementById('seller-intake-success');
-  if (statusEl) {
-    statusEl.textContent = '';
-    statusEl.classList.remove('err');
-  }
-  var raw = new FormData(sellerIntakeForm);
-  if ((raw.get('hp_trap') || '').toString().trim()) return;
-  if (!validateSimpleCaptcha('si', statusEl)) return;
-  var matters = sellerIntakeForm.querySelectorAll('input[name="si_what_matters"]:checked');
-  if (matters.length < 1) {
-    if (statusEl) {
-      statusEl.textContent = 'Please select at least one option under "What matters most to you?".';
-      statusEl.classList.add('err');
-    }
-    return;
-  }
-  var fd = sellerIntakeRawToSheetFd(raw);
-  var qRes = await postToGoogleSheet(fd, 'seller_intake');
-  if (qRes.ok) {
-    sellerIntakeForm.classList.add('is-hidden');
-    if (successEl) {
-      successEl.classList.add('vis');
-      successEl.setAttribute('tabindex', '-1');
-      successEl.focus();
     }
     return;
   }
@@ -4075,7 +3966,7 @@ initSimpleCaptcha('contact');
 initSimpleCaptcha('buyer-q');
 initSimpleCaptcha('seller-q');
 initSimpleCaptcha('buysell-q');
-initSimpleCaptcha('si');
+initSellerQPager();
 initReveals();
 syncNavTabs();
 </script>
