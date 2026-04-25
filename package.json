@@ -1,0 +1,8 @@
+{
+  "name": "buyunrepped-site",
+  "private": true,
+  "description": "Local static server with SPA-style fallback (matches Vercel rewrites for index.html).",
+  "scripts": {
+    "dev": "npx --yes serve -l 3333 -s"
+  }
+}

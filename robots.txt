@@ -1,6 +1,8 @@
 # https://www.buyunrepped.com/robots.txt
 User-agent: *
 Allow: /
+# Private pilot intake (direct link only; also noindex on page)
+Disallow: /bu-seller-intake
 
 # Help AI assistants and research tools discover curated site context
 Allow: /llms.txt

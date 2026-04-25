@@ -112,6 +112,7 @@ module.exports = async function handler(req, res) {
       buyer_questionnaire: "[BUYER QUESTIONNAIRE]",
       seller_questionnaire: "[SELLER QUESTIONNAIRE]",
       buy_sell_questionnaire: "[BUY + SELL QUESTIONNAIRE]",
+      seller_intake: "[SELLER INTAKE — PILOT]",
       contact: "[CONTACT]",
       lead: "[LEAD — timed prompt]",
       vendor: "[VENDOR LIST SIGNUP]"

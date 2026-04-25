@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-default-title="BuyUnrepped | Tennessee Homebuying Help for Unrepresented Buyers | Kayla Brown, Nashville">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BuyUnrepped | Tennessee Homebuying Help for Unrepresented Buyers | Kayla Brown, Nashville</title>
 <meta name="description" content="Licensed Tennessee brokerage for unrepresented buyers: $995 ready-to-submit offer (strategy, CMA + BPO, Tennessee forms) and $2,495 transaction coordination with platform, templates, and broker support. $3,490 all in vs typical 3%. Kayla Brown, Nashville.">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" id="meta-robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" id="doc-canonical" href="https://www.buyunrepped.com/">
 <meta name="author" content="Kayla Brown, BuyUnrepped">
-<link rel="canonical" href="https://www.buyunrepped.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BuyUnrepped">
 <meta property="og:url" content="https://www.buyunrepped.com/">
@@ -218,6 +218,7 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .q-intro p{font-size:.9rem;line-height:1.8;color:var(--muted);margin-bottom:1.25rem}
 .q-consent{font-size:.72rem;color:var(--muted);line-height:1.65;font-style:italic;margin-top:1.5rem;padding:1rem;background:var(--cream);border-left:3px solid var(--border)}
 .q-form{display:flex;flex-direction:column;gap:.9rem}
+.q-section-h{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin:2rem 0 1rem;padding-bottom:.35rem;border-bottom:1px solid var(--border)}
 .fg{display:flex;flex-direction:column;gap:.35rem}
 .fg label{font-size:.75rem;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
 .fg input,.fg select,.fg textarea{border:1.5px solid var(--border);background:white;padding:.7rem 1rem;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--text);border-radius:2px;transition:border-color .2s;outline:none}
@@ -230,6 +231,33 @@ h2.sec-title em{font-style:italic;color:var(--gold)}
 .checkbox-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--bu-sky)}
 .q-submit{background:var(--bu-sky);color:#fff;border:none;padding:.9rem 2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background .2s;margin-top:.5rem}
 .q-submit:hover{background:#258cbd}
+
+/* Seller intake (hidden pilot page) */
+.si-wrap{max-width:760px;margin:0 auto}
+.si-lead p{font-size:.95rem;line-height:1.78;color:var(--muted);margin-bottom:1rem}
+.si-lead p:last-child{margin-bottom:0}
+.si-scope{background:var(--bg-white);border:1px solid var(--border);border-radius:2px;padding:2rem 2rem 1.75rem;margin:2.25rem 0;box-shadow:var(--shadow-soft)}
+.si-scope h3{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--navy);margin:1.5rem 0 .65rem;line-height:1.25}
+.si-scope h3:first-of-type{margin-top:0}
+.si-scope p,.si-scope li{font-size:.86rem;line-height:1.72;color:var(--text)}
+.si-scope ul{margin:.45rem 0 .85rem 1.15rem}
+.si-scope ul li{margin:.25rem 0}
+.si-disclosure{background:rgba(46,163,230,.06);border:1px solid var(--border);border-left:3px solid var(--bu-sky);padding:1.35rem 1.5rem;border-radius:2px;margin:2rem 0}
+.si-disclosure p{font-size:.86rem;line-height:1.72;color:var(--text);margin-bottom:.65rem}
+.si-disclosure p:last-child{margin-bottom:0}
+.si-disclosure strong{color:var(--navy)}
+.si-before-form{font-size:.92rem;line-height:1.75;color:var(--muted);margin:1.5rem 0 2rem;padding-top:1rem;border-top:1px solid var(--border)}
+.si-form-h{font-family:'DM Serif Display',serif;font-size:1.65rem;color:var(--navy);margin:2.5rem 0 1.25rem}
+.radio-group{display:flex;flex-direction:column;gap:.45rem}
+.radio-item{display:flex;align-items:flex-start;gap:.55rem;cursor:pointer;font-size:.86rem;line-height:1.45;color:var(--text)}
+.radio-item input[type=radio]{width:16px;height:16px;margin-top:.18rem;accent-color:var(--bu-sky);flex-shrink:0}
+.radio-item.si-long{align-items:flex-start}
+.si-success{display:none;background:var(--navy);color:var(--ink-on-dark);padding:2.5rem 2.25rem;border-radius:2px;margin-top:1rem;border-left:3px solid var(--gold)}
+.si-success.vis{display:block}
+.si-success p{font-size:.95rem;line-height:1.78;color:var(--ink-muted-on-dark);margin:0}
+.si-success h3{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;margin-bottom:1rem}
+p.si-mute{font-size:.78rem;color:var(--muted);line-height:1.6}
+#seller-intake-form.is-hidden{display:none!important}
 
 /* EDUCATION */
 .edu-section{background:var(--cream)}
@@ -2617,6 +2645,271 @@ a.trec-link:hover{color:#fff}
 </div><!-- end questionnaires -->
 
 
+<!-- Hidden pilot: not linked in nav. Direct URL only. -->
+<div class="page" id="page-seller-intake">
+  <section class="q-section" style="padding-top:calc(var(--nav-height) + 2rem)">
+    <div class="container">
+      <div class="si-wrap">
+        <div class="eyebrow">BuyUnrepped &middot; Seller pilot (private link)</div>
+        <h1 class="sec-title" style="margin-bottom:1rem">Sell with structure. Stay in control.</h1>
+        <div class="si-lead">
+          <p>You're considering a seller-side version of <strong>BuyUnrepped</strong>: MLS exposure, pricing strategy, offer review, and transaction coordination without full-service listing representation.</p>
+          <p>This intake helps us understand your property, your goals, and whether BuyUnrepped seller support is the right fit.</p>
+          <p>BuyUnrepped is designed for sellers who want professional structure while managing their own listing, showings, communication, and negotiation decisions.</p>
+        </div>
+
+        <div class="si-scope" aria-labelledby="si-how-heading">
+          <h2 class="sec-title" id="si-how-heading" style="font-size:clamp(1.35rem,2.2vw,1.75rem);margin-bottom:1rem">How this works (read before submitting)</h2>
+          <h3>What this is</h3>
+          <p>BuyUnrepped seller support is designed for owners who want MLS exposure and professional structure while managing their own listing.</p>
+          <p><strong>You stay in control of the sale.</strong> We help you prepare, structure, and manage the process behind the scenes.</p>
+          <h3>What you get</h3>
+          <p>For a <strong>flat fee of $2,495</strong> (pilot pricing may vary), BuyUnrepped provides:</p>
+          <ul>
+            <li>Pricing analysis (CMA / broker price opinion)</li>
+            <li>MLS listing setup under the brokerage</li>
+            <li>Compliance document support</li>
+            <li>Guidance on positioning and listing setup</li>
+            <li>Offer review and strategy sessions</li>
+            <li>Contract-to-close transaction coordination once under contract</li>
+          </ul>
+          <h3>What you handle</h3>
+          <p>You remain responsible for:</p>
+          <ul>
+            <li>Setting and adjusting the list price</li>
+            <li>Managing all showings</li>
+            <li>Communicating with buyers and buyer agents</li>
+            <li>Reviewing and responding to offers</li>
+            <li>Negotiating terms</li>
+          </ul>
+          <p><strong>You are the primary point of contact throughout the listing.</strong></p>
+          <h3>What this is not</h3>
+          <p>This is not full-service listing representation.</p>
+          <p><strong>BuyUnrepped does not:</strong></p>
+          <ul>
+            <li>Host or attend showings</li>
+            <li>Negotiate on your behalf</li>
+            <li>Communicate with buyers or agents for you (unless separately agreed)</li>
+            <li>Market the property beyond MLS (unless added)</li>
+          </ul>
+          <h3>Structure and limits</h3>
+          <p>To keep this efficient and focused:</p>
+          <ul>
+            <li>Includes 1 pricing strategy session</li>
+            <li>Includes 1 listing setup session</li>
+            <li>Includes up to 2 offer review sessions per offer cycle</li>
+            <li>Additional support is available if needed and scoped separately</li>
+          </ul>
+          <p>Communication is handled through scheduled calls and email.</p>
+          <h3>Timing and term</h3>
+          <ul>
+            <li>Listing term: 6 months</li>
+            <li>Fee is due upfront</li>
+            <li>Fee is not contingent on sale</li>
+          </ul>
+          <h3>Who this is a fit for</h3>
+          <p>This works best for sellers who:</p>
+          <ul>
+            <li>are comfortable managing communication directly</li>
+            <li>want control over pricing and negotiation</li>
+            <li>value structure and guidance, but do not want to hand off the listing</li>
+          </ul>
+          <h3>Not sure this is right?</h3>
+          <p>If you decide you want full-service representation, we can connect you with a strong listing agent. <strong>There is no cost to you for that introduction.</strong></p>
+        </div>
+
+        <div class="si-disclosure">
+          <p><strong>Important:</strong> BuyUnrepped seller support is limited in scope.</p>
+          <p><strong>You remain responsible for</strong> setting the list price; approving listing details; managing showings; communicating with buyers and agents; making all negotiation decisions.</p>
+          <p>BuyUnrepped may provide pricing guidance, MLS setup, compliance document support, offer review, and transaction coordination. BuyUnrepped does not provide full-service listing representation unless separately agreed in writing.</p>
+        </div>
+
+        <p class="si-before-form">If this structure makes sense for you, complete the intake below and we'll review your property and next steps.</p>
+
+        <h2 class="si-form-h">Seller Intake Form</h2>
+        <div id="seller-intake-success" class="si-success" role="status" aria-live="polite" tabindex="-1">
+          <h3>Thank you. We received your seller intake.</h3>
+          <p>We'll review the property details and follow up with next steps. If BuyUnrepped seller support appears to be a fit, we'll schedule a call to review pricing, scope, expectations, and whether this structure makes sense for your situation.</p>
+        </div>
+        <form id="seller-intake-form" class="q-form" novalidate>
+          <input type="hidden" name="source" value="BuyUnrepped seller intake (pilot, direct link)">
+          <input type="text" name="hp_trap" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;pointer-events:none">
+          <div class="fg">
+            <label for="si-captcha">Quick check: <span id="si-captcha-q">What is 2 + 3?</span></label>
+            <input id="si-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
+          </div>
+          <h4 class="q-section-h" style="margin-top:0">Section 1: Basic information</h4>
+          <div class="fg-row">
+            <div class="fg"><label for="si-first">First name *</label><input id="si-first" name="firstName" type="text" autocomplete="given-name" required></div>
+            <div class="fg"><label for="si-last">Last name *</label><input id="si-last" name="lastName" type="text" autocomplete="family-name" required></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label for="si-phone">Phone number *</label><input id="si-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="fg"><label for="si-email">Email address *</label><input id="si-email" name="email" type="email" autocomplete="email" required inputmode="email"></div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Preferred contact method *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_pref_contact" value="Call" required> Call</label>
+              <label class="radio-item"><input type="radio" name="si_pref_contact" value="Text"> Text</label>
+              <label class="radio-item"><input type="radio" name="si_pref_contact" value="Email"> Email</label>
+            </div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Best times to contact you</span>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="si_best_times" value="Morning"> Morning</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_best_times" value="Afternoon"> Afternoon</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_best_times" value="Evening"> Evening</label>
+            </div>
+          </div>
+          <div class="fg"><label for="si-coseller-name">Co-seller name, if applicable</label><input id="si-coseller-name" name="si_coseller_name" type="text" autocomplete="name"></div>
+          <div class="fg-row">
+            <div class="fg"><label for="si-coseller-phone">Co-seller phone number</label><input id="si-coseller-phone" name="si_coseller_phone" type="tel" autocomplete="tel"></div>
+            <div class="fg"><label for="si-coseller-email">Co-seller email</label><input id="si-coseller-email" name="si_coseller_email" type="email" autocomplete="email"></div>
+          </div>
+
+          <h4 class="q-section-h">Section 2: Property information</h4>
+          <div class="fg"><label for="si-address">Property address *</label><input id="si-address" name="si_property_address" type="text" autocomplete="street-address" required></div>
+          <div class="fg"><label for="si-type">Type of property *</label>
+            <select id="si-type" name="si_property_type" required>
+              <option value="">Select one</option>
+              <option>Single-family home</option>
+              <option>Townhome</option>
+              <option>Condo</option>
+              <option>Vacant land</option>
+              <option>Multifamily</option>
+              <option>HPR attached</option>
+              <option>HPR detached</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label for="si-occupancy">Current occupancy *</label>
+            <select id="si-occupancy" name="si_occupancy" required>
+              <option value="">Select one</option>
+              <option>Owner-occupied</option>
+              <option>Tenant-occupied</option>
+              <option>Vacant</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label for="si-bedbath">Bedroom / bathroom count *</label><input id="si-bedbath" name="si_bed_bath" type="text" required placeholder="e.g. 3 bed / 2.5 bath"></div>
+          <div class="fg-row">
+            <div class="fg"><label for="si-sqft">Approximate square footage *</label><input id="si-sqft" name="si_sqft" type="text" inputmode="numeric" required></div>
+            <div class="fg"><label for="si-year">Year built, if known</label><input id="si-year" name="si_year_built" type="text" inputmode="numeric" placeholder="e.g. 1995"></div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Any HOA? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_hoa" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_hoa" value="No"> No</label>
+              <label class="radio-item"><input type="radio" name="si_hoa" value="Not sure"> Not sure</label>
+            </div>
+          </div>
+          <div class="fg"><label for="si-worth">What do you think the property is worth today? *</label><textarea id="si-worth" name="si_est_worth" required rows="2" placeholder="Your estimate or range"></textarea></div>
+          <div class="fg"><label for="si-target">Do you have a target list price in mind?</label><textarea id="si-target" name="si_target_list" rows="2"></textarea></div>
+
+          <h4 class="q-section-h">Section 3: Property condition and updates</h4>
+          <div class="fg"><label for="si-inside">Describe the inside of the home. *</label>
+            <textarea id="si-inside" name="si_desc_inside" required rows="4" placeholder="Finishes, layout, condition, and anything a buyer would notice"></textarea>
+          </div>
+          <div class="fg"><label for="si-exterior">Describe the exterior and lot. *</label>
+            <textarea id="si-exterior" name="si_desc_exterior" required rows="3"></textarea>
+          </div>
+          <div class="fg"><label for="si-upgrades">List any upgrades, repairs, or improvements you've made.</label>
+            <textarea id="si-upgrades" name="si_upgrades" rows="3" placeholder="Approximate dates and costs if available"></textarea>
+          </div>
+          <div class="fg"><label for="si-issues">Are there any known issues, repairs needed, or disclosures we should be aware of? *</label>
+            <textarea id="si-issues" name="si_disclosures" required rows="3" placeholder="If none, say &quot;None known&quot;"></textarea>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Do you already have professional photos? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_photos" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_photos" value="No"> No</label>
+              <label class="radio-item"><input type="radio" name="si_photos" value="Scheduled"> Scheduled</label>
+              <label class="radio-item"><input type="radio" name="si_photos" value="Not sure yet"> Not sure yet</label>
+            </div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Would you be interested in staging or prep guidance? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_staging" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_staging" value="Maybe"> Maybe</label>
+              <label class="radio-item"><input type="radio" name="si_staging" value="No"> No</label>
+            </div>
+          </div>
+
+          <h4 class="q-section-h">Section 4: Selling goals</h4>
+          <div class="fg"><label for="si-why">Why are you selling? *</label><textarea id="si-why" name="si_why_selling" required rows="2"></textarea></div>
+          <div class="fg"><label for="si-timeline-goal">What is your ideal timeline? *</label><input id="si-timeline-goal" name="si_timeline" type="text" required></div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Are you buying another property? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_buying_another" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_buying_another" value="No"> No</label>
+              <label class="radio-item"><input type="radio" name="si_buying_another" value="Maybe"> Maybe</label>
+            </div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Do you need to sell before buying? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_sell_before_buy" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_sell_before_buy" value="No"> No</label>
+              <label class="radio-item"><input type="radio" name="si_sell_before_buy" value="Not sure"> Not sure</label>
+            </div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">What matters most to you? (Check all that apply) *</span>
+            <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
+              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Highest possible price"> Highest possible price</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Fast sale"> Fast sale</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Clean terms"> Clean terms</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Flexible closing date"> Flexible closing date</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Minimal disruption"> Minimal disruption</label>
+              <label class="checkbox-item"><input type="checkbox" name="si_what_matters" value="Other"> Other</label>
+            </div>
+            <p class="si-mute" style="margin-top:.4rem">Select at least one. If you chose Other, add a note in the next field or in the unique situation field.</p>
+          </div>
+          <div class="fg"><label for="si-unique">Anything unique about your situation? *</label>
+            <textarea id="si-unique" name="si_unique" required rows="2" placeholder="If nothing unique, you can type &quot;N/A&quot;"></textarea>
+          </div>
+
+          <h4 class="q-section-h">Section 5: How you want to handle the sale</h4>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Which option sounds most like what you want? *</span>
+            <div class="radio-group">
+              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Manage listing myself, need MLS / pricing / offer / contract support" required> I want to manage the listing myself, but need MLS access, pricing strategy, offer review, and contract-to-close support.</label>
+              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Understand seller-side option, not sure yet"> I want to understand the BuyUnrepped seller-side option, but I'm not sure yet.</label>
+              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Need full-service listing agent"> I probably need a full-service listing agent.</label>
+              <label class="radio-item si-long"><input type="radio" name="si_seller_option" value="Referral to full-service agent"> I want a referral to a strong full-service agent.</label>
+            </div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Are you comfortable managing showings and direct communication with buyers or buyer agents? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_comfy_showings" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_comfy_showings" value="Maybe, with guidance"> Maybe, with guidance</label>
+              <label class="radio-item"><input type="radio" name="si_comfy_showings" value="No"> No</label>
+            </div>
+          </div>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Are you comfortable reviewing and responding to offers directly after a strategy call? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_comfy_offers" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_comfy_offers" value="Maybe"> Maybe</label>
+              <label class="radio-item"><input type="radio" name="si_comfy_offers" value="No"> No</label>
+            </div>
+          </div>
+
+          <h4 class="q-section-h">Section 6: Referral option</h4>
+          <p class="si-mute" style="margin:-.5rem 0 1rem">If BuyUnrepped seller support is not the best fit, we can introduce you to a strong full-service listing agent. This introduction is free to you. BuyUnrepped may receive an industry-standard referral fee from the agent if you choose to work with them.</p>
+          <div class="fg"><span class="fg-lbl" style="display:block;margin-bottom:.4rem">Would you like to be considered for a full-service agent referral instead? *</span>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="si_referral" value="Yes" required> Yes</label>
+              <label class="radio-item"><input type="radio" name="si_referral" value="Maybe"> Maybe</label>
+              <label class="radio-item"><input type="radio" name="si_referral" value="No"> No</label>
+            </div>
+          </div>
+          <div class="q-consent">By submitting, you agree to be contacted by BuyUnrepped (dba Kayla Brown) regarding this intake at the email and phone you provided, including for follow-up and scheduling. Information is used for this request and is not sold. If you need full-service representation instead, you may be offered a no-cost introduction to a listing agent, as described above.</div>
+          <button type="submit" class="q-submit">Submit Seller Intake</button>
+          <p id="seller-intake-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div><!-- end seller intake -->
+
+
 <!-- Education guides: titles/blurbs are site copy only (not pulled from a CMS or feed). Link "Read Guide" when real articles exist. -->
 <!-- ═══════════════════ PAGE: EDUCATION ═══════════════════ -->
 <div class="page" id="page-education">
@@ -3193,6 +3486,36 @@ function questionnaireRawToSheetFd(raw, formTypeKey, emailLabel) {
   return fd;
 }
 
+function sellerIntakeRawToSheetFd(raw) {
+  var fd = new FormData();
+  fd.set('source', (raw.get('source') || '').toString());
+  var fn = (raw.get('firstName') || '').toString().trim();
+  var ln = (raw.get('lastName') || '').toString().trim();
+  fd.set('name', [fn, ln].filter(Boolean).join(' '));
+  fd.set('email', (raw.get('email') || '').toString());
+  fd.set('phone', (raw.get('phone') || '').toString());
+  fd.set('interest', 'SELLER INTAKE (PILOT)');
+  fd.set('formType', 'seller_intake');
+  fd.set('consent', 'yes — seller intake (pilot)');
+  fd.set('message', '=== SELLER INTAKE (PILOT) ===\n\n' + buildQuestionnaireDetails(raw));
+  return fd;
+}
+
+function updateDocumentMetaForPage(name) {
+  var defTitle = document.documentElement.getAttribute('data-default-title') || document.title;
+  var mr = document.getElementById('meta-robots');
+  var can = document.getElementById('doc-canonical');
+  if (name === 'seller-intake') {
+    document.title = 'Sell with structure. Stay in control. | BuyUnrepped seller intake';
+    if (mr) mr.setAttribute('content', 'noindex, nofollow');
+    if (can) can.setAttribute('href', location.origin + '/bu-seller-intake');
+  } else {
+    document.title = defTitle;
+    if (mr) mr.setAttribute('content', 'index, follow, max-image-preview:large');
+    if (can) can.setAttribute('href', 'https://www.buyunrepped.com/');
+  }
+}
+
 function closeNavMobile() {
   const nav = document.getElementById('main-nav');
   const burger = document.getElementById('nav-burger');
@@ -3213,7 +3536,8 @@ var BU_PAGE_TO_PATH = {
   blog: '/blog',
   about: '/about',
   contact: '/contact',
-  questionnaires: '/questionnaires'
+  questionnaires: '/questionnaires',
+  'seller-intake': '/bu-seller-intake'
 };
 var BU_PATH_TO_PAGE = {};
 Object.keys(BU_PAGE_TO_PATH).forEach(function (k) {
@@ -3254,6 +3578,7 @@ function applyPageView(name, opts) {
   }, opts.scrollToId ? 120 : 100);
   closeNavMobile();
   syncNavTabs();
+  updateDocumentMetaForPage(name);
   if (name === 'buyers-vendors') initBuyersVendorsGate();
 }
 
@@ -3269,6 +3594,7 @@ function getNavKeyForPage(name) {
     if (ps && ps.classList.contains('active')) return 'sellers';
     return 'buyers';
   }
+  if (name === 'seller-intake') return 'z-no-nav';
   return 'home';
 }
 
@@ -3601,6 +3927,43 @@ if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
   }
 });
 
+var sellerIntakeForm = document.getElementById('seller-intake-form');
+if (sellerIntakeForm) sellerIntakeForm.addEventListener('submit', async function (ev) {
+  ev.preventDefault();
+  var statusEl = document.getElementById('seller-intake-status');
+  var successEl = document.getElementById('seller-intake-success');
+  if (statusEl) {
+    statusEl.textContent = '';
+    statusEl.classList.remove('err');
+  }
+  var raw = new FormData(sellerIntakeForm);
+  if ((raw.get('hp_trap') || '').toString().trim()) return;
+  if (!validateSimpleCaptcha('si', statusEl)) return;
+  var matters = sellerIntakeForm.querySelectorAll('input[name="si_what_matters"]:checked');
+  if (matters.length < 1) {
+    if (statusEl) {
+      statusEl.textContent = 'Please select at least one option under "What matters most to you?".';
+      statusEl.classList.add('err');
+    }
+    return;
+  }
+  var fd = sellerIntakeRawToSheetFd(raw);
+  var qRes = await postToGoogleSheet(fd, 'seller_intake');
+  if (qRes.ok) {
+    sellerIntakeForm.classList.add('is-hidden');
+    if (successEl) {
+      successEl.classList.add('vis');
+      successEl.setAttribute('tabindex', '-1');
+      successEl.focus();
+    }
+    return;
+  }
+  if (statusEl) {
+    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+    statusEl.classList.add('err');
+  }
+});
+
 var buysellQForm = document.getElementById('buysell-questionnaire-form');
 if (buysellQForm) buysellQForm.addEventListener('submit', async function (ev) {
   ev.preventDefault();
@@ -3679,9 +4042,11 @@ document.addEventListener('keydown', function (e) {
 (function scheduleLeadModal() {
   if (localStorage.getItem('bu_lead_done')) return;
   if (sessionStorage.getItem('bu_lead_dismissed')) return;
+  if (/\/bu-seller-intake\/?/i.test(location.pathname)) return;
   setTimeout(function () {
     if (localStorage.getItem('bu_lead_done')) return;
     if (sessionStorage.getItem('bu_lead_dismissed')) return;
+    if (/\/bu-seller-intake\/?/i.test(location.pathname)) return;
     openLeadModal();
   }, 180000);
 })();
@@ -3712,6 +4077,7 @@ initSimpleCaptcha('contact');
 initSimpleCaptcha('buyer-q');
 initSimpleCaptcha('seller-q');
 initSimpleCaptcha('buysell-q');
+initSimpleCaptcha('si');
 initReveals();
 syncNavTabs();
 </script>
