@@ -514,6 +514,15 @@ p.si-mute{font-size:.78rem;color:var(--muted);line-height:1.6}
 .lead-modal-skip:hover{color:var(--navy)}
 .lead-modal-status{font-size:.78rem;margin-top:.75rem;color:var(--muted)}
 .lead-modal-status.err{color:var(--rust)}
+.lead-modal-status.ok{
+  color:#1f5130;
+  background:rgba(73,146,89,.12);
+  border:1px solid rgba(73,146,89,.35);
+  border-left:3px solid #499259;
+  padding:.65rem .75rem;
+  border-radius:2px;
+}
+.q-form.is-session-locked{opacity:.72}
 
 /* BUYERS — vendor list (gated) */
 .vendor-page{background:var(--bg-soft);padding-bottom:4rem}
@@ -2707,8 +2716,8 @@ a.trec-link:hover{color:#fff}
                 </div>
               </div>
               <div class="fg">
-                <label style="margin-bottom:.35rem">What matters most in this sale?</label>
-                <div class="checkbox-group">
+                <label style="margin-bottom:.35rem">What matters most in this sale? <span style="font-weight:400;color:var(--text-muted,#666)">(select up to 3)</span></label>
+                <div class="checkbox-group" id="seller-sale-priorities-group">
                   <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Price"> Price</label>
                   <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Speed"> Speed</label>
                   <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Clean terms"> Clean terms</label>
@@ -2862,7 +2871,7 @@ a.trec-link:hover{color:#fff}
             </div>
           </div>
           <div class="si-visual" aria-label="Nashville-area home exterior">
-            <img src="https://images.unsplash.com/photo-1568605114967-8130f391436b?w=1100&q=88&auto=format" alt="Nashville area home with classic curb appeal">
+            <img src="images/seller-intake-home.png" alt="Nashville area home with BuyUnrepped seller sign">
             <div class="si-visual-note">
               <strong>More than MLS-only. Less than full-service.</strong>
               <span>Built for sellers who want control with licensed broker structure behind the scenes.</span>
@@ -3781,6 +3790,8 @@ function initSellerQPager() {
   if (nextBtn) nextBtn.addEventListener('click', function () {
     if (!validateCurrentStep()) return;
     setStep(idx + 1);
+    var formEl = document.getElementById('seller-questionnaire-form');
+    if (formEl) formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   if (prevBtn) prevBtn.addEventListener('click', function () {
     setStep(idx - 1);
@@ -3788,6 +3799,20 @@ function initSellerQPager() {
 
   window.resetSellerQPager = function () { setStep(0); };
   setStep(0);
+
+  var priorityGroup = document.getElementById('seller-sale-priorities-group');
+  if (priorityGroup) {
+    priorityGroup.addEventListener('change', function (e) {
+      if (!e.target.matches('input[type="checkbox"]')) return;
+      var checked = priorityGroup.querySelectorAll('input[type="checkbox"]:checked');
+      if (checked.length > 3) e.target.checked = false;
+      var allBoxes = priorityGroup.querySelectorAll('input[type="checkbox"]');
+      var atLimit = priorityGroup.querySelectorAll('input[type="checkbox"]:checked').length >= 3;
+      allBoxes.forEach(function (cb) {
+        cb.disabled = atLimit && !cb.checked;
+      });
+    });
+  }
 }
 
 function initBuyersVendorsGate() {
@@ -3964,7 +3989,7 @@ if (contactForm) contactForm.addEventListener('submit', async function (ev) {
   var statusEl = document.getElementById('contact-form-status');
   if (statusEl) {
     statusEl.textContent = '';
-    statusEl.classList.remove('err');
+    statusEl.classList.remove('err', 'ok');
   }
   var raw = new FormData(contactForm);
   if ((raw.get('hp_trap') || '').toString().trim()) {
@@ -3979,99 +4004,170 @@ if (contactForm) contactForm.addEventListener('submit', async function (ev) {
     if (statusEl) {
       statusEl.textContent = "Thanks — I'll be in touch soon.";
       statusEl.classList.remove('err');
+      statusEl.classList.add('ok');
     }
     return;
   }
   if (statusEl) {
+    statusEl.classList.remove('ok');
     statusEl.textContent = 'Form service issue (' + (sheetRes.detail || sheetRes.reason || 'unknown') + ').';
     statusEl.classList.add('err');
   }
 });
 
 var buyerQForm = document.getElementById('buyer-questionnaire-form');
-if (buyerQForm) buyerQForm.addEventListener('submit', async function (ev) {
-  ev.preventDefault();
-  var statusEl = document.getElementById('buyer-q-status');
-  if (statusEl) {
-    statusEl.textContent = '';
-    statusEl.classList.remove('err');
-  }
-  var raw = new FormData(buyerQForm);
-  if ((raw.get('hp_trap') || '').toString().trim()) return;
-  if (!validateSimpleCaptcha('buyer-q', statusEl)) return;
-  var fd = questionnaireRawToSheetFd(raw, 'buyer_questionnaire', 'BUYER QUESTIONNAIRE');
-  var qRes = await postToGoogleSheet(fd, 'buyer_questionnaire');
-  if (qRes.ok) {
-    buyerQForm.reset();
-    initSimpleCaptcha('buyer-q');
-    if (statusEl) {
-      statusEl.textContent = 'Submitted — Kayla will be in touch!';
-      statusEl.classList.remove('err');
+if (buyerQForm) {
+  var buyerQStatusEl = document.getElementById('buyer-q-status');
+  var buyerSessionKey = 'bu_buyer_q_submitted_session';
+
+  function lockBuyerQForSession(successMessage) {
+    buyerQForm.classList.add('is-session-locked');
+    Array.from(buyerQForm.querySelectorAll('input, select, textarea, button')).forEach(function (el) {
+      el.disabled = true;
+    });
+    if (buyerQStatusEl) {
+      buyerQStatusEl.textContent = successMessage || "You've already submitted this buyer questionnaire during this session. Close and reopen the site later if you'd like to submit again.";
+      buyerQStatusEl.classList.remove('err');
+      buyerQStatusEl.classList.add('ok');
     }
-    return;
   }
-  if (statusEl) {
-    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
-    statusEl.classList.add('err');
+
+  if (sessionStorage.getItem(buyerSessionKey) === '1') {
+    lockBuyerQForSession();
   }
-});
+
+  buyerQForm.addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+    if (sessionStorage.getItem(buyerSessionKey) === '1') {
+      lockBuyerQForSession();
+      return;
+    }
+    if (buyerQStatusEl) {
+      buyerQStatusEl.textContent = '';
+      buyerQStatusEl.classList.remove('err', 'ok');
+    }
+    var raw = new FormData(buyerQForm);
+    if ((raw.get('hp_trap') || '').toString().trim()) return;
+    if (!validateSimpleCaptcha('buyer-q', buyerQStatusEl)) return;
+    var fd = questionnaireRawToSheetFd(raw, 'buyer_questionnaire', 'BUYER QUESTIONNAIRE');
+    var qRes = await postToGoogleSheet(fd, 'buyer_questionnaire');
+    if (qRes.ok) {
+      buyerQForm.reset();
+      initSimpleCaptcha('buyer-q');
+      sessionStorage.setItem(buyerSessionKey, '1');
+      lockBuyerQForSession('Submitted — Kayla will be in touch!');
+      return;
+    }
+    if (buyerQStatusEl) {
+      buyerQStatusEl.classList.remove('ok');
+      buyerQStatusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+      buyerQStatusEl.classList.add('err');
+    }
+  });
+}
 
 var sellerQForm = document.getElementById('seller-questionnaire-form');
-if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
-  ev.preventDefault();
-  var statusEl = document.getElementById('seller-q-status');
-  if (statusEl) {
-    statusEl.textContent = '';
-    statusEl.classList.remove('err');
-  }
-  var raw = new FormData(sellerQForm);
-  if ((raw.get('hp_trap') || '').toString().trim()) return;
-  if (!validateSimpleCaptcha('seller-q', statusEl)) return;
-  var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
-  var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
-  if (qRes.ok) {
-    sellerQForm.reset();
-    initSimpleCaptcha('seller-q');
-    if (window.resetSellerQPager) window.resetSellerQPager();
-    if (statusEl) {
-      statusEl.textContent = "Thanks — we've received your information. We'll review the property and follow up with next steps. If this looks like a fit, we'll walk through pricing, structure, and how this would work for your specific situation.";
-      statusEl.classList.remove('err');
+if (sellerQForm) {
+  var sellerQStatusEl = document.getElementById('seller-q-status');
+  var sellerSessionKey = 'bu_seller_q_submitted_session';
+
+  function lockSellerQForSession(successMessage) {
+    sellerQForm.classList.add('is-session-locked');
+    Array.from(sellerQForm.querySelectorAll('input, select, textarea, button')).forEach(function (el) {
+      el.disabled = true;
+    });
+    if (sellerQStatusEl) {
+      sellerQStatusEl.textContent = successMessage || "You've already submitted this seller intake during this session. Close and reopen the site later if you'd like to submit again.";
+      sellerQStatusEl.classList.remove('err');
+      sellerQStatusEl.classList.add('ok');
     }
-    return;
   }
-  if (statusEl) {
-    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
-    statusEl.classList.add('err');
+
+  if (sessionStorage.getItem(sellerSessionKey) === '1') {
+    lockSellerQForSession();
   }
-});
+
+  sellerQForm.addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+    if (sessionStorage.getItem(sellerSessionKey) === '1') {
+      lockSellerQForSession();
+      return;
+    }
+    if (sellerQStatusEl) {
+      sellerQStatusEl.textContent = '';
+      sellerQStatusEl.classList.remove('err', 'ok');
+    }
+    var raw = new FormData(sellerQForm);
+    if ((raw.get('hp_trap') || '').toString().trim()) return;
+    if (!validateSimpleCaptcha('seller-q', sellerQStatusEl)) return;
+    var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
+    var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
+    if (qRes.ok) {
+      sellerQForm.reset();
+      initSimpleCaptcha('seller-q');
+      if (window.resetSellerQPager) window.resetSellerQPager();
+      sessionStorage.setItem(sellerSessionKey, '1');
+      lockSellerQForSession("Thanks — we've received your information. We'll review the property and follow up with next steps. If this looks like a fit, we'll walk through pricing, structure, and how this would work for your specific situation.");
+      return;
+    }
+    if (sellerQStatusEl) {
+      sellerQStatusEl.classList.remove('ok');
+      sellerQStatusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+      sellerQStatusEl.classList.add('err');
+    }
+  });
+}
 
 var buysellQForm = document.getElementById('buysell-questionnaire-form');
-if (buysellQForm) buysellQForm.addEventListener('submit', async function (ev) {
-  ev.preventDefault();
-  var statusEl = document.getElementById('buysell-q-status');
-  if (statusEl) {
-    statusEl.textContent = '';
-    statusEl.classList.remove('err');
-  }
-  var raw = new FormData(buysellQForm);
-  if ((raw.get('hp_trap') || '').toString().trim()) return;
-  if (!validateSimpleCaptcha('buysell-q', statusEl)) return;
-  var fd = questionnaireRawToSheetFd(raw, 'buy_sell_questionnaire', 'BUY + SELL QUESTIONNAIRE');
-  var qRes = await postToGoogleSheet(fd, 'buy_sell_questionnaire');
-  if (qRes.ok) {
-    buysellQForm.reset();
-    initSimpleCaptcha('buysell-q');
-    if (statusEl) {
-      statusEl.textContent = 'Submitted — Kayla will be in touch!';
-      statusEl.classList.remove('err');
+if (buysellQForm) {
+  var buysellQStatusEl = document.getElementById('buysell-q-status');
+  var buysellSessionKey = 'bu_buysell_q_submitted_session';
+
+  function lockBuysellQForSession(successMessage) {
+    buysellQForm.classList.add('is-session-locked');
+    Array.from(buysellQForm.querySelectorAll('input, select, textarea, button')).forEach(function (el) {
+      el.disabled = true;
+    });
+    if (buysellQStatusEl) {
+      buysellQStatusEl.textContent = successMessage || "You've already submitted this questionnaire during this session. Close and reopen the site later if you'd like to submit again.";
+      buysellQStatusEl.classList.remove('err');
+      buysellQStatusEl.classList.add('ok');
     }
-    return;
   }
-  if (statusEl) {
-    statusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
-    statusEl.classList.add('err');
+
+  if (sessionStorage.getItem(buysellSessionKey) === '1') {
+    lockBuysellQForSession();
   }
-});
+
+  buysellQForm.addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+    if (sessionStorage.getItem(buysellSessionKey) === '1') {
+      lockBuysellQForSession();
+      return;
+    }
+    if (buysellQStatusEl) {
+      buysellQStatusEl.textContent = '';
+      buysellQStatusEl.classList.remove('err', 'ok');
+    }
+    var raw = new FormData(buysellQForm);
+    if ((raw.get('hp_trap') || '').toString().trim()) return;
+    if (!validateSimpleCaptcha('buysell-q', buysellQStatusEl)) return;
+    var fd = questionnaireRawToSheetFd(raw, 'buy_sell_questionnaire', 'BUY + SELL QUESTIONNAIRE');
+    var qRes = await postToGoogleSheet(fd, 'buy_sell_questionnaire');
+    if (qRes.ok) {
+      buysellQForm.reset();
+      initSimpleCaptcha('buysell-q');
+      sessionStorage.setItem(buysellSessionKey, '1');
+      lockBuysellQForSession('Submitted — Kayla will be in touch!');
+      return;
+    }
+    if (buysellQStatusEl) {
+      buysellQStatusEl.classList.remove('ok');
+      buysellQStatusEl.textContent = 'Form service issue (' + (qRes.detail || qRes.reason || 'unknown') + ').';
+      buysellQStatusEl.classList.add('err');
+    }
+  });
+}
 
 var vendorGateForm = document.getElementById('vendor-gate-form');
 if (vendorGateForm) vendorGateForm.addEventListener('submit', async function (ev) {
