@@ -2276,11 +2276,11 @@ a.trec-link:hover{color:#fff}
       <div class="match-inner">
         <div class="reveal">
           <div class="eyebrow">Agent Matchmaking</div>
-          <h2 class="sec-title">Selling or buying with full representation—you deserve an agent who's actually <em>right for you.</em></h2>
-          <p class="sec-desc" style="max-width:100%">With thousands of agents in Middle Tennessee, choosing the right one shouldn't be a coin flip. For <strong>sellers</strong>, I connect you with listing agents who fit your property, your neighborhood, and your goals. For <strong>buyers</strong> who want a full-service buyer's agent—not BuyUnrepped's flat-fee model—I help you find someone skilled, ethical, and well-matched to how you buy. I've spent 9+ years building relationships across this market; every introduction is merit-based—no paid placements, no kickbacks.</p>
+          <h2 class="sec-title">If you need full-service representation, you deserve an agent who's actually <em>right for you.</em></h2>
+          <p class="sec-desc" style="max-width:100%">With thousands of agents in Middle Tennessee, choosing the right one shouldn't be a coin flip. For <strong>sellers</strong>, I connect you with listing agents who fit your property, your neighborhood, and your goals. For <strong>buyers</strong> who want a full-service buyer's agent—not BuyUnrepped's flat-fee model—I help you find someone skilled, ethical, and well-matched to how you buy. I've spent 9+ years building relationships across this market, and every introduction is based on fit and track record.</p>
           <div class="match-promise">
             <h4>My Promise to You</h4>
-            <p>This is a merit-based match. No paid placements. No kickbacks. No sponsored recommendations. I connect you with agents based solely on their track record, local expertise, and fit with your specific situation and I'm always upfront about how it works.</p>
+            <p>This is a merit-based match. I connect you with agents based on their track record, local expertise, and fit with your specific situation and I'm always upfront about how it works, including referral-fee disclosure.</p>
           </div>
           <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
             <button class="btn-primary" onclick="showPage('questionnaires', { tab: 'seller' })">Seller: Start Questionnaire</button>
@@ -2330,8 +2330,7 @@ a.trec-link:hover{color:#fff}
       </div>
       <div style="margin-top:3rem;background:var(--navy);padding:2rem 2.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;max-width:750px">
         <div>
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);font-style:italic">"I also handle more complex buyer situations investors, relocation buyers, and buyers who need someone to truly advocate for them."</p>
-          <p style="font-size:.78rem;color:var(--gold);margin-top:.75rem;font-weight:500"> Kayla Brown, Principal Broker</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);font-style:italic">Tell me your goals and I will make a thoughtful introduction to an agent who fits your situation.</p>
         </div>
         <button class="btn-gold" onclick="showPage('contact')">Let's Discuss Your Situation</button>
       </div>
@@ -2499,87 +2498,78 @@ a.trec-link:hover{color:#fff}
           </div>
           <div class="fg-row">
             <div class="fg"><label for="seller-q-email">Email *</label><input id="seller-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
-            <div class="fg"><label for="seller-q-phone">Phone</label><input id="seller-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel"></div>
+            <div class="fg"><label for="seller-q-phone">Phone *</label><input id="seller-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel" required></div>
           </div>
-          <div class="fg"><label for="seller-q-address">Property Address (or general area if not ready to share)</label>
-            <input id="seller-q-address" name="seller_property_area" type="text" placeholder="Address or neighborhood / city">
-          </div>
-          <div class="fg-row">
-            <div class="fg"><label for="seller-q-type">Property Type</label>
-              <select id="seller-q-type" name="seller_property_type">
-                <option value="">Select one</option>
-                <option>Single-family home</option>
-                <option>Condo / Townhome</option>
-                <option>Multi-family</option>
-                <option>Land / Lot</option>
-                <option>Investment property</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="fg"><label for="seller-q-value">Estimated Value</label>
-              <select id="seller-q-value" name="seller_value_range">
-                <option value="">Select a range</option>
-                <option>Under $300,000</option>
-                <option>$300,000 – $450,000</option>
-                <option>$450,000 – $600,000</option>
-                <option>$600,000 – $800,000</option>
-                <option>$800,000 – $1,000,000</option>
-                <option>Over $1,000,000</option>
-                <option>Not sure need a CMA</option>
-              </select>
+
+          <div class="fg">
+            <label style="margin-bottom:.35rem">Preferred Method of Communication (required)</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Call" required> Call</label>
+              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Text"> Text</label>
+              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Email"> Email</label>
+              <label class="radio-item"><input type="radio" name="seller_comm_method" value="Carrier Pigeon"> Carrier Pigeon</label>
+              <label class="radio-item"><input type="radio" name="seller_comm_method" value="All of the above are fine"> All of the above are fine</label>
             </div>
           </div>
-          <div class="fg"><label for="seller-q-list-when">When are you thinking of listing?</label>
-            <select id="seller-q-list-when" name="seller_listing_timeline">
-              <option value="">Select one</option>
-              <option>ASAP I'm ready now</option>
-              <option>Within 30 days</option>
-              <option>1–3 months</option>
-              <option>3–6 months</option>
-              <option>Just exploring options</option>
-            </select>
-          </div>
-          <div class="fg"><label for="seller-q-prior">Have you worked with a listing agent before?</label>
-            <select id="seller-q-prior" name="seller_prior_listing_agent">
-              <option value="">Select one</option>
-              <option>Yes</option>
-              <option>No this is my first time selling</option>
-              <option>Yes, but I had a bad experience</option>
-            </select>
-          </div>
-          <div class="fg"><label>What matters most to you in a listing agent?</label>
-            <div class="checkbox-group" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem">
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Hyper-local market knowledge"> Hyper-local market knowledge</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Strong marketing / photography"> Strong marketing / photography</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Communication &amp; responsiveness"> Communication &amp; responsiveness</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Track record / sold volume"> Track record / sold volume</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Staging / presentation guidance"> Staging / presentation guidance</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Negotiation strength"> Negotiation strength</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Lower commission rate"> Lower commission rate</label>
-              <label class="checkbox-item"><input type="checkbox" name="seller_agent_priority" value="Honest, straightforward advice"> Honest, straightforward advice</label>
+
+          <div class="fg">
+            <label style="margin-bottom:.35rem">Best Times to Contact You (required)</label>
+            <div class="checkbox-group">
+              <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Morning"> Morning</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Afternoon"> Afternoon</label>
+              <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Night"> Night</label>
             </div>
           </div>
-          <div class="fg"><label for="seller-q-condition">Describe your home's condition</label>
-            <select id="seller-q-condition" name="seller_home_condition">
+
+          <div class="fg"><label for="seller-q-why">Why are you selling your home? (required)</label>
+            <textarea id="seller-q-why" name="seller_why_selling" required></textarea>
+          </div>
+
+          <div class="fg"><label for="seller-q-ideal-agent">What's your ideal agent like?</label>
+            <textarea id="seller-q-ideal-agent" name="seller_ideal_agent"></textarea>
+          </div>
+
+          <div class="fg"><label for="seller-q-important">Anything important to you?</label>
+            <textarea id="seller-q-important" name="seller_important_notes"></textarea>
+          </div>
+
+          <div class="fg"><label for="seller-q-type">Type of Residence</label>
+            <select id="seller-q-type" name="seller_property_type">
               <option value="">Select one</option>
-              <option>Move-in ready / recently updated</option>
-              <option>Good condition, minor updates needed</option>
-              <option>Needs some work priced accordingly</option>
-              <option>Fixer-upper / investor opportunity</option>
-              <option>Not sure need a professional opinion</option>
+              <option>Single-Family Home</option>
+              <option>Townhome</option>
+              <option>Condo</option>
+              <option>Vacant Land</option>
+              <option>Multifamily</option>
+              <option>HPR (Attached)</option>
+              <option>HPR (Detached)</option>
             </select>
           </div>
-          <div class="fg"><label for="seller-q-also-buy">Are you also buying a home?</label>
-            <select id="seller-q-also-buy" name="seller_also_buying">
-              <option value="">Select one</option>
-              <option>Yes I need to buy and sell</option>
-              <option>No just selling</option>
-              <option>Maybe still figuring it out</option>
-            </select>
+
+          <div class="fg"><label for="seller-q-worth">How much do you think the property is worth today?</label>
+            <textarea id="seller-q-worth" name="seller_estimated_worth"></textarea>
           </div>
-          <div class="fg"><label for="seller-q-notes">Anything else I should know?</label>
-            <textarea id="seller-q-notes" name="seller_notes" placeholder="Special circumstances, timeline pressures, unique features of your home, concerns about the process..."></textarea>
+
+          <div class="fg"><label for="seller-q-upgrades">Please list any upgrades/updates you've completed since you acquired the property (and cost if you have it)</label>
+            <textarea id="seller-q-upgrades" name="seller_upgrades"></textarea>
           </div>
+
+          <div class="fg"><label for="seller-q-interior">Describe the inside of your home. Bed/ Bath count; finishes, etc</label>
+            <textarea id="seller-q-interior" name="seller_interior_description"></textarea>
+          </div>
+
+          <div class="fg"><label for="seller-q-timeframe">What is your time frame for moving, and why?</label>
+            <textarea id="seller-q-timeframe" name="seller_move_timeframe"></textarea>
+          </div>
+
+          <div class="fg">
+            <label style="margin-bottom:.35rem">Do you typically prefer any of the following:</label>
+            <div class="radio-group">
+              <label class="radio-item"><input type="radio" name="seller_service_style" value="Boutique 1:1 Service"> Boutique 1:1 Service</label>
+              <label class="radio-item"><input type="radio" name="seller_service_style" value="Larger Team with Multiple Points of Contact - everyone has a specific role"> Larger Team with Multiple Points of Contact - everyone has a specific role</label>
+            </div>
+          </div>
+
           <button type="submit" class="q-submit">Submit Seller Questionnaire</button>
           <p id="seller-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
         </form>
@@ -3197,7 +3187,7 @@ a.trec-link:hover{color:#fff}
     <div class="container">
       <div class="eyebrow">Get In Touch</div>
       <h2 class="sec-title">Let's have a real <em>conversation.</em></h2>
-      <p class="sec-desc" style="margin-bottom:3.5rem">Whether you're ready to move forward, still figuring it out, or just have a question you've been afraid to ask reach out. No pressure, no scripts.</p>
+      <p class="sec-desc" style="margin-bottom:3.5rem">Whether you're ready to move forward, still figuring it out, or just have a question reach out. No pressure, no scripts.</p>
       <div class="contact-inner">
         <div class="contact-info reveal">
           <div class="c-item">
@@ -3910,6 +3900,14 @@ if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
   var raw = new FormData(sellerQForm);
   if ((raw.get('hp_trap') || '').toString().trim()) return;
   if (!validateSimpleCaptcha('seller-q', statusEl)) return;
+  var bestTimes = sellerQForm.querySelectorAll('input[name="seller_contact_times"]:checked');
+  if (bestTimes.length < 1) {
+    if (statusEl) {
+      statusEl.textContent = 'Please choose at least one best time to contact you.';
+      statusEl.classList.add('err');
+    }
+    return;
+  }
   var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
   var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
   if (qRes.ok) {
