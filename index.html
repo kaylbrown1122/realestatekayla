@@ -2496,8 +2496,8 @@ a.trec-link:hover{color:#fff}
       <div class="q-pane" id="pane-seller">
         <div class="q-intro">
           <h3>Seller Questionnaire</h3>
-          <p>You need a listing agent who's right for your property, your price point, and your personality. Fill this out so I can understand your situation and curate the right match from my trusted network.</p>
-          <p>No ads. No sponsored placements. Recommendations are based entirely on merit and fit.</p>
+          <p>Tell us about your property, goals, and timeline so we can evaluate fit and guide your next steps with clarity.</p>
+          <p>This is built to balance qualification and support without adding friction.</p>
           <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply. All information is kept confidential and never sold.</div>
         </div>
         <form id="seller-questionnaire-form" class="q-form" novalidate>
@@ -2513,6 +2513,7 @@ a.trec-link:hover{color:#fff}
                 <label for="seller-q-captcha">Quick check: <span id="seller-q-captcha-q">What is 2 + 3?</span></label>
                 <input id="seller-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
               </div>
+              <h4 style="margin:.5rem 0 1rem">Section 1 — Basic Information</h4>
               <div class="fg-row">
                 <div class="fg"><label for="seller-q-first">First Name *</label><input id="seller-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
                 <div class="fg"><label for="seller-q-last">Last Name *</label><input id="seller-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
@@ -2523,85 +2524,195 @@ a.trec-link:hover{color:#fff}
               </div>
 
               <div class="fg">
-                <label style="margin-bottom:.35rem">Preferred Method of Communication (required)</label>
+                <label style="margin-bottom:.35rem">Preferred Method of Communication *</label>
                 <div class="radio-group">
                   <label class="radio-item"><input type="radio" name="seller_comm_method" value="Call" required> Call</label>
                   <label class="radio-item"><input type="radio" name="seller_comm_method" value="Text"> Text</label>
                   <label class="radio-item"><input type="radio" name="seller_comm_method" value="Email"> Email</label>
                   <label class="radio-item"><input type="radio" name="seller_comm_method" value="Carrier Pigeon"> Carrier Pigeon</label>
-                  <label class="radio-item"><input type="radio" name="seller_comm_method" value="All of the above are fine"> All of the above are fine</label>
                 </div>
               </div>
 
               <div class="fg">
-                <label style="margin-bottom:.35rem">Best Times to Contact You (required)</label>
-                <div class="checkbox-group">
-                  <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Morning"> Morning</label>
-                  <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Afternoon"> Afternoon</label>
-                  <label class="checkbox-item"><input type="checkbox" name="seller_contact_times" value="Night"> Night</label>
+                <label style="margin-bottom:.35rem">Best Time to Reach You *</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_best_contact_time" value="Morning" required> Morning</label>
+                  <label class="radio-item"><input type="radio" name="seller_best_contact_time" value="Afternoon"> Afternoon</label>
+                  <label class="radio-item"><input type="radio" name="seller_best_contact_time" value="Evening"> Evening</label>
                 </div>
               </div>
+
+              <div class="fg-row">
+                <div class="fg"><label for="seller-q-co-name">Co-Seller (if applicable)</label><input id="seller-q-co-name" name="seller_co_name" type="text" placeholder="Name"></div>
+                <div class="fg"><label for="seller-q-co-phone">Co-Seller Phone</label><input id="seller-q-co-phone" name="seller_co_phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel"></div>
+              </div>
+              <div class="fg"><label for="seller-q-co-email">Co-Seller Email</label><input id="seller-q-co-email" name="seller_co_email" type="email" placeholder="co-seller@email.com" autocomplete="email"></div>
             </div>
 
             <div class="sq-step" data-step="2">
-              <div class="fg"><label for="seller-q-why">Why are you selling your home? (required)</label>
-                <textarea id="seller-q-why" name="seller_why_selling" required></textarea>
+              <h4 style="margin:.5rem 0 1rem">Section 2 — Property Overview</h4>
+              <div class="fg"><label for="seller-q-address">Property Address *</label><input id="seller-q-address" name="seller_property_address" type="text" placeholder="Street, city, state, zip" required></div>
+              <div class="fg"><label for="seller-q-type">Property Type</label>
+                <select id="seller-q-type" name="seller_property_type">
+                  <option value="">Select one</option>
+                  <option>Single-Family</option>
+                  <option>Townhome</option>
+                  <option>Condo</option>
+                  <option>Multifamily</option>
+                  <option>Vacant Land</option>
+                  <option>HPR (Attached)</option>
+                  <option>HPR (Detached)</option>
+                  <option>Other</option>
+                </select>
               </div>
-
-              <div class="fg"><label for="seller-q-ideal-agent">What's your ideal agent like?</label>
-                <textarea id="seller-q-ideal-agent" name="seller_ideal_agent"></textarea>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Current Status</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_current_status" value="Owner-occupied"> Owner-occupied</label>
+                  <label class="radio-item"><input type="radio" name="seller_current_status" value="Tenant-occupied"> Tenant-occupied</label>
+                  <label class="radio-item"><input type="radio" name="seller_current_status" value="Vacant"> Vacant</label>
+                </div>
               </div>
-
-              <div class="fg"><label for="seller-q-important">Anything important to you?</label>
-                <textarea id="seller-q-important" name="seller_important_notes"></textarea>
+              <div class="fg-row">
+                <div class="fg"><label for="seller-q-bedbath">Bed / Bath</label><input id="seller-q-bedbath" name="seller_bed_bath" type="text" placeholder="e.g., 3 bed / 2 bath"></div>
+                <div class="fg"><label for="seller-q-sqft">Approximate Square Footage</label><input id="seller-q-sqft" name="seller_square_footage" type="text" placeholder="e.g., 2,150"></div>
+              </div>
+              <div class="fg-row">
+                <div class="fg"><label for="seller-q-year">Year Built (if known)</label><input id="seller-q-year" name="seller_year_built" type="text" placeholder="e.g., 2008"></div>
+                <div class="fg"><label for="seller-q-hoa">HOA?</label>
+                  <select id="seller-q-hoa" name="seller_hoa_status">
+                    <option value="">Select one</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not sure</option>
+                  </select>
+                </div>
               </div>
             </div>
 
             <div class="sq-step" data-step="3">
-              <div class="fg"><label for="seller-q-type">Type of Residence</label>
-                <select id="seller-q-type" name="seller_property_type">
-                  <option value="">Select one</option>
-                  <option>Single-Family Home</option>
-                  <option>Townhome</option>
-                  <option>Condo</option>
-                  <option>Vacant Land</option>
-                  <option>Multifamily</option>
-                  <option>HPR (Attached)</option>
-                  <option>HPR (Detached)</option>
-                </select>
-              </div>
-
-              <div class="fg"><label for="seller-q-worth">How much do you think the property is worth today?</label>
+              <h4 style="margin:.5rem 0 1rem">Section 3 — Pricing + Condition</h4>
+              <div class="fg"><label for="seller-q-worth">What do you believe the property is worth today?</label>
                 <textarea id="seller-q-worth" name="seller_estimated_worth"></textarea>
               </div>
-
-              <div class="fg"><label for="seller-q-upgrades">Please list any upgrades/updates you've completed since you acquired the property (and cost if you have it)</label>
-                <textarea id="seller-q-upgrades" name="seller_upgrades"></textarea>
+              <div class="fg"><label for="seller-q-target-price">Do you have a target list price in mind?</label>
+                <input id="seller-q-target-price" name="seller_target_list_price" type="text" placeholder="Optional target list price">
+              </div>
+              <div class="fg"><label for="seller-q-upgrades">What updates or improvements have you made?</label>
+                <textarea id="seller-q-upgrades" name="seller_upgrades" placeholder="Include approximate timing and cost if you have it"></textarea>
+              </div>
+              <div class="fg"><label for="seller-q-condition">How would you describe the condition and finishes of the home?</label>
+                <textarea id="seller-q-condition" name="seller_condition_finishes"></textarea>
+              </div>
+              <div class="fg"><label for="seller-q-issues">Anything we should be aware of?</label>
+                <textarea id="seller-q-issues" name="seller_known_issues" placeholder="Repairs, issues, disclosures, etc."></textarea>
               </div>
             </div>
 
             <div class="sq-step" data-step="4">
-              <div class="fg"><label for="seller-q-interior">Describe the inside of your home. Bed/ Bath count; finishes, etc</label>
-                <textarea id="seller-q-interior" name="seller_interior_description"></textarea>
-              </div>
-
-              <div class="fg"><label for="seller-q-timeframe">What is your time frame for moving, and why?</label>
-                <textarea id="seller-q-timeframe" name="seller_move_timeframe"></textarea>
-              </div>
-
+              <h4 style="margin:.5rem 0 1rem">Section 4 — Positioning + Readiness</h4>
               <div class="fg">
-                <label style="margin-bottom:.35rem">Do you typically prefer any of the following:</label>
+                <label style="margin-bottom:.35rem">Do you currently have photos?</label>
                 <div class="radio-group">
-                  <label class="radio-item"><input type="radio" name="seller_service_style" value="Boutique 1:1 Service"> Boutique 1:1 Service</label>
-                  <label class="radio-item"><input type="radio" name="seller_service_style" value="Larger Team with Multiple Points of Contact - everyone has a specific role"> Larger Team with Multiple Points of Contact - everyone has a specific role</label>
+                  <label class="radio-item"><input type="radio" name="seller_has_photos" value="Yes"> Yes</label>
+                  <label class="radio-item"><input type="radio" name="seller_has_photos" value="No"> No</label>
+                  <label class="radio-item"><input type="radio" name="seller_has_photos" value="Scheduled"> Scheduled</label>
                 </div>
+              </div>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Would you be open to guidance on staging or prep?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_staging_guidance" value="Yes"> Yes</label>
+                  <label class="radio-item"><input type="radio" name="seller_staging_guidance" value="Maybe"> Maybe</label>
+                  <label class="radio-item"><input type="radio" name="seller_staging_guidance" value="No"> No</label>
+                </div>
+              </div>
+
+              <h4 style="margin:1.25rem 0 1rem">Section 5 — Your Goals</h4>
+              <div class="fg"><label for="seller-q-why">Why are you selling?</label>
+                <textarea id="seller-q-why" name="seller_why_selling"></textarea>
+              </div>
+              <div class="fg"><label for="seller-q-timeframe">Ideal timeline</label>
+                <input id="seller-q-timeframe" name="seller_ideal_timeline" type="text" placeholder="e.g., 30-60 days, by end of summer">
+              </div>
+              <div class="fg-row">
+                <div class="fg"><label for="seller-q-buying-next">Are you also buying another property?</label>
+                  <select id="seller-q-buying-next" name="seller_buying_next">
+                    <option value="">Select one</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Maybe</option>
+                  </select>
+                </div>
+                <div class="fg"><label for="seller-q-sell-before-buy">Do you need to sell before buying?</label>
+                  <select id="seller-q-sell-before-buy" name="seller_need_sell_before_buy">
+                    <option value="">Select one</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not sure</option>
+                  </select>
+                </div>
+              </div>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">What matters most in this sale?</label>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Price"> Price</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Speed"> Speed</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Clean terms"> Clean terms</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Flexible closing"> Flexible closing</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Minimal disruption"> Minimal disruption</label>
+                  <label class="checkbox-item"><input type="checkbox" name="seller_sale_priorities" value="Other"> Other</label>
+                </div>
+              </div>
+
+              <h4 style="margin:1.25rem 0 1rem">Section 6 — How You Want to Approach This</h4>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Which best describes what you're looking for?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_approach_preference" value="I want to manage the listing, but need structure, pricing, and support"> I want to manage the listing, but need structure, pricing, and support</label>
+                  <label class="radio-item"><input type="radio" name="seller_approach_preference" value="I'm exploring options and want to understand this model"> I'm exploring options and want to understand this model</label>
+                  <label class="radio-item"><input type="radio" name="seller_approach_preference" value="I likely want a full-service listing agent"> I likely want a full-service listing agent</label>
+                  <label class="radio-item"><input type="radio" name="seller_approach_preference" value="I'd like a referral to a strong agent"> I'd like a referral to a strong agent</label>
+                </div>
+              </div>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Are you comfortable handling showings and communication directly?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_direct_showings_comms" value="Yes"> Yes</label>
+                  <label class="radio-item"><input type="radio" name="seller_direct_showings_comms" value="Somewhat"> Somewhat</label>
+                  <label class="radio-item"><input type="radio" name="seller_direct_showings_comms" value="No"> No</label>
+                </div>
+              </div>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Are you comfortable reviewing and responding to offers after a strategy call?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_offer_response_comfort" value="Yes"> Yes</label>
+                  <label class="radio-item"><input type="radio" name="seller_offer_response_comfort" value="Somewhat"> Somewhat</label>
+                  <label class="radio-item"><input type="radio" name="seller_offer_response_comfort" value="No"> No</label>
+                </div>
+              </div>
+
+              <h4 style="margin:1.25rem 0 1rem">Section 7 — Referral Option</h4>
+              <p style="margin:.2rem 0 .8rem;color:var(--muted)">If this isn't the right fit, we can connect you with a strong full-service listing agent. There's no cost to you for that introduction.</p>
+              <div class="fg">
+                <label style="margin-bottom:.35rem">Would you like to be considered for a referral if needed?</label>
+                <div class="radio-group">
+                  <label class="radio-item"><input type="radio" name="seller_referral_if_needed" value="Yes"> Yes</label>
+                  <label class="radio-item"><input type="radio" name="seller_referral_if_needed" value="Maybe"> Maybe</label>
+                  <label class="radio-item"><input type="radio" name="seller_referral_if_needed" value="No"> No</label>
+                </div>
+              </div>
+
+              <h4 style="margin:1.25rem 0 1rem">Final Question</h4>
+              <div class="fg"><label for="seller-q-notes">Anything else we should know?</label>
+                <textarea id="seller-q-notes" name="seller_additional_notes"></textarea>
               </div>
             </div>
 
             <div class="sq-nav">
               <button type="button" id="seller-q-prev" class="btn-outline" style="visibility:hidden">Back</button>
               <button type="button" id="seller-q-next" class="btn-outline">Next</button>
-              <button type="submit" id="seller-q-submit" class="q-submit" style="display:none">Submit Seller Questionnaire</button>
+              <button type="submit" id="seller-q-submit" class="q-submit" style="display:none">Submit Seller Intake</button>
             </div>
             <p id="seller-q-status" class="lead-modal-status" role="status" style="margin-top:.75rem"></p>
           </div>
@@ -2674,91 +2785,69 @@ a.trec-link:hover{color:#fff}
     <div class="container">
       <div class="si-wrap">
         <div class="eyebrow">BuyUnrepped &middot; Seller pilot (private link)</div>
-        <h1 class="sec-title" style="margin-bottom:1rem">Sell with structure. Stay in control.</h1>
-        <div class="si-hero">
-          <div class="si-lead si-panel">
-            <h3>What this page is for</h3>
-            <p>You're considering a seller-side version of <strong>BuyUnrepped</strong>: MLS exposure, pricing strategy, offer review, and transaction coordination without full-service listing representation.</p>
-            <p>This intake preview helps us understand your property, your goals, and whether this structure is the right fit before the first call.</p>
-            <div class="si-kv">
-              <div class="k">Pilot Structure<strong>Flat-fee support</strong></div>
-              <div class="k">Service Model<strong>You stay in control</strong></div>
-              <div class="k">Primary Focus<strong>MLS + pricing + offer strategy</strong></div>
-              <div class="k">Execution<strong>Use seller questionnaire</strong></div>
-            </div>
-          </div>
-          <div class="si-disclosure" style="margin:0">
-            <p><strong>Important:</strong> BuyUnrepped seller support is limited in scope.</p>
-            <p><strong>You remain responsible for</strong> setting the list price; approving listing details; managing showings; communicating with buyers and agents; making all negotiation decisions.</p>
-            <p>BuyUnrepped may provide pricing guidance, MLS setup, compliance document support, offer review, and transaction coordination. BuyUnrepped does not provide full-service listing representation unless separately agreed in writing.</p>
-          </div>
-        </div>
-
+        <h1 class="sec-title" style="margin-bottom:1rem">Sell your home. Stay in control.</h1>
         <div class="si-scope" aria-labelledby="si-how-heading">
-          <h2 class="sec-title" id="si-how-heading" style="font-size:clamp(1.35rem,2.2vw,1.75rem);margin-bottom:1rem">How this works (read before submitting)</h2>
+          <h2 class="sec-title" id="si-how-heading" style="font-size:clamp(1.35rem,2.2vw,1.75rem);margin-bottom:1rem">What this is</h2>
           <h3>What this is</h3>
-          <p>BuyUnrepped seller support is designed for owners who want MLS exposure and professional structure while managing their own listing.</p>
-          <p><strong>You stay in control of the sale.</strong> We help you prepare, structure, and manage the process behind the scenes.</p>
+          <p>You don't necessarily need a full-service listing agent to sell your home.</p>
+          <p>But you do need pricing, structure, and a clear plan before you go live.</p>
+          <p>This is a seller-side version of BuyUnrepped.</p>
+          <p><strong>You run the listing.</strong><br><strong>We help you structure it.</strong></p>
+          <h3>How it works</h3>
+          <p>You handle the front end.<br>We support the strategy behind the scenes.</p>
+          <p>That includes:</p>
+          <ul>
+            <li>pricing the home with real context</li>
+            <li>getting it live in the MLS correctly</li>
+            <li>walking through offers and next steps</li>
+            <li>keeping things on track once you're under contract</li>
+          </ul>
           <h3>What you get</h3>
-          <p>For a <strong>flat fee of $2,495</strong> (pilot pricing may vary), BuyUnrepped provides:</p>
+          <p><strong>Flat-fee support: $2,495</strong></p>
           <ul>
-            <li>Pricing analysis (CMA / broker price opinion)</li>
-            <li>MLS listing setup under the brokerage</li>
-            <li>Compliance document support</li>
-            <li>Guidance on positioning and listing setup</li>
-            <li>Offer review and strategy sessions</li>
-            <li>Contract-to-close transaction coordination once under contract</li>
+            <li>CMA and pricing guidance</li>
+            <li>MLS listing setup</li>
+            <li>help positioning the listing</li>
+            <li>offer review and strategy calls</li>
+            <li>contract-to-close coordination once under contract</li>
           </ul>
-          <h3>What you handle</h3>
-          <p>You remain responsible for:</p>
+          <p>You'll know exactly how your listing is positioned and how to respond when offers come in.</p>
+          <h3>Fees and structure</h3>
+          <p>There's a gap between doing it completely on your own and hiring a full-service listing agent.</p>
+          <p>BuyUnrepped sits in the middle.</p>
+          <p>More than an MLS-only listing.<br>Less than full-service representation.</p>
+          <p>You're paying for structure, strategy, and support where it matters.<br>Not for someone to take over the entire process.</p>
+          <h3>Your role</h3>
+          <p>You stay in control of the listing.</p>
+          <p><strong>You:</strong></p>
           <ul>
-            <li>Setting and adjusting the list price</li>
-            <li>Managing all showings</li>
-            <li>Communicating with buyers and buyer agents</li>
-            <li>Reviewing and responding to offers</li>
-            <li>Negotiating terms</li>
+            <li>manage showings</li>
+            <li>communicate with buyers and agents</li>
+            <li>decide how to respond to offers</li>
           </ul>
-          <p><strong>You are the primary point of contact throughout the listing.</strong></p>
-          <h3>What this is not</h3>
-          <p>This is not full-service listing representation.</p>
-          <p><strong>BuyUnrepped does not:</strong></p>
+          <p>We help you think through it. You run it.</p>
+          <h3>The difference</h3>
+          <p>No one is stepping in front of you.<br>No one is speaking on your behalf.</p>
+          <p>This is a structured way to sell your home on your own, without going in blind.</p>
+          <h3>When this works best</h3>
+          <p>This tends to be a good fit if you:</p>
           <ul>
-            <li>Host or attend showings</li>
-            <li>Negotiate on your behalf</li>
-            <li>Communicate with buyers or agents for you (unless separately agreed)</li>
-            <li>Market the property beyond MLS (unless added)</li>
+            <li>want control over the process</li>
+            <li>are comfortable communicating directly</li>
+            <li>still want guidance and structure behind you</li>
           </ul>
-          <h3>Structure and limits</h3>
-          <p>To keep this efficient and focused:</p>
-          <ul>
-            <li>Includes 1 pricing strategy session</li>
-            <li>Includes 1 listing setup session</li>
-            <li>Includes up to 2 offer review sessions per offer cycle</li>
-            <li>Additional support is available if needed and scoped separately</li>
-          </ul>
-          <p>Communication is handled through scheduled calls and email.</p>
-          <h3>Timing and term</h3>
-          <ul>
-            <li>Listing term: 6 months</li>
-            <li>Fee is due upfront</li>
-            <li>Fee is not contingent on sale</li>
-          </ul>
-          <h3>Who this is a fit for</h3>
-          <p>This works best for sellers who:</p>
-          <ul>
-            <li>are comfortable managing communication directly</li>
-            <li>want control over pricing and negotiation</li>
-            <li>value structure and guidance, but do not want to hand off the listing</li>
-          </ul>
-          <h3>Not sure this is right?</h3>
-          <p>If you decide you want full-service representation, we can connect you with a strong listing agent. <strong>There is no cost to you for that introduction.</strong></p>
+          <h3>Not sure?</h3>
+          <p>If you decide you want full-service representation, we'll connect you with a strong listing agent.</p>
+          <h3>Next step</h3>
+          <p>If this feels like the right fit, complete the intake below.</p>
+          <p>We'll review your property and walk through next steps.</p>
         </div>
 
-        <h2 class="si-form-h">Seller Questionnaire</h2>
+        <h2 class="si-form-h">CTA</h2>
         <div class="si-cta-card">
-          <p style="font-size:.9rem;line-height:1.75;color:var(--muted);margin-bottom:1rem">This private page now routes to the main seller questionnaire form so all submissions flow through one place.</p>
+          <p style="font-size:.9rem;line-height:1.75;color:var(--muted);margin-bottom:1rem">Takes you to the seller questionnaire so submissions stay in one place.</p>
           <div class="si-cta-actions">
-            <a href="/questionnaires?tab=seller" class="btn-primary">Go to Seller Questionnaire</a>
+            <a href="/questionnaires?tab=seller" class="btn-primary">Start Seller Intake</a>
             <a href="/sellers" class="btn-outline">Back to Seller Page</a>
           </div>
         </div>
@@ -3349,7 +3438,7 @@ function updateDocumentMetaForPage(name) {
   var mr = document.getElementById('meta-robots');
   var can = document.getElementById('doc-canonical');
   if (name === 'seller-intake') {
-    document.title = 'Sell with structure. Stay in control. | BuyUnrepped seller intake';
+    document.title = 'Sell your home. Stay in control. | BuyUnrepped seller intake';
     if (mr) mr.setAttribute('content', 'noindex, nofollow');
     if (can) can.setAttribute('href', location.origin + '/bu-seller-intake');
   } else {
@@ -3562,16 +3651,6 @@ function initSellerQPager() {
           statusEl.classList.add('err');
         }
         el.focus();
-        return false;
-      }
-    }
-    if (idx === 0) {
-      var bestTimes = form.querySelectorAll('input[name=\"seller_contact_times\"]:checked');
-      if (bestTimes.length < 1) {
-        if (statusEl) {
-          statusEl.textContent = 'Please choose at least one best time to contact you.';
-          statusEl.classList.add('err');
-        }
         return false;
       }
     }
@@ -3827,14 +3906,6 @@ if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
   var raw = new FormData(sellerQForm);
   if ((raw.get('hp_trap') || '').toString().trim()) return;
   if (!validateSimpleCaptcha('seller-q', statusEl)) return;
-  var bestTimes = sellerQForm.querySelectorAll('input[name="seller_contact_times"]:checked');
-  if (bestTimes.length < 1) {
-    if (statusEl) {
-      statusEl.textContent = 'Please choose at least one best time to contact you.';
-      statusEl.classList.add('err');
-    }
-    return;
-  }
   var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
   var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
   if (qRes.ok) {
@@ -3842,7 +3913,7 @@ if (sellerQForm) sellerQForm.addEventListener('submit', async function (ev) {
     initSimpleCaptcha('seller-q');
     if (window.resetSellerQPager) window.resetSellerQPager();
     if (statusEl) {
-      statusEl.textContent = 'Submitted — Kayla will be in touch!';
+      statusEl.textContent = "Thanks — we've received your information. We'll review the property and follow up with next steps. If this looks like a fit, we'll walk through pricing, structure, and how this would work for your specific situation.";
       statusEl.classList.remove('err');
     }
     return;
