@@ -215,11 +215,15 @@ module.exports = async function handler(req, res) {
       return { ok: false, detail: (raw || "formspree error").slice(0, 200) };
     }
 
-    // 200 + non-JSON or legacy shape
-    if (upstream.ok) {
-      return { ok: true };
-    }
-    return { ok: false, detail: (raw || "formspree error").slice(0, 200) };
+    return {
+      ok: false,
+      detail: (
+        "unexpected_formspree_response HTTP " +
+        upstream.status +
+        ": " +
+        (raw || "empty response")
+      ).slice(0, 300)
+    };
   }
 
   function looksLikeHtml(s) {
@@ -452,43 +456,54 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    const failures = [];
+
     if (formspreeOk) {
       const fsRes = await sendFormspree();
-      if (!fsRes.ok) {
-        return res.status(502).json({
-          ok: false,
-          error: "formspree_rejected",
-          detail: fsRes.detail || "unknown"
-        });
+      if (fsRes.ok) {
+        return res.status(200).json({ ok: true, provider: "formspree" });
       }
-      return res.status(200).json({ ok: true });
+      failures.push({
+        provider: "formspree",
+        detail: fsRes.detail || "unknown"
+      });
     }
 
     if (slackReady) {
       const slackRes = await sendSlack();
-      if (!slackRes.ok) {
-        return res.status(502).json({
-          ok: false,
-          error: "slack_rejected",
-          detail: slackRes.detail || "unknown"
+      if (slackRes.ok) {
+        return res.status(200).json({
+          ok: true,
+          provider: formspreeOk ? "slack_fallback" : "slack"
         });
       }
-      return res.status(200).json({ ok: true });
+      failures.push({
+        provider: "slack",
+        detail: slackRes.detail || "unknown"
+      });
     }
 
     if (googleUrl) {
       const googleRes = await sendGoogle();
-      if (!googleRes.ok) {
-        return res.status(502).json({
-          ok: false,
-          error: googleRes.detail ? "upstream_app_error" : "upstream_rejected",
-          detail: googleRes.detail || "google_failed",
-          status: googleRes.status
+      if (googleRes.ok) {
+        return res.status(200).json({
+          ok: true,
+          provider:
+            formspreeOk || slackReady ? "google_fallback" : "google"
         });
       }
+      failures.push({
+        provider: "google",
+        detail: googleRes.detail || "google_failed",
+        status: googleRes.status
+      });
     }
 
-    return res.status(200).json({ ok: true });
+    return res.status(502).json({
+      ok: false,
+      error: "all_delivery_methods_failed",
+      failures
+    });
   } catch (err) {
     const msg = err && err.message ? err.message : String(err);
     return res.status(502).json({
