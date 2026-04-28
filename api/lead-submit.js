@@ -98,7 +98,8 @@ module.exports = async function handler(req, res) {
     phone: body.phone || "",
     interest: body.interest || "",
     message: body.message || "",
-    consent: body.consent || ""
+    consent: body.consent || "",
+    propertyAddress: (body.propertyAddress || "").toString().trim()
   };
 
   const googlePayload = {
@@ -121,6 +122,25 @@ module.exports = async function handler(req, res) {
       map[ft] ||
       "[" + (fields.formType || "FORM").toString().toUpperCase() + "]"
     );
+  }
+
+  function formspreeEmailSubject() {
+    const tag = formspreeSubjectLabel();
+    const name = fields.name || "(no name)";
+    const addr = String(fields.propertyAddress || "").trim();
+    const ft = String(fields.formType || "").toLowerCase();
+    const withAddr =
+      addr &&
+      (ft === "seller_questionnaire" ||
+        ft === "buy_sell_questionnaire" ||
+        ft === "buyer_questionnaire");
+    if (withAddr) {
+      const short = addr.length > 72 ? addr.slice(0, 69) + "..." : addr;
+      return (
+        tag + " Real Estate Kayla — " + short + " — " + name
+      );
+    }
+    return tag + " Real Estate Kayla — " + name;
   }
 
   async function sendFormspree() {
@@ -168,10 +188,10 @@ module.exports = async function handler(req, res) {
           source: fields.source,
           pageUrl: fields.pageUrl,
           timestamp: fields.timestamp,
-          _subject:
-            tag +
-            " Real Estate Kayla — " +
-            (fields.name || "(no name)")
+          ...(fields.propertyAddress
+            ? { propertyAddress: fields.propertyAddress }
+            : {}),
+          _subject: formspreeEmailSubject()
         })
       });
       raw = await upstream.text();
@@ -254,6 +274,9 @@ module.exports = async function handler(req, res) {
       "*Real Estate Kayla — new form submission*",
       "*Type:* " + (slackPlain(fields.formType) || "(none)"),
       "*Name:* " + slackPlain(fields.name),
+      fields.propertyAddress
+        ? "*Property / area:* " + slackPlain(fields.propertyAddress)
+        : "",
       "*Email:* " + slackPlain(fields.email),
       "*Phone:* " + slackPlain(fields.phone),
       "*Interest:* " + slackPlain(fields.interest),

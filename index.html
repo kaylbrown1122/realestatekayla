@@ -2567,7 +2567,7 @@ a.trec-link:hover{color:#fff}
         <div class="q-intro">
           <h3>Seller Questionnaire</h3>
           <p>Tell us about your property, goals, and timeline so we can evaluate fit and guide your next steps with clarity.</p>
-          <p>This is built to balance qualification and support without adding friction.</p>
+          <p>Start with your <strong>name, email, phone, and the full property address</strong> so we can follow up—we will not review an intake without a specific property location.</p>
           <div class="q-consent">By submitting this form, you agree to be contacted by BuyUnrepped dba Kayla Brown via call, email, and text. To opt out at any time, reply "STOP" or click unsubscribe. Message and data rates may apply. All information is kept confidential and never sold.</div>
         </div>
         <form id="seller-questionnaire-form" class="q-form" novalidate>
@@ -2583,7 +2583,7 @@ a.trec-link:hover{color:#fff}
                 <label for="seller-q-captcha">Quick check: <span id="seller-q-captcha-q">What is 2 + 3?</span></label>
                 <input id="seller-q-captcha" name="captcha" type="text" inputmode="numeric" autocomplete="off" required>
               </div>
-              <h4 style="margin:.5rem 0 1rem">Section 1 — Basic Information</h4>
+              <h4 style="margin:.5rem 0 1rem">Section 1 — Contact &amp; property</h4>
               <div class="fg-row">
                 <div class="fg"><label for="seller-q-first">First Name *</label><input id="seller-q-first" name="firstName" type="text" placeholder="First name" autocomplete="given-name" required></div>
                 <div class="fg"><label for="seller-q-last">Last Name *</label><input id="seller-q-last" name="lastName" type="text" placeholder="Last name" autocomplete="family-name" required></div>
@@ -2592,6 +2592,7 @@ a.trec-link:hover{color:#fff}
                 <div class="fg"><label for="seller-q-email">Email *</label><input id="seller-q-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required></div>
                 <div class="fg"><label for="seller-q-phone">Phone *</label><input id="seller-q-phone" name="phone" type="tel" placeholder="(615) 000-0000" autocomplete="tel" required></div>
               </div>
+              <div class="fg"><label for="seller-q-address">Property address *</label><input id="seller-q-address" name="seller_property_address" type="text" placeholder="Street, city, state, ZIP" autocomplete="street-address" required></div>
 
               <div class="fg">
                 <label style="margin-bottom:.35rem">Preferred Method of Communication *</label>
@@ -2620,8 +2621,7 @@ a.trec-link:hover{color:#fff}
             </div>
 
             <div class="sq-step" data-step="2">
-              <h4 style="margin:.5rem 0 1rem">Section 2 — Property Overview</h4>
-              <div class="fg"><label for="seller-q-address">Property Address *</label><input id="seller-q-address" name="seller_property_address" type="text" placeholder="Street, city, state, zip" required></div>
+              <h4 style="margin:.5rem 0 1rem">Section 2 — Property overview</h4>
               <div class="fg"><label for="seller-q-type">Property Type</label>
                 <select id="seller-q-type" name="seller_property_type">
                   <option value="">Select one</option>
@@ -3555,7 +3555,8 @@ async function postToGoogleSheet(formData, formType) {
     phone: formData.get('phone') || '',
     interest: formData.get('interest') || '',
     message: formData.get('message') || '',
-    consent: formData.get('consent') || ''
+    consent: formData.get('consent') || '',
+    propertyAddress: (formData.get('propertyAddress') || '').toString().trim()
   };
   try {
     var res = await fetch(url, {
@@ -3619,6 +3620,8 @@ function questionnaireRawToSheetFd(raw, formTypeKey, emailLabel) {
   fd.set('formType', formTypeKey);
   fd.set('consent', 'yes — website questionnaire');
   fd.set('message', '=== ' + emailLabel + ' ===\n\n' + buildQuestionnaireDetails(raw));
+  var prop = (raw.get('seller_property_address') || raw.get('buysell_selling') || raw.get('buy_where') || '').toString().trim();
+  if (prop) fd.set('propertyAddress', prop);
   return fd;
 }
 
@@ -4130,6 +4133,35 @@ if (sellerQForm) {
   var sellerQStatusEl = document.getElementById('seller-q-status');
   var sellerSessionKey = 'bu_seller_q_submitted_session';
 
+  function validateSellerIntakeForSubmit(raw, statusEl) {
+    var first = (raw.get('firstName') || '').toString().trim();
+    var last = (raw.get('lastName') || '').toString().trim();
+    var email = (raw.get('email') || '').toString().trim();
+    var phone = (raw.get('phone') || '').toString().trim();
+    var addr = (raw.get('seller_property_address') || '').toString().trim();
+    if (!first) {
+      if (statusEl) { statusEl.textContent = 'Please enter your first name.'; statusEl.classList.add('err'); }
+      return 'seller-q-first';
+    }
+    if (!last) {
+      if (statusEl) { statusEl.textContent = 'Please enter your last name.'; statusEl.classList.add('err'); }
+      return 'seller-q-last';
+    }
+    if (!email || email.indexOf('@') < 1) {
+      if (statusEl) { statusEl.textContent = 'Please enter a valid email address.'; statusEl.classList.add('err'); }
+      return 'seller-q-email';
+    }
+    if (!phone) {
+      if (statusEl) { statusEl.textContent = 'Please enter a phone number so we can reach you.'; statusEl.classList.add('err'); }
+      return 'seller-q-phone';
+    }
+    if (!addr) {
+      if (statusEl) { statusEl.textContent = 'Please enter the full property address (street, city, state, and ZIP).'; statusEl.classList.add('err'); }
+      return 'seller-q-address';
+    }
+    return null;
+  }
+
   function lockSellerQForSession(successMessage) {
     sellerQForm.classList.add('is-session-locked');
     Array.from(sellerQForm.querySelectorAll('input, select, textarea, button')).forEach(function (el) {
@@ -4158,6 +4190,13 @@ if (sellerQForm) {
     }
     var raw = new FormData(sellerQForm);
     if ((raw.get('hp_trap') || '').toString().trim()) return;
+    var sellerNeedId = validateSellerIntakeForSubmit(raw, sellerQStatusEl);
+    if (sellerNeedId) {
+      if (window.resetSellerQPager) window.resetSellerQPager();
+      var elNeed = document.getElementById(sellerNeedId);
+      if (elNeed) { elNeed.focus(); elNeed.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      return;
+    }
     if (!validateSimpleCaptcha('seller-q', sellerQStatusEl)) return;
     var fd = questionnaireRawToSheetFd(raw, 'seller_questionnaire', 'SELLER QUESTIONNAIRE');
     var qRes = await postToGoogleSheet(fd, 'seller_questionnaire');
